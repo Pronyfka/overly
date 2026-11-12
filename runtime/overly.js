@@ -13,6 +13,7 @@
   let values = null;    // то, что видит тема (со звуком или без)
   let soundOn = false;
   const stats = { followers: 742, subs: 57, bits: 3200, donations: 4350 };
+  const channel = { title: 'Проходим новую игру', game: 'Just Chatting' };
   const music = { playing: true, title: 'Неоновый город', artist: 'Overly Beats', album: '', cover: '../../img/cover.svg', position: 41, duration: 198, at: Date.now() };
 
   // Без звука: убираем свои звуки событий и встроенные звуки темы
@@ -63,6 +64,18 @@
     userCss.textContent = text || '';
   }
 
+  function line(key) {
+    const v = values || {};
+    if (v[key + 'Show'] === false) return '';
+    const own = v[key] || '';
+    switch (v[key + 'From']) {
+      case 'title': return channel.title || own;
+      case 'game': return channel.game || own;
+      case 'both': return [channel.title, channel.game].filter(Boolean).join(' · ') || own;
+      default: return own;
+    }
+  }
+
   function play(url, volume = 1) {
     if (!url || !soundOn) return;
     const a = new Audio(url);
@@ -77,10 +90,12 @@
     css,
     play,
     get settings() { return values; },
+    line,
     onSettings(cb) { handlers.settings.push(cb); if (values) cb(values); },
     onEvent(cb) { handlers.event.push(cb); },
     onChat(cb) { handlers.chat.push(cb); },
     onChatMod(cb) { handlers.chatMod.push(cb); },
+    onChannel(cb) { cb(channel); },
     onStats(cb) { handlers.stats.push(cb); if (values) cb(stats); },
     onScene(cb) { handlers.scene.push(cb); },
     setSceneWidgets() {},

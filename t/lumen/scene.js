@@ -68,7 +68,7 @@ Overly.onSettings(v => {
   $('.kicker span').textContent = v[`scene.${SCENE}Kicker`] || '';
   $('.title').textContent = v[`scene.${SCENE}Title`] || '';
   $('.line').textContent = v[`scene.${SCENE}Line`] || '';
-  $('.socials').textContent = v['scene.socials'] || '';
+  showSocials();
   tick();
   if (!opened) {
     opened = true;
@@ -137,3 +137,6 @@ Overly.onEvent(a => {
   eventTimer = setTimeout(() => Lumen.close(ev), 7000);
 });
 
+// Нижняя строка: может выключаться и браться с Twitch (Overly.line), поэтому обновляется и при смене названия
+function showSocials() { $('.socials').textContent = Overly.line('scene.socials'); }
+Overly.onChannel(showSocials);

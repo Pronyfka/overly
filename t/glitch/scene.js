@@ -98,7 +98,7 @@ Overly.onSettings(v => {
   $('.status b').textContent = v[`scene.${SCENE}Tag`] || '';
   $('.status .line').textContent = v[`scene.${SCENE}Line`] || '';
   $('.note').textContent = v[`scene.${SCENE}Note`] || '';
-  $('.socials').textContent = v['scene.socials'] || '';
+  showSocials();
   const title = String(v[`scene.${SCENE}Title`] || '');
   if (title !== shownTitle) {
     shownTitle = title;
@@ -199,3 +199,7 @@ Overly.onEvent(a => {
   clearTimeout(eventTimer);
   eventTimer = setTimeout(() => { G.replay(ev, 'g-out'); setTimeout(() => ev.classList.remove('on', 'g-out'), 380); }, 7000);
 });
+
+// Нижняя строка: может выключаться и браться с Twitch (Overly.line), поэтому обновляется и при смене названия
+function showSocials() { $('.socials').textContent = Overly.line('scene.socials'); }
+Overly.onChannel(showSocials);

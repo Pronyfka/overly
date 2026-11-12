@@ -167,7 +167,7 @@ Overly.onSettings(v => {
   document.body.classList.toggle('no-lens', !v['scene.lens']);
   Overly.css(v['scene.css']);
   $('.label').textContent = v[`scene.${SCENE}Label`] || '';
-  $('.note').textContent = SCENE === 'start' ? (v['scene.streamTitle'] || '') : SCENE === 'brb' ? (v['scene.brbNote'] || '') : '';
+  showNote();
   words = String(v[`scene.${SCENE}Words`] || '').split('|').map(s => s.trim()).filter(Boolean);
   wordAt = 0; showWords();
   setSchedule(v);
@@ -226,3 +226,11 @@ Overly.onEvent(a => {
   clearTimeout(eventTimer);
   eventTimer = setTimeout(() => { ev.classList.remove('wipe-in'); B.replay(ev, 'pop-out'); }, 7000);
 });
+
+// Нижняя строка: название стрима на «Стрим скоро», своя строка на «Перерыве».
+// Может выключаться и браться с Twitch (Overly.line), поэтому обновляется и при смене названия
+function showNote() {
+  const key = SCENE === 'start' ? 'scene.streamTitle' : SCENE === 'brb' ? 'scene.brbNote' : '';
+  if ($('.note')) $('.note').textContent = key ? Overly.line(key) : '';
+}
+Overly.onChannel(showNote);

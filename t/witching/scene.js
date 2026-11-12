@@ -85,7 +85,7 @@ Overly.onSettings(v => {
   const title = v[`scene.${SCENE}Title`] || '';
   if ($('.title').getAttribute('aria-label') !== title) Witch.letters($('.title'), title);
   $('.line').textContent = v[`scene.${SCENE}Line`] || '';
-  $('.socials').textContent = v['scene.socials'] || '';
+  showSocials();
   tick();
   document.fonts.ready.then(() => requestAnimationFrame(() => {
     document.body.classList.add('ready');
@@ -163,3 +163,7 @@ function flyby() {
   setTimeout(flyby, 30000 + Math.random() * 15000);
 }
 setTimeout(flyby, 3500);
+
+// Нижняя строка: может выключаться и браться с Twitch (Overly.line), поэтому обновляется и при смене названия
+function showSocials() { $('.socials').textContent = Overly.line('scene.socials'); }
+Overly.onChannel(showSocials);
