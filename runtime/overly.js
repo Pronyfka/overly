@@ -29,8 +29,11 @@
     handlers.settings.forEach(cb => cb(values));
   }
 
-  // Настройки вшиты в html (так сайт работает и с диска, где fetch запрещён); settings.json — запасной путь
-  (window.OVERLY_SETTINGS ? Promise.resolve(window.OVERLY_SETTINGS) : fetch('settings.json').then(r => r.json())).then(v => {
+  // Настройки вшиты в html (так сайт работает и с диска, где fetch запрещён); settings.json — запасной путь.
+  // Отдаём их только после загрузки страницы: в программе они приходят по WebSocket, то есть позже всех скриптов,
+  // и темы на это рассчитывают (иначе обработчик сработает до объявления переменных ниже по файлу)
+  const loaded = new Promise(r => document.readyState === 'loading' ? addEventListener('DOMContentLoaded', r, { once: true }) : setTimeout(r));
+  loaded.then(() => window.OVERLY_SETTINGS || fetch('settings.json').then(r => r.json())).then(v => {
     base = v;
     applySound();
     handlers.stats.forEach(cb => cb(stats));
