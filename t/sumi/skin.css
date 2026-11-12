@@ -1,0 +1,54 @@
+/* «Тушь»: вид оверлеев на общей разметке. Карточки — мазки кистью (маски из sumi.js), метки — красное солнце. */
+
+/* Чат: тёмный лист с неровным краем, ник — кистью, под ним короткий росчерк */
+#chat .tail, #chat .mark { display: none; }
+#chat .bubble, #chat.tail-right .bubble { left: 8px; right: 8px; top: 8px; bottom: 8px; filter: url(#ink-rough); }
+#chat .msgs, #chat.tail-right .msgs { left: 8px; right: 8px; top: 8px; bottom: 8px; gap: .8em; padding: 1.1em 1.4em; }
+#chat .n { position: relative; display: block; width: fit-content; padding-bottom: .2em; margin-bottom: .12em;
+  font-weight: 800; font-style: italic; text-transform: uppercase; letter-spacing: .01em; color: var(--c, var(--acc)); }
+#chat .n::after { content: ''; position: absolute; left: -.2em; right: -.7em; bottom: 0; height: .24em; background: var(--acc);
+  -webkit-mask: var(--strokeS) center / 100% 100% no-repeat; }
+#chat.right .n { margin-left: auto; }
+#chat .colon { display: none; }
+#chat .b { border-radius: 50%; }
+#chat .m.new { animation: inkMsg .5s var(--out) both; }
+@keyframes inkMsg { from { opacity: 0; filter: blur(6px); translate: -12px 0; } to { opacity: 1; filter: blur(0); translate: 0 0; } }
+#chat .m.new .n::after { animation: underline .45s var(--brush) .14s both; }
+@keyframes underline { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+
+/* Вебка: рамка с неровным краем, как проведённая кистью, снизу по центру — солнце */
+#cam, #cam.pad { inset: 0; }
+#cam .border { inset: 4px 4px 24px 4px; border-color: var(--card); filter: url(#ink-rough); }
+#cam .corner, #cam .corner.tl, #cam .corner.tr, #cam .corner.bl, #cam .corner.br { left: 50%; right: auto; top: auto; bottom: 2px; width: 44px; height: 44px; margin-left: -22px;
+  background: var(--acc); -webkit-mask: var(--sun) center / contain no-repeat; }
+
+/* Цель: длинный мазок, который заливается краской */
+#goal { left: 50px; }
+#goal .card { --stroke: var(--strokeW); -webkit-mask: var(--strokeW) center / 100% 100% no-repeat; }
+#goal .layer { padding: 0 2.6em 0 2.2em; }
+#goal .small { font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+#goal .title, #goal .count, #goal .done { font-weight: 800; font-style: italic; text-transform: uppercase; }
+#goal .mark { left: -44px; width: 32px; height: 32px; margin-top: -16px; -webkit-mask: var(--sun) center / contain no-repeat; }
+#goal .done .sq { -webkit-mask: var(--sun) center / contain no-repeat; }
+#goal .line-bar { left: 2.2em; right: 2.6em; bottom: .5em; height: .2em; -webkit-mask: var(--strokeS) center / 100% 100% no-repeat; }
+
+/* Музыка: обложка-оттиск и мазок с названием */
+#music .cover { border-radius: 0 !important; filter: url(#ink-rough); z-index: 1; }
+#music .card { --stroke: var(--stroke2); -webkit-mask: var(--stroke2) center / 100% 100% no-repeat; border-radius: 0 !important; padding: 0 48px 0 40px; margin-left: -8px; }
+#music.right .card { margin: 0 -8px 0 0; }
+#music .label { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--acc); }
+#music .title { font-weight: 800; font-style: italic; text-transform: uppercase; }
+#music .bar { left: 40px; right: 48px; bottom: 15px; height: 5px; -webkit-mask: var(--strokeS) center / 100% 100% no-repeat; }
+#music.mini .bar { bottom: 9px; }
+#music .t { right: 48px; top: 20px; }
+#music.right .t { left: 48px; }
+#music.mini .card { padding-right: 150px; }
+#music.right.mini .card { padding: 0 40px 0 150px; }
+
+/* Итоги: каждая строка — свой мазок */
+.row .card { --stroke: var(--stroke1); -webkit-mask: var(--stroke1) center / 100% 100% no-repeat; padding: .85em 2em .85em 1.7em; }
+.row:nth-child(3n + 2) .card { --stroke: var(--stroke2); -webkit-mask-image: var(--stroke2); }
+.row:nth-child(3n) .card { --stroke: var(--stroke3); -webkit-mask-image: var(--stroke3); }
+.row .sq { width: .95em; height: .95em; margin-top: .72em; -webkit-mask: var(--sun) center / contain no-repeat; }
+.row .lbl { font-weight: 800; font-style: italic; text-transform: uppercase; color: var(--c, var(--acc)); }
+.row .val { font-weight: 600; }

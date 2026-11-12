@@ -1,0 +1,81 @@
+/* =====================================================
+   ТЕМА GLITCH HUD · общий вид
+   Технический HUD: кислотный акцент, ровный квадратный шрифт, пиксельные подписи,
+   тонкие линии, узлы-квадраты, штриховка. Текст влетает построчно со срезом-сбоем,
+   уходит — разрезаясь полосами цвета акцента.
+   ===================================================== */
+:root {
+  --acc: #C6FF2E;
+  --ink: #0a0a0b;
+  --line: rgba(255, 255, 255, .55);
+  --dim: rgba(255, 255, 255, .5);
+  --head: 'Russo One', sans-serif;
+  --text: 'Exo 2', sans-serif;
+  --pixel: 'Pixelify Sans', monospace;
+  --g: 1;   /* сила сбоев: 0 — выключены, 0.5 — мягко, 1 — обычно, 1.7 — сильно */
+}
+
+/* ---------- Мелкие детали HUD ---------- */
+/* Узел: квадрат с точкой внутри */
+.node { display: block; width: 14px; height: 14px; box-sizing: border-box; border: 1.5px solid currentColor; position: relative; color: #fff; }
+.node::after { content: ''; position: absolute; inset: 3px; background: currentColor; }
+.node.hollow::after { inset: 4px; background: none; border: 1.5px solid currentColor; }
+/* Штриховка — блок с косыми полосами */
+.hatch { display: block; background: repeating-linear-gradient(-45deg, currentColor 0 1.5px, transparent 1.5px 4.5px); }
+/* Метка в рамке со штриховкой по бокам: [///  ТЕКСТ  ///] */
+.tag { display: inline-flex; align-items: stretch; gap: 8px; padding: 3px; border: 1px solid var(--line); color: #fff;
+  font: 400 15px/1 var(--pixel); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.tag .hatch { width: 26px; color: rgba(255, 255, 255, .55); }
+.tag b { font-weight: 400; padding: 4px 6px; }
+/* Номер-плашка со срезанным углом: [01] */
+.plate { display: inline-block; padding: 5px 26px 4px 8px; background: #fff; color: var(--ink); font: 400 20px/1 var(--head);
+  clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px); }
+/* Пиксельная мелочь */
+.px { font: 400 14px/1.2 var(--pixel); letter-spacing: .06em; text-transform: uppercase; }
+.ring { display: block; width: 9px; height: 9px; border: 1.5px solid currentColor; border-radius: 50%; }
+
+/* ---------- Анимации ---------- */
+/* Влёт строки: срез-сбой, белая вспышка, затем свой цвет */
+.g-in { animation: gIn .42s steps(1) both; }
+@keyframes gIn {
+  0%   { opacity: 0; }
+  8%   { opacity: 1; color: #fff; clip-path: inset(0 0 55% 0); translate: calc(-16px * var(--g)) 0;
+         text-shadow: calc(4px * var(--g)) 0 #ff2a55, calc(-4px * var(--g)) 0 #22d3ee; }
+  28%  { clip-path: inset(48% 0 0 0); translate: calc(12px * var(--g)) 0; }
+  46%  { clip-path: inset(20% 0 30% 0); translate: calc(-5px * var(--g)) 0; text-shadow: none; }
+  64%  { clip-path: none; translate: 0 0; color: #fff; }
+  100% { opacity: 1; clip-path: none; translate: 0 0; }
+}
+/* Короткий сбой, пока элемент висит */
+.g-twitch { animation: gTwitch .2s steps(1); }
+@keyframes gTwitch {
+  0%   { clip-path: inset(0 0 60% 0); translate: calc(7px * var(--g)) 0; }
+  50%  { clip-path: inset(45% 0 0 0); translate: calc(-6px * var(--g)) 0; }
+  100% { clip-path: none; translate: 0 0; }
+}
+/* Уход: разрезается и пропадает */
+.g-out { animation: gOut .36s steps(1) forwards; }
+@keyframes gOut {
+  0%   { clip-path: inset(0 0 50% 0); translate: calc(14px * var(--g)) 0; }
+  30%  { clip-path: inset(50% 0 0 0); translate: calc(-18px * var(--g)) 0; opacity: .8; }
+  60%  { clip-path: inset(25% 0 45% 0); translate: calc(8px * var(--g)) 0; opacity: .5; }
+  100% { opacity: 0; clip-path: inset(50% 0 50% 0); }
+}
+/* Полоса цвета акцента, пролетающая по строке (перед текстом или при уходе) */
+.streak { position: absolute; left: 0; height: 30%; background: var(--acc); pointer-events: none; opacity: 0; }
+.streak.go { animation: streak .34s cubic-bezier(.6, 0, .3, 1) forwards; }
+@keyframes streak {
+  0%   { opacity: 1; clip-path: inset(0 100% 0 0); }
+  45%  { opacity: 1; clip-path: inset(0 0 0 0); }
+  100% { opacity: 1; clip-path: inset(0 0 0 100%); }
+}
+/* Появление «пиксельной» мелочи: печатается слева направо */
+.type-in { animation: typeIn .4s steps(10) both; }
+@keyframes typeIn { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+/* Простое проявление для деталей */
+.pop-in { animation: popIn .2s steps(2) both; }
+@keyframes popIn { from { opacity: 0; } to { opacity: 1; } }
+
+.no-glitch .g-in, .no-glitch .g-twitch { animation-name: popIn; animation-duration: .25s; animation-timing-function: ease; }
+.no-glitch .g-out { animation: fadeOut .3s forwards; }
+@keyframes fadeOut { to { opacity: 0; } }

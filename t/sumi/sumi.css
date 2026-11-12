@@ -1,0 +1,80 @@
+/* =====================================================
+   ТЕМА «ТУШЬ» · общий вид и движение
+   Японская тушь: чёрный мазок сухой кистью, красное солнце, брызги.
+   Порядок появления всегда один: мазок прописывается слева направо (щетинки идут вразнобой) →
+   текст проступает сквозь него из серого → солнце ставится печатью → разлетаются брызги.
+   Уход — в обратном порядке: солнце сжимается, мазок стирается справа налево, текст тает.
+   Маски мазков (--stroke1…, --wipe, --sun) рисует sumi.js.
+   ===================================================== */
+:root {
+  --acc: #E0251B;
+  --ink: #fff;
+  --card: #F3EEE8;
+  --cardInk: #191314;
+  --muted: #776D69;
+  --deep: #8E120C;
+  --font: 'Shantell Sans', sans-serif;
+  --io: cubic-bezier(.7, 0, .2, 1);
+  --out: cubic-bezier(.16, .84, .24, 1);
+  --brush: cubic-bezier(.25, .75, .25, 1);
+}
+.dark-mode { --card: #0F0C0D; --cardInk: #F6F1EC; --muted: #A69C97; }
+
+/* Шторка кистью: к маске мазка добавляется вторая — сплошная с рваным краем, она и едет */
+.wipe-in, .wipe-in-r, .wipe-down, .wipe-out, .wipe-out-l {
+  -webkit-mask-image: var(--stroke, linear-gradient(#000, #000)), var(--wipe) !important;
+  -webkit-mask-size: 100% 100%, 240% 100% !important;
+  -webkit-mask-repeat: no-repeat !important;
+  -webkit-mask-composite: source-in !important;
+  mask-composite: intersect !important;
+}
+.wipe-in, .wipe-in-r, .wipe-down { animation: brushIn .52s var(--brush) both; }
+@keyframes brushIn {
+  from { clip-path: inset(-40px); -webkit-mask-position: 0 0, 100% 0; }
+  to   { clip-path: inset(-40px); -webkit-mask-position: 0 0, 0 0; }
+}
+.wipe-out, .wipe-out-l { animation: brushOut .36s var(--io) forwards; }
+@keyframes brushOut {
+  from { clip-path: inset(-40px); -webkit-mask-position: 0 0, 0 0; }
+  to   { clip-path: inset(-40px); -webkit-mask-position: 0 0, 100% 0; }
+}
+
+/* Тушь проступает: из размытого пятна в чёткий знак */
+.mask { display: block; overflow: hidden; }
+.rise-in { animation: bleed .42s var(--out) both; }
+@keyframes bleed { from { opacity: 0; filter: blur(5px); translate: 0 .22em; } to { opacity: 1; filter: blur(0); translate: 0 0; } }
+.fade-out { animation: fadeOut .3s ease forwards; }
+@keyframes fadeOut { to { opacity: 0; filter: blur(3px); } }
+
+.letters > span { display: inline-block; white-space: pre; opacity: 0; animation: letter .34s var(--out) forwards;
+  animation-delay: calc(var(--d, 0ms) + var(--i) * 22ms); }
+@keyframes letter { from { opacity: 0; filter: blur(4px); translate: -.14em 0; } to { opacity: 1; filter: blur(0); translate: 0 0; } }
+
+/* Солнце-печать и появление «штампом» */
+.sq { display: block; width: 26px; height: 26px; background: var(--acc); -webkit-mask: var(--sun) center / contain no-repeat; }
+.spin-in { animation: stamp .46s cubic-bezier(.3, 1.55, .5, 1) both; }
+@keyframes stamp { from { opacity: 0; scale: .15; rotate: -50deg; } 35% { opacity: 1; } to { opacity: 1; scale: 1; rotate: 0deg; } }
+.pop-in { animation: popIn .4s var(--out) both; }
+@keyframes popIn { from { opacity: 0; filter: blur(5px); scale: .9; } to { opacity: 1; filter: blur(0); scale: 1; } }
+.pop-out { animation: popOut .28s ease forwards; }
+@keyframes popOut { from { opacity: 1; } to { opacity: 0; scale: .6; filter: blur(3px); } }
+
+/* Капля туши падает в точку и расплывается */
+.tumble { position: absolute; width: var(--s, 46px); height: var(--s, 46px); background: var(--tc, var(--acc)); pointer-events: none; z-index: 5;
+  -webkit-mask: var(--sun) center / contain no-repeat; animation: drop var(--t, .5s) cubic-bezier(.5, 0, .8, .5) forwards; }
+@keyframes drop {
+  0%   { translate: 0 -90px; scale: .2 .45; opacity: 0; }
+  20%  { opacity: 1; }
+  68%  { translate: 0 0; scale: .45 .45; opacity: 1; }
+  84%  { scale: 1.2 .8; opacity: 1; }
+  100% { translate: 0 0; scale: 1; opacity: 0; }
+}
+
+/* Брызги */
+.burst { position: absolute; width: 0; height: 0; pointer-events: none; }
+.burst i { position: absolute; width: 8px; height: 8px; margin: -4px; border-radius: 50% 50% 50% 10%; background: var(--bc, var(--acc)); animation: burst .7s var(--out) forwards; }
+.burst i:nth-child(3n) { width: 5px; height: 5px; margin: -2.5px; }
+.burst i:nth-child(4n) { width: 13px; height: 6px; border-radius: 50%; }
+@keyframes burst { from { translate: 0 0; opacity: 1; scale: 1.3; } 70% { opacity: 1; } to { translate: var(--bx) var(--by); opacity: 0; scale: .5; } }
+
+@media (prefers-reduced-motion: reduce) { * { animation-duration: .01s !important; } }

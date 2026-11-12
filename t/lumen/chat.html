@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ru">
+<head><script>window.OVERLY_THEME = "lumen"; window.OVERLY_SETTINGS = {"size":100,"valign":"center","showSec":6,"gapSec":0.6,"font":"Montserrat","textColor":"#ECEBF2","mutedColor":"#9D9DAA","surface":"#101015","surfaceOpacity":98,"radius":14,"intro":"line","shine":true,"timeline":true,"showMessage":true,"sound":true,"themeSound":true,"volume":70,"follow.on":true,"follow.color":"#B8A7F0","follow.label":"Новый фолловер","follow.line":"теперь с нами","follow.media":"","follow.sound":"","follow.volume":100,"follow.dur":0,"sub.on":true,"sub.color":"#6D9EFF","sub.label":"Новая подписка","sub.line":"добро пожаловать в семью","sub.media":"","sub.sound":"","sub.volume":100,"sub.dur":0,"resub.on":true,"resub.color":"#6D9EFF","resub.label":"Переподписка","resub.line":"с нами уже {n} {месяц|месяца|месяцев}","resub.media":"","resub.sound":"","resub.volume":100,"resub.dur":0,"resub.min":0,"gift.on":true,"gift.color":"#F06BB0","gift.label":"Подарок","gift.line":"дарит {n} {подписку|подписки|подписок}","gift.media":"","gift.sound":"","gift.volume":100,"gift.dur":0,"gift.min":0,"raid.on":true,"raid.color":"#5FD3A0","raid.label":"Рейд","raid.line":"{n} {зритель|зрителя|зрителей} в рейде","raid.media":"","raid.sound":"","raid.volume":100,"raid.dur":0,"raid.min":0,"bits.on":true,"bits.color":"#A78BFA","bits.label":"Битсы","bits.line":"{n} {битс|битса|битсов}","bits.media":"","bits.sound":"","bits.volume":100,"bits.dur":0,"bits.min":0,"tip.on":true,"tip.color":"#E2A03F","tip.label":"Донат","tip.line":"{n} ₽","tip.media":"","tip.sound":"","tip.volume":100,"tip.dur":0,"tip.min":0,"css":"","chat.max":12,"chat.fadeSec":0,"chat.newest":"bottom","chat.align":"left","chat.hideCommands":true,"chat.hideBots":"nightbot, streamelements, moobot, wizebot","chat.highlight":"","chat.highlightColor":"#E2A03F","chat.fontSize":20,"chat.font":"Montserrat","chat.textColor":"#ECEBF2","chat.layout":"stacked","chat.userColors":true,"chat.accent":"#B8A7F0","chat.badges":true,"chat.emoteSize":1.5,"chat.panel":true,"chat.surface":"#101015","chat.surfaceOpacity":90,"chat.radius":12,"chat.stretch":false,"chat.gap":8,"chat.anim":"line","chat.css":"","scene.bg":"solid","scene.bgMedia":"","scene.bgDim":50,"scene.accent":"#B8A7F0","scene.textColor":"#ECEBF2","scene.socials":"twitch.tv/канал · tg: @канал","scene.events":true,"scene.font":"Montserrat","scene.titleSize":96,"scene.surface":"#101015","scene.surfaceOpacity":92,"scene.glow":true,"scene.bar":true,"scene.clock":true,"scene.startKicker":"Стрим скоро","scene.startTitle":"Начинаем через","scene.startLine":"устраивайся поудобнее","scene.startMin":5,"scene.startAt":"","scene.startDone":"вот-вот начинаем","scene.startBg":"","scene.brbKicker":"Перерыв","scene.brbTitle":"Скоро вернусь","scene.brbLine":"не уходи далеко","scene.brbMin":5,"scene.brbDone":"уже возвращаюсь","scene.brbBg":"","scene.endKicker":"Стрим окончен","scene.endTitle":"Спасибо за стрим","scene.endLine":"до встречи на следующем стриме","scene.endBg":"","scene.css":"","cam.color":"#FFFFFF","cam.lineOpacity":18,"cam.thickness":2,"cam.radius":14,"cam.accent":"#B8A7F0","cam.label":"Камера","cam.labelPos":"bl","cam.font":"Montserrat","cam.labelSize":100,"cam.live":true,"cam.css":"","music.hideOnPause":true,"music.mini":false,"music.miniAfter":10,"music.miniAnchor":"center","music.cover":true,"music.showLabel":true,"music.label":"Сейчас играет","music.progress":true,"music.color":"#B8A7F0","music.font":"Montserrat","music.surface":"#101015","music.surfaceOpacity":96,"music.radius":14,"music.css":"","goal.type":"followers","goal.title":"Цель: фолловеры","goal.target":1000,"goal.done":"Цель выполнена!","goal.countMode":"both","goal.color":"#B8A7F0","goal.font":"Montserrat","goal.textColor":"#ECEBF2","goal.surface":"#101015","goal.surfaceOpacity":96,"goal.radius":14,"goal.barHeight":100,"goal.percentBig":true,"goal.css":"","timer.title":"До конца марафона","timer.start":60,"timer.endText":"Марафон окончен!","timer.showAdd":true,"timer.sub":300,"timer.gift":300,"timer.bits":60,"timer.tip":120,"timer.follow":0,"timer.raid":0,"timer.cap":0,"timer.color":"#B8A7F0","timer.font":"Montserrat","timer.textColor":"#ECEBF2","timer.surface":"#101015","timer.surfaceOpacity":96,"timer.radius":14,"timer.css":"","poll.question":"Во что играем дальше?","poll.options":"Хоррор\nРогалик\nГонки","poll.duration":120,"poll.points":0,"poll.numbers":"both","poll.showTimer":true,"poll.showTotal":true,"poll.hold":15,"poll.color":"#B8A7F0","poll.font":"Montserrat","poll.textColor":"#ECEBF2","poll.surface":"#101015","poll.surfaceOpacity":96,"poll.radius":14,"poll.barHeight":100,"poll.css":""};</script>
+<meta charset="utf-8">
+<title>Lumen — чат</title>
+<!--
+  ТЕМА LUMEN · ЧАТ
+  Каждое сообщение — тёмная карточка: раскрывается из полосы цвета ника, потом поднимаются ник и текст.
+  Значки — маленькие плашки: стример, модератор, VIP, саб. Смайлы Twitch — картинками.
+  Удалённые модераторами сообщения и баны сворачиваются обратно в полосу и пропадают.
+  Размер источника в OBS — любой: чат занимает всю его площадь.
+-->
+<link href="../../fonts/montserrat.css" rel="stylesheet">
+<link rel="stylesheet" href="lumen.css">
+<style>
+  html, body { margin: 0; width: 100vw; height: 100vh; overflow: hidden; background: transparent; }
+  #chat { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start;
+    gap: var(--gap, 8px); padding: 14px; box-sizing: border-box; font: 500 var(--fs, 20px)/1.35 var(--font); color: var(--text); }
+  #chat.newest-top { flex-direction: column-reverse; }
+  #chat.right { align-items: flex-end; }
+  #chat.right .m { text-align: right; }
+  #chat.stretch .m { align-self: stretch; }
+
+  .m { max-width: 100%; box-sizing: border-box; padding: .6em .85em .62em; overflow-wrap: anywhere; flex: none; }
+  /* Карточка раскрывается от левого края (справа — от правого) */
+  .m > .bg { transform-origin: left center; }
+  #chat.right .m > .bg { transform-origin: right center; }
+  .m.p-line > .bg, .m.p-close > .bg, .m.p-gone > .bg { transform: scaleX(.02); }
+  #chat.no-panel .m > .bg { background: none; box-shadow: none; }
+  #chat.no-panel .m { padding-left: 0; padding-right: 0; text-shadow: 0 1px 4px rgba(0,0,0,.85); }
+
+  .head { display: flex; align-items: center; gap: .4em; margin-bottom: .2em; }
+  #chat.right .head { justify-content: flex-end; }
+  .n { font-weight: 700; color: var(--c, var(--acc)); }
+  #chat.inline .head { display: inline-flex; margin: 0 .45em 0 0; vertical-align: baseline; }
+  .b { font-size: .58em; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; line-height: 1; padding: .38em .5em .34em;
+    border-radius: 99px; color: var(--acc); background: color-mix(in srgb, var(--acc) 16%, transparent); }
+  #chat.no-badges .b { display: none; }
+  .t { color: var(--text); }
+  #chat.inline .t { display: inline; }
+  .m img { height: var(--emote, 1.5em); vertical-align: middle; margin: -.3em .05em; }
+  .m mark { background: none; color: var(--hl); font-weight: 700; }
+  .m.hl > .bg { box-shadow: inset 0 0 0 1.5px var(--hl); }
+
+  /* Без анимации */
+  #chat.a-none .m [data-s] { opacity: 1; translate: 0 0; transition: none; }
+  #chat.a-none .m > .bg { transform: none; opacity: 1; transition: none; }
+  #chat.a-none .m .glow, #chat.a-none .m .seam { display: none; }
+</style>
+</head>
+<body>
+<div id="chat"></div>
+
+<script src="../../runtime/overly.js"></script>
+<script src="lumen.js"></script>
+<script>
+const box = document.getElementById('chat');
+const BADGES = { broadcaster: 'стример', moderator: 'мод', vip: 'vip', subscriber: 'саб' };
+let S = null;
+
+Overly.onSettings(v => {
+  S = v;
+  const st = box.style;
+  st.setProperty('--fs', v['chat.fontSize'] + 'px');
+  st.setProperty('--acc', v['chat.accent']);
+  st.setProperty('--gap', v['chat.gap'] + 'px');
+  st.setProperty('--text', v['chat.textColor']);
+  st.setProperty('--surf', Lumen.rgba(v['chat.surface'], v['chat.surfaceOpacity']));
+  st.setProperty('--r', v['chat.radius'] + 'px');
+  st.setProperty('--emote', v['chat.emoteSize'] + 'em');
+  st.setProperty('--hl', v['chat.highlightColor']);
+  st.setProperty('--font', Overly.font(v['chat.font']));
+  box.className = [
+    v['chat.align'] === 'right' && 'right',
+    v['chat.newest'] === 'top' && 'newest-top',
+    !v['chat.panel'] && 'no-panel',
+    !v['chat.badges'] && 'no-badges',
+    v['chat.layout'] === 'inline' && 'inline',
+    v['chat.stretch'] && 'stretch',
+    'a-' + (v['chat.anim'] || 'line'),
+  ].filter(Boolean).join(' ');
+  for (const m of box.children) m.style.setProperty('--acc', v['chat.userColors'] && m.dataset.color ? m.dataset.color : '');
+  Overly.css(v['chat.css']);
+  trim();
+});
+
+const list = (text) => String(text || '').toLowerCase().split(/[\s,;]+/).filter(Boolean);
+
+function hidden(msg) {
+  const text = (msg.fragments || []).map(f => f.text).join('').trim();
+  if (S['chat.hideCommands'] && text.startsWith('!')) return true;
+  return list(S['chat.hideBots']).includes(String(msg.login || '').toLowerCase());
+}
+
+function remove(m) {
+  if (!m.isConnected || m.dataset.out) return;
+  m.dataset.out = '1';
+  if (S['chat.anim'] === 'none') { m.remove(); return; }
+  Lumen.close(m).then(() => m.remove());
+}
+
+function trim() {
+  const live = [...box.children].filter(m => !m.dataset.out);
+  live.slice(0, Math.max(0, live.length - S['chat.max'])).forEach(m => m.remove());
+}
+
+// Текст с подсветкой слов из настройки «Подсвечивать слова»
+function appendText(el, text, words) {
+  if (!words.length) { el.append(document.createTextNode(text)); return false; }
+  const re = new RegExp('(' + words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')', 'gi');
+  let found = false;
+  for (const part of text.split(re)) {
+    if (!part) continue;
+    if (words.includes(part.toLowerCase())) { el.append(Object.assign(document.createElement('mark'), { textContent: part })); found = true; }
+    else el.append(document.createTextNode(part));
+  }
+  return found;
+}
+
+const make = (tag, cls, text) => Object.assign(document.createElement(tag), { className: cls, textContent: text || '' });
+
+Overly.onChat(msg => {
+  if (!S || hidden(msg)) return;
+  const m = make('div', 'm card');
+  m.dataset.id = msg.id || '';
+  m.dataset.login = String(msg.login || '').toLowerCase();
+  m.dataset.color = msg.color || '';
+  // Цвет ника — он же цвет полосы, из которой раскрывается карточка
+  if (S['chat.userColors'] && msg.color) m.style.setProperty('--acc', msg.color);
+  m.innerHTML = '<div class="bg"><i class="glow"></i></div>';
+
+  const head = make('div', 'head');
+  head.dataset.s = ''; head.style.setProperty('--d', 0);
+  for (const b of msg.badges || []) if (BADGES[b]) head.append(make('span', 'b', BADGES[b]));
+  head.append(make('span', 'n', msg.name));
+  const t = make('div', 't');
+  t.dataset.s = ''; t.style.setProperty('--d', 1);
+  const words = list(S['chat.highlight']);
+  let hl = false;
+  for (const f of msg.fragments || []) {
+    if (f.emote || f.url) {   // url — смайл BetterTTV / 7TV
+      const img = new Image();
+      img.alt = f.text;
+      img.src = f.url || `https://static-cdn.jtvnw.net/emoticons/v2/${encodeURIComponent(f.emote)}/default/dark/3.0`;
+      t.append(img);
+    } else if (appendText(t, f.text, words)) {
+      hl = true;
+    }
+  }
+  if (hl) m.classList.add('hl');
+  m.append(head, t);
+  box.append(m);
+  trim();
+  const anim = S['chat.anim'] || 'line';
+  if (anim === 'none') m.classList.add('p-on');
+  else Lumen.open(m, anim);
+  if (S['chat.fadeSec'] > 0) setTimeout(() => remove(m), S['chat.fadeSec'] * 1000);
+});
+
+// Модерация: удалённое сообщение, бан/таймаут (все сообщения человека), очистка чата
+Overly.onChatMod(a => {
+  for (const m of [...box.children]) {
+    if (a.kind === 'clear' || (a.kind === 'delete' && m.dataset.id === a.id) ||
+        (a.kind === 'clear_user' && m.dataset.login === String(a.login || '').toLowerCase())) remove(m);
+  }
+});
+</script>
+</body>
+</html>

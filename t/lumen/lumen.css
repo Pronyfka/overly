@@ -1,0 +1,75 @@
+/* =====================================================
+   ТЕМА LUMEN · общий вид
+   Карточка раскрывается из светящейся полосы:
+     p-line  — узкая полоса цвета акцента
+     p-open  — фон расширяется на всю ширину, свечение гаснет
+     p-enter — содержимое поднимается по очереди (--d — номер по порядку)
+     p-on    — карточка стоит
+     p-leave — содержимое уходит вниз
+     p-close — фон сжимается обратно в полосу
+     p-gone  — полоса гаснет
+   Фазы переключает lumen.js (Lumen.open / Lumen.close).
+   ===================================================== */
+:root {
+  --ease: cubic-bezier(.22, .8, .3, 1);
+  --ease-io: cubic-bezier(.65, 0, .25, 1);
+  --surf: rgba(16, 16, 21, .98);
+  --line: rgba(255, 255, 255, .12);
+  --track: rgba(255, 255, 255, .08);
+  --text: #ecebf2;
+  --muted: #9d9daa;
+  --acc: #b8a7f0;
+  --r: 14px;
+  --font: 'Montserrat', sans-serif;
+}
+
+.card { position: relative; isolation: isolate; }
+.card > .bg { position: absolute; inset: 0; z-index: -1; border-radius: var(--r); overflow: hidden;
+  background: var(--surf); box-shadow: inset 0 0 0 1px var(--line);
+  transform: scaleX(.012) scaleY(.5); opacity: 0; transition: opacity .2s linear, transform .2s linear; }
+.card > .bg > .glow { position: absolute; inset: 0; background: var(--acc); transition: opacity .42s var(--ease); }
+.card > .bg > .seam { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--acc);
+  transition: opacity .7s var(--ease) .15s; }
+
+.card.p-line > .bg { transform: scaleX(.012); opacity: 1; transition: opacity .15s linear, transform .19s var(--ease); }
+.card.p-open > .bg, .card.p-enter > .bg, .card.p-on > .bg, .card.p-leave > .bg {
+  transform: none; opacity: 1; transition: transform .52s var(--ease-io); }
+.card.p-open .glow, .card.p-enter .glow, .card.p-on .glow, .card.p-leave .glow { opacity: 0; }
+.card.p-on .seam, .card.p-leave .seam { opacity: 0; }
+.card.p-close > .bg { transform: scaleX(.012); opacity: 1; transition: transform .38s cubic-bezier(.55, 0, .75, .3); }
+.card.p-close .glow { opacity: .85; transition-duration: .3s; }
+.card.p-gone > .bg { transform: scaleX(.012); opacity: 0; transition: opacity .2s linear; }
+.card.p-gone .glow { opacity: .85; }
+
+/* Другие способы появления: «Снизу» и «Проявление» — без полосы */
+.card.i-rise .glow, .card.i-fade .glow, .card.i-rise .seam, .card.i-fade .seam { display: none; }
+.card.i-rise > .bg { transform: translateY(24px); }
+.card.i-fade > .bg { transform: none; }
+.card.i-rise.p-enter > .bg, .card.i-fade.p-enter > .bg { transition: opacity .4s var(--ease), transform .55s var(--ease); }
+.card.i-rise.p-close > .bg, .card.i-rise.p-gone > .bg { transform: translateY(12px); opacity: 0; transition: opacity .3s var(--ease), transform .3s var(--ease); }
+.card.i-fade.p-close > .bg, .card.i-fade.p-gone > .bg { transform: none; opacity: 0; transition: opacity .3s var(--ease); }
+
+/* Содержимое: появляется по очереди */
+.card [data-s] { opacity: 0; translate: 0 10px; transition: opacity .15s linear, translate .17s linear; }
+.card.p-enter [data-s], .card.p-on [data-s] { opacity: 1; translate: 0 0; }
+.card.p-enter [data-s] { transition: opacity .32s var(--ease) calc(60ms + var(--d, 0) * 60ms), translate .42s var(--ease) calc(60ms + var(--d, 0) * 60ms); }
+.card.p-on [data-s] { transition: opacity .3s var(--ease), translate .3s var(--ease); }
+.card.p-leave [data-s] { opacity: 0; translate: 0 8px; transition: opacity .2s var(--ease), translate .26s var(--ease); }
+
+/* Блик: светлая полоса проходит по карточке слева направо */
+.card > .bg > .shine { position: absolute; inset: 0; transform: translateX(-110%);
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .09) 50%, transparent 70%); }
+.card.shine > .bg > .shine { transform: translateX(110%); transition: transform 1s cubic-bezier(.45, 0, .3, 1); }
+
+/* Точка-индикатор цвета акцента */
+.dot { display: inline-block; width: .5em; height: .5em; border-radius: 50%; background: var(--acc); flex: none; }
+.dot.pulse { animation: pulse 1.6s var(--ease) infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--acc) 60%, transparent); } 100% { box-shadow: 0 0 0 .6em transparent; } }
+
+/* Крупная цифра «пружинит», когда меняется */
+.pop { animation: pop .42s cubic-bezier(.3, 1.4, .5, 1); }
+@keyframes pop { 40% { scale: 1.12; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .card *, .card { transition: none !important; animation: none !important; }
+}

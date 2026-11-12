@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ru">
+<head><script>window.OVERLY_THEME = "matrix"; window.OVERLY_SETTINGS = {"palette":"crimson","size":100,"valign":"center","showSec":6,"gapSec":0.6,"mode":"dark","font":"Montserrat","showMessage":true,"sound":true,"themeSound":true,"volume":70,"follow.on":true,"follow.color":"#E6004C","follow.label":"Новый фолловер","follow.chip":"СПАСИБО","follow.media":"","follow.sound":"","follow.volume":100,"follow.dur":0,"sub.on":true,"sub.color":"#E6004C","sub.label":"Новая подписка","sub.chip":"СПАСИБО","sub.media":"","sub.sound":"","sub.volume":100,"sub.dur":0,"resub.on":true,"resub.color":"#E6004C","resub.label":"Подписка","resub.chip":"×{n} {месяц|месяца|месяцев}","resub.media":"","resub.sound":"","resub.volume":100,"resub.dur":0,"resub.min":0,"gift.on":true,"gift.color":"#E6004C","gift.label":"Подарок","gift.chip":"×{n} {подписка|подписки|подписок}","gift.media":"","gift.sound":"","gift.volume":100,"gift.dur":0,"gift.min":0,"raid.on":true,"raid.color":"#E6004C","raid.label":"Рейд","raid.chip":"{n} {зритель|зрителя|зрителей}","raid.media":"","raid.sound":"","raid.volume":100,"raid.dur":0,"raid.min":0,"bits.on":true,"bits.color":"#E6004C","bits.label":"Битсы","bits.chip":"{n} {битс|битса|битсов}","bits.media":"","bits.sound":"","bits.volume":100,"bits.dur":0,"bits.min":0,"tip.on":true,"tip.color":"#E6004C","tip.label":"Новый донат","tip.chip":"{n} ₽","tip.media":"","tip.sound":"","tip.volume":100,"tip.dur":0,"tip.min":0,"css":"","st.lastTip":true,"st.lastSub":true,"st.bestTip":true,"st.longSub":true,"st.lastFollow":false,"st.lastRaid":false,"st.topBits":false,"st.lastTip.pos":1,"st.lastSub.pos":2,"st.bestTip.pos":3,"st.longSub.pos":4,"st.lastFollow.pos":5,"st.lastRaid.pos":6,"st.topBits.pos":7,"st.lastTip.label":"Последний донат","st.lastSub.label":"Последний саб","st.bestTip.label":"Лучший донат","st.longSub.label":"Дольше всех","st.lastFollow.label":"Последний фоллов","st.lastRaid.label":"Последний рейд","st.topBits.label":"Больше всех битсов","st.money":"{n} ₽","st.empty":"—","st.mode":"dark","st.valign":"center","st.halign":"stretch","st.accent":"#E6004C","st.font":"Montserrat","st.fontSize":22,"st.eventColors":true,"st.css":"","chat.max":14,"chat.fadeSec":0,"chat.hideCommands":true,"chat.hideBots":"nightbot, streamelements, moobot, wizebot","chat.highlight":"","chat.mode":"dark","chat.align":"left","chat.bubble":true,"chat.accent":"#E6004C","chat.opacity":100,"chat.fontSize":18,"chat.font":"Montserrat","chat.userColors":true,"chat.badges":true,"chat.emoteSize":1.4,"chat.css":"","scene.mode":"dark","scene.accent":"#E6004C","scene.font":"Montserrat","scene.streamTitle":"Сегодня: проходим новую игру","scene.events":true,"scene.lens":true,"scene.gridStrength":80,"scene.patternMedia":"","scene.startLabel":"Стрим скоро","scene.startTitle":"Стрим скоро","scene.startMin":5,"scene.startAt":"","scene.startDone":"Начинаем!","scene.startWords":"СТРИМ|СКОРО","scene.brbLabel":"Перерыв","scene.brbTitle":"Скоро вернусь","scene.brbMin":5,"scene.brbDone":"Уже иду","scene.brbNote":"Чем займёмся дальше?","scene.brbWords":"ПАУЗА|СКОРО","scene.endLabel":"Офлайн","scene.endTitle":"Спасибо за стрим","scene.scheduleTitle":"Когда следующий стрим?","scene.schedule":"Понедельник — 19:00\nСреда — 19:00\nПятница — 20:00\nСуббота — 15:00","scene.endWords":"ПОКА|ДОВСТРЕЧИ","scene.css":"","cam.mode":"dark","cam.color":"#E6004C","cam.border":4,"cam.css":"","music.hideOnPause":true,"music.mini":false,"music.miniAfter":10,"music.miniAnchor":"center","music.cover":true,"music.showLabel":true,"music.label":"Сейчас играет","music.progress":true,"music.color":"#E6004C","music.mode":"dark","music.surfaceOpacity":100,"music.radius":0,"music.align":"left","music.width":100,"music.font":"Montserrat","music.css":"","goal.type":"followers","goal.small":"Цель стрима","goal.title":"Тысяча фолловеров","goal.target":1000,"goal.done":"Цель выполнена!","goal.countMode":"both","goal.mode":"dark","goal.color":"#E6004C","goal.font":"Montserrat","goal.width":100,"goal.fillStyle":"card","goal.burst":true,"goal.css":"","timer.small":"Сабатон","timer.title":"До конца марафона","timer.start":60,"timer.endText":"Марафон окончен!","timer.showAdd":true,"timer.sub":300,"timer.gift":300,"timer.bits":60,"timer.tip":120,"timer.follow":0,"timer.raid":0,"timer.cap":0,"timer.mode":"dark","timer.color":"#E6004C","timer.font":"Montserrat","timer.width":100,"timer.burst":true,"timer.css":"","poll.question":"Во что играем дальше?","poll.options":"Хоррор\nРогалик\nГонки","poll.duration":120,"poll.points":0,"poll.small":"Голосование","poll.numbers":"both","poll.showTimer":true,"poll.showTotal":true,"poll.hold":15,"poll.mode":"dark","poll.color":"#E6004C","poll.font":"Montserrat","poll.css":""};</script>
+<meta charset="utf-8">
+<title>Матрица — музыка</title>
+<!-- Тема «Матрица»: вид и движение в matrix.css и skin.css. -->
+<link href="../../fonts/montserrat.css" rel="stylesheet">
+<link rel="stylesheet" href="matrix.css">
+<style>
+  html, body { margin: 0; width: 100vw; height: 100vh; overflow: hidden; background: transparent; }
+  #music { position: absolute; left: 0; top: 0; height: 120px; display: flex; font-family: var(--font); visibility: hidden; }
+  #music.shown { visibility: visible; }
+  #music.right { flex-direction: row-reverse; }
+  .cover { width: 120px; height: 120px; flex: none; background: var(--acc); color: var(--ink); display: grid; place-items: center; font-size: 44px; opacity: 0; }
+  .cover img { width: 100%; height: 100%; object-fit: cover; }
+  .cover [hidden] { display: none; }
+  #music.no-cover .cover { display: none; }
+  .card { position: relative; flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 4px; padding: 0 26px;
+    background: var(--card); color: var(--cardInk); clip-path: inset(0 100% 0 0); }
+  #music.right .card { text-align: right; }
+  .label { font-size: 15px; color: var(--muted); }
+  #music.no-label .label { display: none; }
+  .title { font-size: 30px; font-weight: 600; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .artist { font-size: 19px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: color-mix(in srgb, var(--muted) 25%, transparent); }
+  .bar i { position: absolute; inset: 0; background: var(--acc); transform-origin: left; transform: scaleX(0); }
+  #music.no-progress .bar, #music.no-progress .t { display: none; }
+  .card { background: color-mix(in srgb, var(--card) var(--cardA, 100%), transparent); overflow: hidden; }
+  /* Скругление: обложка и карточка вместе — один блок со скруглёнными краями */
+  .cover { overflow: hidden; border-radius: var(--r) 0 0 var(--r); }
+  .card { border-radius: 0 var(--r) var(--r) 0; }
+  #music.right .cover { border-radius: 0 var(--r) var(--r) 0; }
+  #music.right .card { border-radius: var(--r) 0 0 var(--r); }
+  #music.no-cover .card, #music.mini .card { border-radius: var(--r); }
+  /* Мини-версия: обложка и подпись уходят, остаются название, исполнитель и таймлайн — полоска ниже */
+  #music { transition: height .45s cubic-bezier(.2,.8,.2,1), top .45s cubic-bezier(.2,.8,.2,1); }
+  #music .card > :not(.bar) { transition: opacity .2s; }
+  #music.swap .card > :not(.bar) { opacity: 0; }
+  #music.mini { height: 72px; }
+  #music.mini .cover, #music.mini .label { display: none; }
+  #music.mini .card { flex-direction: row; align-items: center; gap: 14px; padding-right: 130px; }
+  #music.right.mini .card { flex-direction: row-reverse; padding: 0 26px 0 130px; }
+  #music.mini .title { font-size: 24px; flex: 0 1 auto; max-width: 60%; }
+  #music.mini .artist { font-size: 16px; flex: 1 1 0; }
+  #music.mini .t { top: 50%; translate: 0 -50%; }
+  #music.still, #music.still * { transition: none !important; }
+  .t { position: absolute; right: 26px; top: 14px; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  #music.right .t { right: auto; left: 26px; }
+</style>
+<link rel="stylesheet" href="skin.css">
+</head>
+<body>
+<div id="music">
+  <div class="cover"><img alt=""><span class="ph">♪</span></div>
+  <div class="card">
+    <span class="label"></span><div class="title"></div><div class="artist"></div>
+    <span class="t"></span><div class="bar"><i></i></div>
+  </div>
+</div>
+
+<script src="../../runtime/overly.js"></script>
+<script src="../../runtime/music.js"></script>
+<script src="matrix.js"></script>
+<script>
+const box = document.getElementById('music');
+const $ = (s) => box.querySelector(s);
+let swapT = 0, gen = 0;   // gen — чтобы поздний таймер скрытия не спрятал виджет, показанный снова
+let S = null;
+
+function fit() {
+  const k = Math.min(innerHeight / 130, innerWidth / 400);
+  box.style.zoom = k;
+  box.style.width = Math.min(innerWidth / k, (innerWidth / k) * (S?.['music.width'] ?? 100) / 100) + 'px';
+  box.style.top = (innerHeight / k - 120) / 2 + (box.classList.contains('mini') ? OverlyMusic.miniShift(48) : 0) + 'px';
+  if (S?.['music.align'] === 'right') box.style.left = innerWidth / k - parseFloat(box.style.width) + 'px'; else box.style.left = '0px';
+}
+addEventListener('resize', fit);
+
+Overly.onSettings(v => {
+  S = v;
+  box.style.setProperty('--acc', v['music.color']);
+  box.style.setProperty('--ink', B.ink(v['music.color']));
+  box.style.setProperty('--font', Overly.font(v['music.font']));
+  B.mode(box, v['music.mode']);
+  box.style.setProperty('--cardA', (v['music.surfaceOpacity'] ?? 100) + '%');
+  box.style.setProperty('--r', (v['music.radius'] ?? 0) + 'px');
+  box.classList.toggle('right', v['music.align'] === 'right');
+  box.classList.toggle('no-cover', !v['music.cover']);
+  box.classList.toggle('no-label', !v['music.showLabel']);
+  box.classList.toggle('no-progress', !v['music.progress']);
+  $('.label').textContent = v['music.label'] || '';
+  Overly.css(v['music.css']);
+  fit();
+});
+
+function fill(m, delay) {
+  B.letters($('.title'), m.title || '', delay);
+  $('.artist').textContent = m.artist || '';
+  const img = $('.cover img');
+  img.hidden = !m.cover;
+  $('.cover .ph').hidden = !!m.cover;
+  if (m.cover) img.src = m.cover;
+}
+
+OverlyMusic.watch({
+  show() {
+    const g = ++gen;
+    box.classList.add('shown');
+    const c = $('.cover');
+    ['wipe-out', 'pop-out'].forEach(a => { c.classList.remove(a); $('.card').classList.remove(a); });
+    if (!box.classList.contains('no-cover')) B.tumble(box, c.offsetLeft + 60, 60, S['music.color'], { size: 60, time: .6 });
+    setTimeout(() => { if (g === gen) { B.replay(c, 'spin-in'); B.replay($('.card'), 'wipe-in'); } }, 480);
+  },
+  hide() {
+    B.replay($('.card'), 'wipe-out'); B.replay($('.cover'), 'pop-out');
+    const g = ++gen;
+    setTimeout(() => { if (g === gen) box.classList.remove('shown'); }, 500);
+  },
+  track(m, first) {
+    fill(m, first ? 800 : 0);
+    if (!first) { B.replay($('.cover'), 'spin-in'); B.replay($('.artist'), 'pop-in'); }
+  },
+  mini(on, instant) {
+    clearTimeout(swapT);
+    if (instant) { box.classList.add('still'); box.classList.toggle('mini', on); fit(); box.offsetWidth; box.classList.remove('still', 'swap'); return; }
+    // Содержимое гаснет, полоска меняет высоту, содержимое проявляется уже в новом виде
+    box.classList.add('swap');
+    swapT = setTimeout(() => { box.classList.toggle('mini', on); fit(); swapT = setTimeout(() => box.classList.remove('swap'), 450); }, 220);
+  },
+  tick(pos, dur) {
+    $('.bar i').style.transform = `scaleX(${dur ? pos / dur : 0})`;
+    $('.t').textContent = dur ? `${OverlyMusic.time(pos)} / ${OverlyMusic.time(dur)}` : OverlyMusic.time(pos);
+  },
+});
+</script>
+</body>
+</html>

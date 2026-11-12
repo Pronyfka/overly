@@ -1,0 +1,73 @@
+/* =====================================================
+   ТЕМА «ЖВАЧКА» · общий вид и движение
+   Ярко и мило: белые скруглённые карточки с цветным «дном», пузыри вместо квадратов.
+   Всё появляется упруго, как надутый пузырь, и лопается при уходе.
+   ===================================================== */
+:root {
+  --acc: #FF4D8D;
+  --ink: #fff;
+  --card: #fff;
+  --cardInk: #2B2140;
+  --muted: #8F86A3;
+  --soft: #FFE3EE;
+  --deep: #C2185B;
+  --font: 'Rubik', sans-serif;
+  --io: cubic-bezier(.45, 0, .2, 1);
+  --out: cubic-bezier(.2, .8, .2, 1);
+  --bounce: cubic-bezier(.3, 1.6, .5, 1);
+}
+.dark-mode { --card: #2A2238; --cardInk: #F6F2FF; --muted: #A79DBD; }
+
+/* Капсула: влетает снизу-слева под углом, выравнивается и растягивается вправо. Уход — то же в обратном порядке */
+.wipe-in, .wipe-in-r, .wipe-down { animation: gumIn .72s linear both; }
+@keyframes gumIn {
+  0%   { opacity: 0; rotate: -16deg; translate: -34px 40px; clip-path: inset(0 68% 0 0 round 60px); animation-timing-function: cubic-bezier(.2, .8, .3, 1); }
+  14%  { opacity: 1; }
+  42%  { opacity: 1; rotate: 2deg; translate: 0 0; clip-path: inset(0 68% 0 0 round 60px); animation-timing-function: cubic-bezier(.55, 0, .2, 1); }
+  100% { opacity: 1; translate: 0 0; clip-path: inset(-60px -60px -60px -60px round 60px); }
+}
+.wipe-out, .wipe-out-l { animation: gumOut .5s linear forwards; }
+@keyframes gumOut {
+  0%   { opacity: 1; clip-path: inset(-60px -60px -60px -60px round 60px); animation-timing-function: cubic-bezier(.6, 0, .3, 1); }
+  58%  { opacity: 1; rotate: 2deg; translate: 0 0; clip-path: inset(0 68% 0 0 round 60px); animation-timing-function: cubic-bezier(.6, 0, .9, .4); }
+  100% { opacity: 0; rotate: -16deg; translate: -34px 40px; clip-path: inset(0 68% 0 0 round 60px); }
+}
+/* Покачивание в объёме: всё висит не ровно, а медленно поворачивается */
+.wob { animation: wob 7s ease-in-out infinite alternate; transform-style: flat; }
+@keyframes wob { from { transform: perspective(1100px) rotateY(-7deg) rotateX(4deg) rotateZ(-1.6deg); } to { transform: perspective(1100px) rotateY(6deg) rotateX(-3deg) rotateZ(1.2deg); } }
+.no-wobble .wob { animation: none; }
+
+.mask { display: block; overflow: hidden; }
+.rise-in { animation: riseIn .5s var(--bounce) both; }
+@keyframes riseIn { from { translate: 0 105%; } to { translate: 0 0; } }
+.fade-out { animation: fadeOut .2s ease forwards; }
+@keyframes fadeOut { to { opacity: 0; } }
+
+.letters > span { display: inline-block; white-space: pre; opacity: 0; animation: letter .42s var(--bounce) forwards;
+  animation-delay: calc(var(--d, 0ms) + var(--i) * 24ms); }
+@keyframes letter { from { opacity: 0; translate: 0 .45em; scale: .6; } to { opacity: 1; translate: 0 0; scale: 1; } }
+
+.sq { display: block; width: 26px; height: 26px; background: #fff; border-radius: 50%; }
+.spin-in { animation: spinIn .55s var(--bounce) both; }
+@keyframes spinIn { from { opacity: 0; scale: 0; } to { opacity: 1; scale: 1; } }
+.pop-in { animation: popIn .4s var(--bounce) both; }
+@keyframes popIn { from { scale: 0; } to { scale: 1; } }
+.pop-out { animation: popOut .25s var(--io) forwards; }
+@keyframes popOut { to { scale: 0; opacity: 0; } }
+
+/* Пузырь (B.tumble) прилетает к месту и лопается */
+.tumble { position: absolute; width: var(--s, 46px); height: var(--s, 46px); border-radius: 50%; background: var(--tc, var(--acc)); pointer-events: none; z-index: 5;
+  animation: tumble var(--t, .7s) var(--io) forwards; }
+@keyframes tumble {
+  0%   { translate: var(--fx) var(--fy); scale: .4; opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { translate: 0 0; scale: 1; opacity: 1; }
+  100% { translate: 0 0; scale: 1.7; opacity: 0; }
+}
+
+.burst { position: absolute; width: 0; height: 0; pointer-events: none; }
+.burst i { position: absolute; width: 10px; height: 10px; margin: -5px; border-radius: 50%; background: var(--bc, var(--acc));
+  animation: burst .9s var(--out) forwards; }
+@keyframes burst { from { translate: 0 0; opacity: 1; } 70% { opacity: 1; } to { translate: var(--bx) var(--by); opacity: 0; scale: .4; } }
+
+@media (prefers-reduced-motion: reduce) { * { animation-duration: .01s !important; } }

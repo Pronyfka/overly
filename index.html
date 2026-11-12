@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overly — оверлеи для OBS: алерты, чат, сцены для Twitch</title>
+<meta name="description" content="Overly — приложение с готовыми оверлеями для OBS: алерты донатов и подписок, чат, сцены, музыка, таймер сабатона и голосования. Twitch и DonationAlerts. Скачать бесплатно, темы — от 490 ₽.">
+<meta name="keywords" content="оверлеи для obs, оверлей для стрима, алерты для твича, виджеты donationalerts, оформление стрима, сцены для obs">
+<!-- ЗАМЕНИТЬ: адрес сайта после публикации на GitHub Pages -->
+<link rel="canonical" href="https://pronyfka.github.io/overly/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Overly — оверлеи для OBS">
+<meta property="og:description" content="Алерты, чат, сцены, музыка и таймер для Twitch в одном приложении. Темы — от 490 ₽.">
+<meta property="og:image" content="https://pronyfka.github.io/overly/img/witching-stream.png">
+<meta name="theme-color" content="#0d0b14">
+<link rel="icon" href="img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Overly","operatingSystem":"Windows 10, Windows 11","applicationCategory":"MultimediaApplication","description":"Готовые оверлеи для OBS: алерты, чат, сцены, музыка, таймер и голосования для Twitch.","offers":{"@type":"AggregateOffer","lowPrice":"490","priceCurrency":"RUB"},"inLanguage":"ru"}
+</script>
+<style>
+:root{
+  --bg:#0d0b14; --bg2:#15121f; --card:#1b1727; --line:#2c2640;
+  --text:#f2eff9; --muted:#a59fba; --accent:#a78bfa; --accent2:#f472b6;
+  --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--bg);color:var(--text);font:16px/1.6 Manrope,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:Unbounded,sans-serif;line-height:1.15;letter-spacing:-.01em}
+h2{font-size:clamp(26px,4vw,40px);margin-bottom:14px}
+.lead{color:var(--muted);font-size:18px;max-width:660px}
+section{padding:90px 0}
+.alt{background:var(--bg2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:999px;font-weight:700;transition:transform .15s,background .15s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-main{background:var(--grad);color:#140d22;box-shadow:0 10px 40px -10px #a78bfa99}
+.btn-ghost{border:1px solid var(--line);background:#ffffff08}
+.btn-ghost:hover{background:#ffffff12}
+.btn.sm{padding:9px 16px;font-size:14px}
+.tag{display:inline-block;font-size:13px;font-weight:700;padding:5px 12px;border-radius:999px;background:#a78bfa22;color:var(--accent)}
+.logo{font:800 24px/1 Unbounded,sans-serif;letter-spacing:-.02em;display:flex;align-items:center;gap:.04em}
+.logo svg{width:.86em;height:.86em;display:block;flex:none;margin-bottom:-.02em}
+
+nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:#0d0b14cc;border-bottom:1px solid #ffffff0d}
+nav .wrap{display:flex;align-items:center;gap:28px;height:68px}
+nav .links{display:flex;gap:24px;margin-left:auto;color:var(--muted);font-weight:500}
+nav .links a:hover{color:var(--text)}
+nav .btn{padding:10px 18px}
+
+.hero{padding:60px 0 50px;position:relative;overflow-x:clip}
+.hero::before{content:"";position:absolute;inset:-200px -20% auto;height:760px;background:radial-gradient(closest-side,#a78bfa33,transparent),radial-gradient(closest-side at 80% 40%,#f472b62a,transparent);z-index:-1}
+.hero-top{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:34px}
+.hero h1{font-size:clamp(34px,5vw,60px);margin:18px 0 0}
+.hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .cta{display:flex;flex-wrap:wrap;gap:14px;margin:22px 0 12px}
+.hero small{color:var(--muted)}
+
+/* «стрим» в первом экране */
+.live{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);box-shadow:0 50px 120px -40px #000;aspect-ratio:16/9;background:#090812}
+.live .game{position:absolute;inset:0;background:
+  radial-gradient(60% 50% at 30% 30%,#3b2a7a88,transparent 70%),
+  radial-gradient(50% 60% at 75% 70%,#7a2a5c77,transparent 70%),
+  linear-gradient(180deg,#151030,#0b0a16 60%,#120c1c)}
+.live .game::before{content:"";position:absolute;inset:auto 0 0;height:45%;background:
+  linear-gradient(160deg,transparent 40%,#00000088 40.2%) 0 0/50% 100% no-repeat,
+  linear-gradient(200deg,transparent 40%,#00000088 40.2%) 100% 0/50% 100% no-repeat,
+  linear-gradient(180deg,#0000,#000a)}
+.live .game::after{content:"";position:absolute;inset:0;background:linear-gradient(#ffffff05 1px,transparent 1px) 0 0/100% 4px}
+.live .badge{position:absolute;left:2.2%;top:3.5%;z-index:3;display:flex;gap:8px;font-weight:800;font-size:clamp(10px,1.2vw,13px)}
+.live .badge b{background:#e5383b;color:#fff;padding:3px 9px;border-radius:6px}
+.live .badge span{background:#0009;padding:3px 9px;border-radius:6px}
+.slot{position:absolute;z-index:2}
+.slot iframe{position:absolute;left:50%;top:50%;border:0;transform-origin:50% 50%;background:transparent;pointer-events:none}
+.s-alert{left:18%;right:30%;top:6%;height:34%}
+.s-chat{right:1.5%;top:4%;bottom:4%;width:24%}
+.s-music{left:1.5%;bottom:3%;width:30%;height:14%}
+.s-goal{left:32%;right:30%;bottom:3%;height:12%}
+.switch{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;align-items:center}
+.switch .lbl{color:var(--muted);font-size:14px;margin-right:4px}
+.chip{padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:#ffffff06;font-weight:700;font-size:14px;transition:.15s}
+.chip:hover{border-color:#a78bfa88}
+.chip.on{background:var(--grad);color:#140d22;border-color:transparent}
+
+.works{display:flex;flex-wrap:wrap;gap:12px 30px;color:var(--muted);font-weight:700;padding:26px 0;border-top:1px solid #ffffff0d;border-bottom:1px solid #ffffff0d;justify-content:center}
+.works span::before{content:"✓ ";color:var(--accent)}
+
+/* карточки тем */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
+.theme{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .2s,border-color .2s;display:flex;flex-direction:column}
+.theme:hover{transform:translateY(-4px);border-color:#a78bfa66}
+.prev{aspect-ratio:16/10;position:relative;overflow:hidden;cursor:pointer;background:var(--tb)}
+.prev .slot{inset:6% 4% 24%}
+.evs{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;gap:5px;flex-wrap:wrap;justify-content:center;padding:10px 10px 12px;background:linear-gradient(transparent,#000a)}
+.evs span{font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:999px;background:#ffffff14;color:#ffffffaa;transition:.25s;cursor:pointer}
+.evs span.on{background:#fff;color:#111}
+.theme .info{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
+.theme h3{font-size:18px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.theme h3 small{font:800 15px Manrope;color:var(--accent);white-space:nowrap}
+.theme p{color:var(--muted);font-size:14px;margin:6px 0 16px;flex:1}
+.theme .row{display:flex;gap:10px}
+.theme .row .btn{flex:1}
+.free{color:#4ade80!important}
+
+/* окно просмотра темы */
+dialog{margin:auto;border:1px solid var(--line);border-radius:22px;background:var(--bg2);color:var(--text);width:min(1100px,calc(100vw - 24px));max-height:calc(100vh - 24px);padding:0;overflow:auto}
+dialog::backdrop{background:#05040acc;backdrop-filter:blur(6px)}
+.v-head{display:flex;align-items:center;gap:14px;padding:18px 22px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.v-head h3{font-size:20px}
+.v-head .price{color:var(--accent);font-weight:800}
+.v-head .sp{flex:1}
+.v-close{width:40px;height:40px;border-radius:50%;background:#ffffff0d;font-size:18px}
+.v-tabs{display:flex;gap:6px;padding:14px 22px 0;flex-wrap:wrap}
+.v-tabs button{padding:9px 15px;border-radius:12px 12px 0 0;font-weight:700;color:var(--muted);border-bottom:2px solid transparent}
+.v-tabs button.on{color:var(--text);border-color:var(--accent);background:#ffffff08}
+.v-stage{position:relative;margin:0 22px;border-radius:14px;overflow:hidden;aspect-ratio:16/9;max-height:62vh;width:calc(100% - 44px);background:var(--tb,#0b0a16)}
+.v-stage .slot{inset:4%}
+.v-ctrl{display:flex;gap:8px;flex-wrap:wrap;padding:16px 22px 22px;align-items:center}
+.v-ctrl .hint{color:var(--muted);font-size:14px;margin-right:6px}
+
+.feats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:40px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.feat .ic{font-size:26px}.feat h3{font-size:16px;margin:12px 0 6px}.feat p{color:var(--muted);font-size:14px}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px;counter-reset:s}
+.step{padding:26px;border-radius:var(--radius);background:linear-gradient(180deg,#a78bfa14,transparent);border:1px solid var(--line)}
+.step::before{counter-increment:s;content:counter(s);font:800 44px Unbounded;color:transparent;-webkit-text-stroke:1.5px var(--accent)}
+.step h3{font-size:18px;margin:8px 0}.step p{color:var(--muted);font-size:15px}
+
+.cmp{margin-top:36px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.cmp table{width:100%;border-collapse:collapse;font-size:15px}
+.cmp th,.cmp td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--line)}
+.cmp tr:last-child td{border-bottom:0}
+.cmp th{font-family:Unbounded;font-size:14px;background:#ffffff06}
+.cmp td:nth-child(2){font-weight:700}
+.cmp td:nth-child(3){color:var(--muted)}
+.cmp .y{color:#4ade80}.cmp .n{color:#f87171}
+
+.prices{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px;align-items:stretch}
+.pr{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;display:flex;flex-direction:column}
+.pr.hot{border:2px solid var(--accent);position:relative;background:linear-gradient(180deg,#a78bfa1f,var(--card) 50%)}
+.pr.hot::before{content:"Выгоднее всего";position:absolute;top:-14px;left:24px;background:var(--accent);color:#140d22;font-weight:800;font-size:13px;padding:4px 12px;border-radius:999px}
+.pr h3{font-size:18px}.pr .sum{font:800 36px Unbounded;white-space:nowrap;margin:14px 0 4px}
+.pr .sum small{font-size:20px;color:var(--muted);font-weight:500}
+.pr .sum s{display:block;margin-top:2px;font-size:16px;color:var(--muted);font-weight:500}
+.pr ul{list-style:none;margin:16px 0 26px;color:var(--muted);font-size:15px;flex:1}
+.pr li{padding:5px 0}.pr li::before{content:"✓  ";color:var(--accent)}
+.pr.soon{position:relative;border-style:dashed}
+.pr.soon::before{content:"Скоро";position:absolute;top:-14px;left:24px;background:var(--accent2);color:#140d22;font-weight:800;font-size:13px;padding:4px 12px;border-radius:999px}
+.pay{margin-top:22px;color:var(--muted);font-size:14px;text-align:center}
+
+.faq{margin-top:34px;display:grid;gap:12px;max-width:820px}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px}
+summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--accent);font-size:22px;line-height:1}
+details[open] summary::after{content:"−"}
+details p{color:var(--muted);margin-top:10px}
+
+.final{text-align:center;padding:80px 20px;border-radius:28px;background:radial-gradient(circle at 50% 0,#a78bfa40,transparent 70%),var(--bg2);border:1px solid var(--line)}
+.final .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+footer{padding:20px 0 60px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+footer a:hover{color:var(--text)}
+
+@media (max-width:960px){
+  .hero-top{grid-template-columns:1fr}
+  .grid,.prices,.steps{grid-template-columns:1fr 1fr}
+  .feats{grid-template-columns:1fr 1fr}
+  nav .links{display:none}
+  nav .btn{margin-left:auto}
+}
+@media (max-width:640px){
+  .grid,.prices,.steps,.feats{grid-template-columns:1fr}
+  section{padding:64px 0}
+  .s-chat,.s-goal{display:none}
+  .s-alert{left:4%;right:4%;top:12%;height:50%}
+  .s-music{width:60%;height:20%}
+  .cmp th,.cmp td{padding:10px;font-size:13px}
+  .v-stage{margin:0 12px;width:calc(100% - 24px)}
+  .v-tabs,.v-ctrl,.v-head{padding-left:12px;padding-right:12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="logo" href="#" aria-label="Overly"><svg viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke-width="13" stroke-linecap="round" transform="translate(0 2)"><path d="M30 10a22 22 0 0 0 0 44" stroke="#a78bfa"/><path d="M34 6a22 22 0 0 1 0 44" stroke="#f472b6"/></g></svg><span aria-hidden="true">verly</span></a>
+  <div class="links"><a href="#themes">Темы</a><a href="#features">Возможности</a><a href="#prices">Цены</a><a href="#faq">Вопросы</a></div>
+  <a class="btn btn-main" data-dl href="#">Скачать</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="hero-top">
+    <div>
+      <span class="tag">Для OBS · Twitch · DonationAlerts</span>
+      <h1>Оверлеи для OBS, которые <em>оживляют стрим</em></h1>
+    </div>
+    <div>
+      <p class="lead">Алерты, чат, сцены, музыка, таймер сабатона и голосования — в одном приложении. Выбери тему, поменяй цвета и вставь ссылку в OBS.</p>
+      <div class="cta">
+        <a class="btn btn-main" data-dl href="#">⬇ Скачать бесплатно</a>
+        <a class="btn btn-ghost" data-bot href="#">Купить тему в Telegram</a>
+      </div>
+      <small>Windows 10/11 · все темы бесплатно в демо · темы от 490 ₽</small>
+    </div>
+  </div>
+
+  <div class="live" id="hero">
+    <div class="game"></div>
+    <div class="badge"><b>В ЭФИРЕ</b><span>👁 1 284</span></div>
+    <div class="slot s-alert" data-ov="alerts"></div>
+    <div class="slot s-chat" data-ov="chat"></div>
+    <div class="slot s-goal" data-ov="goal"></div>
+    <div class="slot s-music" data-ov="music"></div>
+  </div>
+  <div class="switch" id="hero-switch"><span class="lbl">Тема на экране:</span></div>
+</div></header>
+
+<div class="wrap"><div class="works">
+  <span>Twitch</span><span>DonationAlerts</span><span>Яндекс Музыка</span><span>Смайлы BTTV и 7TV</span><span>Опросы Twitch</span><span>OBS и Streamlabs</span>
+</div></div>
+
+<section id="themes"><div class="wrap">
+  <h2>Уже шесть тем — от неона до японской туши</h2>
+  <p class="lead">Это не картинки, а настоящие оверлеи из приложения. События идут по кругу, а по клику на тему покажем чат, сцену начала стрима, цель, музыку и рамку вебки. Коллекция постепенно пополняется: новые темы приходят в приложение вместе с обновлениями.</p>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section id="features" class="alt"><div class="wrap">
+  <h2>Всё для стрима в каждой теме</h2>
+  <p class="lead">Покупаешь тему — получаешь весь набор. Новые виджеты приходят бесплатными обновлениями.</p>
+  <div class="feats">
+    <div class="feat"><div class="ic">🔔</div><h3>Алерты</h3><p>Фолловы, подписки, подарки, рейды, битсы и донаты. Свои звуки, гифки и видео.</p></div>
+    <div class="feat"><div class="ic">💬</div><h3>Чат</h3><p>Чат на экране со смайлами Twitch, BTTV и 7TV.</p></div>
+    <div class="feat"><div class="ic">🎬</div><h3>Сцены</h3><p>«Скоро начнём», «Перерыв», «Конец» и рамка вебки. Плюс свой редактор сцен.</p></div>
+    <div class="feat"><div class="ic">🎯</div><h3>Цель</h3><p>Шкала сбора: донаты, подписки или фолловеры.</p></div>
+    <div class="feat"><div class="ic">🎵</div><h3>Музыка</h3><p>Что играет в Яндекс Музыке — обложка, название, прогресс. Без токенов.</p></div>
+    <div class="feat"><div class="ic">⏱</div><h3>Таймер сабатона</h3><p>Каждая подписка, битсы и донат добавляют время. Правила задаёшь сам.</p></div>
+    <div class="feat"><div class="ic">📊</div><h3>Голосования</h3><p>Опросы Twitch на экране. Запускай из приложения или командой /poll.</p></div>
+    <div class="feat"><div class="ic">🏆</div><h3>Итоги стрима</h3><p>Карточка с цифрами стрима — сохрани и выложи в соцсети.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Запуск за 3 минуты</h2>
+  <div class="steps">
+    <div class="step"><h3>Скачай Overly</h3><p>Установщик для Windows. Обновления приходят сами — ставишь по кнопке.</p></div>
+    <div class="step"><h3>Подключи Twitch и донаты</h3><p>Вход через Twitch и DonationAlerts в один клик. Пароли и токены вводить не нужно.</p></div>
+    <div class="step"><h3>Вставь ссылку в OBS</h3><p>Копируешь адрес виджета и добавляешь в OBS как источник «Браузер». Готово.</p></div>
+  </div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <h2>Почему не собрать самому</h2>
+  <p class="lead">Можно взять алерты на одном сайте, чат на другом, а сцены нарисовать в Canva. Но вот в чём разница.</p>
+  <div class="cmp"><table>
+    <tr><th></th><th>Overly</th><th>Виджеты с разных сайтов</th></tr>
+    <tr><td>Единый стиль оформления</td><td class="y">✓ одна тема на всё</td><td class="n">✗ всё разное</td></tr>
+    <tr><td>Настройка</td><td>цвета и шрифты в одном окне</td><td>в каждом сервисе отдельно</td></tr>
+    <tr><td>Таймер сабатона и итоги стрима</td><td class="y">✓ уже внутри</td><td>искать отдельно</td></tr>
+    <tr><td>Музыка из Яндекса</td><td class="y">✓ без токенов</td><td>сторонние программы</td></tr>
+    <tr><td>Цена</td><td>от 490 ₽ за тему</td><td>бесплатно или подписка</td></tr>
+  </table></div>
+</div></section>
+
+<section id="prices"><div class="wrap">
+  <h2>Цены</h2>
+  <p class="lead">Тема покупается один раз и остаётся твоей со всеми будущими обновлениями. Скоро появится подписка: все темы за 199 ₽ в месяц.</p>
+  <div class="prices">
+    <div class="pr"><h3>Демо</h3><div class="sum">0 ₽</div>
+      <ul><li>Все темы и настройки</li><li>Тестовые события в OBS</li><li>Тема «Ведьмин час» целиком</li><li>Водяной знак на платных темах</li></ul>
+      <a class="btn btn-ghost" data-dl href="#">Скачать</a></div>
+    <div class="pr"><h3>Одна тема</h3><div class="sum"><small>от</small> 490 ₽</div>
+      <ul><li>Все виджеты темы</li><li>Живые донаты, чат, подписки, музыка</li><li>Без водяного знака</li><li>Ключ сразу в Telegram</li></ul>
+      <a class="btn btn-main" data-bot href="#">Купить</a></div>
+    <!-- ПОДПИСКА: в боте её пока нет, поэтому карточка помечена «Скоро» и кнопка ведёт в бота.
+         Кнопка записывает в лист ожидания в боте (/start sub, владелец видит число по /waitlist).
+         Когда подписка появится — убрать класс soon и поменять текст кнопки на «Оформить». -->
+    <div class="pr soon"><h3>Подписка</h3><div class="sum">199 ₽ <small>/ мес</small></div>
+      <ul><li>Все темы, включая новые</li><li>Живые донаты, чат, подписки, музыка</li><li>Без водяного знака</li><li>Отменить можно в любой момент</li></ul>
+      <a class="btn btn-ghost" data-bot data-start="sub" href="#">Узнать о запуске</a></div>
+  </div>
+  <p class="pay">Оплата через Робокассу — банковской картой и другими способами · чек самозанятого приходит на почту</p>
+</div></section>
+
+<section id="faq" class="alt"><div class="wrap">
+  <h2>Вопросы</h2>
+  <div class="faq">
+    <details><summary>Чем Overly отличается от виджетов DonationAlerts?</summary><p>Здесь всё в одном стиле: алерты, чат, сцены, цель, музыка, таймер и голосования оформлены одной темой. Ничего не нужно собирать по разным сайтам.</p></details>
+    <details><summary>Как работает демо?</summary><p>Можно поставить любую тему и настроить её, в OBS будут тестовые события и водяной знак. После покупки ключа подключаются настоящие донаты, чат и подписки.</p></details>
+    <details><summary>Как я получу ключ?</summary><p>Оплата в Telegram-боте @overly_support_bot. Ключ приходит в чат сразу после оплаты, его нужно вставить в приложении.</p></details>
+    <details><summary>Ключ привязан к каналу?</summary><p>Да, ключ работает на одном канале Twitch. Продлевать ничего не нужно.</p></details>
+    <details><summary>Будут ли новые темы?</summary><p>Да, темы постепенно пополняются. Новые появляются в приложении с обновлением — в демо их можно сразу попробовать.</p></details>
+    <details><summary>Работает на Mac или в Streamlabs?</summary><p>Приложение только для Windows. Виджеты работают в любой программе с источником «Браузер»: OBS, Streamlabs Desktop, Meld.</p></details>
+    <details><summary>Можно вернуть деньги?</summary><p>Условия возврата — в боте, команда /refund.</p></details>
+  </div>
+</div></section>
+
+<section><div class="wrap"><div class="final">
+  <h2>Попробуй на своём стриме сегодня</h2>
+  <p class="lead" style="margin:0 auto">Скачай бесплатно, поставь тему и посмотри, как она выглядит в OBS.</p>
+  <div class="cta">
+    <a class="btn btn-main" data-dl href="#">⬇ Скачать Overly</a>
+    <a class="btn btn-ghost" data-bot href="#">Написать в Telegram</a>
+  </div>
+</div></div></section>
+
+<footer><div class="wrap">
+  <span>© 2026 Overly — оверлеи для OBS</span>
+  <!-- ЗАМЕНИТЬ на «Самозанятый ФИО полностью, ИНН …» (как в боте /contacts), когда владелец пришлёт данные -->
+  <span>Продавец и реквизиты — в <a data-bot data-start="" href="#">боте</a>, раздел «Документы»</span>
+  <span><a data-bot href="#">Поддержка</a> · <a data-bot href="#">Лицензия и возврат</a></span>
+</div></footer>
+
+<dialog id="viewer">
+  <div class="v-head">
+    <h3 id="v-name"></h3><span class="price" id="v-price"></span><span class="sp"></span>
+    <button class="btn btn-ghost sm" id="v-sound">🔇 Без звука</button>
+    <a class="btn btn-main sm" id="v-buy" href="#">Купить</a>
+    <button class="v-close" id="v-close" aria-label="Закрыть">✕</button>
+  </div>
+  <div class="v-tabs" id="v-tabs"></div>
+  <div class="v-stage" id="v-stage"></div>
+  <div class="v-ctrl" id="v-ctrl"></div>
+</dialog>
+
+<script src="data.js"></script>
+<script>
+const DL = 'https://github.com/Pronyfka/overly-releases/releases/latest';
+const BOT = 'https://t.me/overly_support_bot';
+document.querySelectorAll('[data-dl]').forEach(a => a.href = DL);
+// data-start — что бот покажет сразу (sub — лист ожидания подписки)
+document.querySelectorAll('[data-bot]').forEach(a => a.href = BOT + (a.dataset.start ? '?start=' + a.dataset.start : ''));
+
+const THEMES = window.OVERLY_THEMES;
+// Короткое описание и фон превью для каждой темы
+const INFO = {
+  glitch:   ['Технический интерфейс: лайм на чёрном, сбои строк, узлы и метки. Для шутеров и CS2.', 'radial-gradient(70% 70% at 30% 20%,#2a3a0c,#07090a 70%)'],
+  lumen:    ['Спокойные тёмные карточки раскрываются из светящейся линии. Для общения и музыки.', 'radial-gradient(80% 80% at 50% 110%,#3b2a7a,#0b0a14 65%)'],
+  gum:      ['Яркие пузыри, пружинящие плашки и 3D-покачивание. Палитры Клубника, Черника, Мята, Лимонад.', 'radial-gradient(80% 80% at 70% 20%,#5a1f4a,#1a0d1f 70%)'],
+  matrix:   ['Сетка, каркасный глобус и мерцающие метки. Строгий стиль, палитры Малина, Лёд, Золото.', 'linear-gradient(#ff2d6b14 1px,transparent 1px) 0 0/22px 22px,linear-gradient(90deg,#ff2d6b14 1px,transparent 1px) 0 0/22px 22px,#120610'],
+  sumi:     ['Мазки кисти, красное солнце и сакура. Японская живопись тушью — всё рисуется прямо в браузере.', 'radial-gradient(60% 60% at 75% 30%,#4a1c16,#141010 70%)'],
+  witching: ['Бесплатная тема без водяного знака: проверь, как всё работает, на настоящем стриме.', 'radial-gradient(70% 70% at 40% 30%,#3a1c4a,#0d0812 70%)'],
+};
+const NAMES = { alerts: 'Алерты', chat: 'Чат', starting: 'Начало стрима', goal: 'Цель', music: 'Музыка', webcam: 'Рамка вебки' };
+const price = t => t.free ? 'Бесплатно' : `${t.price} ₽`;
+
+// ---------- Окошко с оверлеем: iframe размера источника OBS, вписанный в слот ----------
+const frames = new Map();   // iframe → что сделать, когда тема загрузила настройки
+function mount(slot, theme, ovId) {
+  const ov = theme.overlays.find(o => o.id === ovId);
+  slot.replaceChildren();
+  if (!ov) return null;
+  const f = document.createElement('iframe');
+  f.src = `t/${theme.id}/${ov.id}.html`;
+  f.title = `${theme.name} — ${NAMES[ov.id] || ov.name}`;
+  f.dataset.w = ov.width; f.dataset.h = ov.height;
+  slot.appendChild(f);
+  fit(slot);
+  return f;
+}
+function fit(slot) {
+  const f = slot.querySelector('iframe'); if (!f) return;
+  const w = +f.dataset.w, h = +f.dataset.h;
+  const k = Math.min(slot.clientWidth / w, slot.clientHeight / h);
+  Object.assign(f.style, { width: w + 'px', height: h + 'px', transform: `translate(-50%,-50%) scale(${k})` });
+}
+const ro = new ResizeObserver(es => es.forEach(e => fit(e.target)));
+function ready(f, cb) { if (f) frames.set(f, cb); }
+addEventListener('message', e => {
+  if (e.data?.overly !== 'ready') return;
+  for (const [f, cb] of frames) if (f.contentWindow === e.source) { frames.delete(f); cb(f); }
+});
+const send = (f, msg) => f?.contentWindow?.postMessage(msg, '*');
+
+// ---------- События по кругу ----------
+const STEP = 6800;
+function cycler(theme, frame, onStep, visible = () => true) {
+  let i = 0, timer = null;
+  const tick = () => {
+    if (visible() && !document.hidden) {
+      const n = i % theme.events.length;
+      send(frame, { type: 'event', event: theme.events[n].event });
+      onStep(n);
+      i++;
+    }
+    timer = setTimeout(tick, STEP);
+  };
+  return {
+    start(delay = 300) { clearTimeout(timer); timer = setTimeout(tick, delay); },
+    stop() { clearTimeout(timer); },
+    jump(n) { i = n; this.start(0); },
+  };
+}
+
+// ---------- Чат ----------
+const CHAT = [
+  ['Fen1ks', '#ff7a45', ['subscriber'], 'всем привет!'],
+  ['kot_v_shapke', '#4ade80', [], 'какой красивый оверлей'],
+  ['danila1159', '#1E90FF', ['subscriber'], 'GG WP', ['Kappa', '25']],
+  ['MashaPlay', '#f472b6', ['vip'], 'а что за тема оформления?'],
+  ['hateAnime', '#FF4F9A', ['moderator', 'subscriber'], 'это Overly, ссылка в описании'],
+  ['Gosha', '#facc15', [], 'сколько ещё до цели?'],
+  ['nightowl', '#a78bfa', ['subscriber'], 'ахахах', ['LUL', '425618']],
+  ['KviLBi', '', [], 'музыка огонь, что играет?'],
+];
+function chatMsg(n) {
+  const [name, color, badges, text, emote] = CHAT[n % CHAT.length];
+  const fragments = [{ text: text + (emote ? ' ' : '') }];
+  if (emote) fragments.push({ text: emote[0], emote: emote[1] });
+  return { name, login: name.toLowerCase(), color, badges, fragments };
+}
+function chatter(frame, every = 2300) {
+  let n = 0, timer = null;
+  const tick = () => { if (!document.hidden) send(frame, { type: 'chat', message: chatMsg(n++) }); timer = setTimeout(tick, every); };
+  return {
+    start() { clearTimeout(timer); if (!n) for (let k = 0; k < 4; k++) send(frame, { type: 'chat', message: chatMsg(n++) }); timer = setTimeout(tick, every); },
+    stop() { clearTimeout(timer); },
+  };
+}
+
+// ---------- Первый экран: «стрим» с переключением тем ----------
+const hero = document.getElementById('hero');
+const heroSlots = [...hero.querySelectorAll('.slot')];
+heroSlots.forEach(s => ro.observe(s));
+let heroCycle = null, heroChat = null, heroVisible = true;
+new IntersectionObserver(([e]) => heroVisible = e.isIntersecting).observe(hero);
+function heroTheme(t) {
+  heroCycle?.stop(); heroChat?.stop(); heroCycle = heroChat = null;
+  document.querySelectorAll('#hero-switch .chip').forEach(c => c.classList.toggle('on', c.dataset.id === t.id));
+  for (const s of heroSlots) {
+    const f = mount(s, t, s.dataset.ov);
+    if (s.dataset.ov === 'alerts') ready(f, fr => { heroCycle = cycler(t, fr, () => {}, () => heroVisible); heroCycle.start(500); });
+    if (s.dataset.ov === 'chat') ready(f, fr => { heroChat = chatter(fr); heroChat.start(); });
+  }
+}
+const sw = document.getElementById('hero-switch');
+THEMES.forEach(t => {
+  const c = document.createElement('button');
+  c.className = 'chip'; c.dataset.id = t.id; c.textContent = t.name;
+  c.onclick = () => heroTheme(t);
+  sw.appendChild(c);
+});
+heroTheme(THEMES.find(t => t.id === 'lumen') || THEMES[0]);
+
+// ---------- Карточки тем: алерты по кругу, подсвечено текущее событие ----------
+const grid = document.getElementById('grid');
+THEMES.forEach((t, idx) => {
+  const card = document.createElement('article');
+  card.className = 'theme';
+  card.innerHTML = `
+    <div class="prev" style="--tb:${INFO[t.id]?.[1] || '#0b0a16'}"><div class="slot"></div>
+      <div class="evs">${t.events.map(e => `<span>${e.label}</span>`).join('')}</div></div>
+    <div class="info"><h3>${t.name} <small class="${t.free ? 'free' : ''}">${price(t)}</small></h3>
+      <p>${INFO[t.id]?.[0] || t.description || ''}</p>
+      <div class="row"><button class="btn btn-ghost sm" data-open>Смотреть всё</button>
+      ${t.free ? `<a class="btn btn-main sm" href="${DL}">Скачать</a>` : `<a class="btn btn-main sm" href="${BOT}">Купить</a>`}</div></div>`;
+  grid.appendChild(card);
+  const slot = card.querySelector('.slot');
+  const chips = [...card.querySelectorAll('.evs span')];
+  let vis = false, started = false;
+  ro.observe(slot);
+  new IntersectionObserver(([e]) => {
+    vis = e.isIntersecting;
+    if (vis && !started) {   // оверлей грузится, только когда карточку видно
+      started = true;
+      ready(mount(slot, t, 'alerts'), fr => {
+        const cyc = cycler(t, fr, i => chips.forEach((c, k) => c.classList.toggle('on', k === i)), () => vis && !dlg.open);
+        cyc.start(400 + idx * 900);
+        chips.forEach((c, k) => c.onclick = ev => { ev.stopPropagation(); cyc.jump(k); });
+      });
+    }
+  }, { rootMargin: '100px' }).observe(card);
+  card.querySelector('.prev').onclick = () => openViewer(t);
+  card.querySelector('[data-open]').onclick = () => openViewer(t);
+});
+
+// ---------- Окно просмотра темы: все оверлеи по вкладкам ----------
+const dlg = document.getElementById('viewer');
+const stage = document.getElementById('v-stage');
+const vslot = document.createElement('div'); vslot.className = 'slot'; stage.appendChild(vslot); ro.observe(vslot);
+let vTheme = null, vCycle = null, vChat = null, vFrame = null, sound = false;
+function openViewer(t) {
+  vTheme = t;
+  document.getElementById('v-name').textContent = t.name;
+  document.getElementById('v-price').textContent = price(t);
+  const buy = document.getElementById('v-buy');
+  buy.textContent = t.free ? 'Скачать' : 'Купить';
+  buy.href = t.free ? DL : BOT;
+  stage.style.setProperty('--tb', INFO[t.id]?.[1]);
+  document.getElementById('v-tabs').replaceChildren(...t.overlays.map(o => {
+    const b = document.createElement('button');
+    b.textContent = NAMES[o.id] || o.name; b.dataset.id = o.id;
+    b.onclick = () => showTab(o.id);
+    return b;
+  }));
+  heroCycle?.stop(); heroChat?.stop();
+  dlg.showModal();
+  showTab('alerts');
+}
+const HINTS = {
+  chat: 'Сообщения появляются сами. Смайлы Twitch, BTTV и 7TV тоже работают.',
+  starting: 'Сцена на весь экран перед началом стрима. Ещё есть «Перерыв» и «Конец».',
+  goal: 'Цель для донатов, подписок или фолловеров — считает сама.',
+  music: 'Трек из Яндекс Музыки: обложка, название и прогресс.',
+  webcam: 'Рамка поверх камеры в стиле темы.',
+};
+function showTab(id) {
+  vCycle?.stop(); vChat?.stop(); vCycle = vChat = null;
+  document.querySelectorAll('#v-tabs button').forEach(b => b.classList.toggle('on', b.dataset.id === id));
+  const ctrl = document.getElementById('v-ctrl');
+  const t = vTheme;
+  vFrame = mount(vslot, t, id);
+  if (id === 'alerts') {
+    ctrl.innerHTML = '<span class="hint">Показать:</span>';
+    const btns = t.events.map((e, k) => {
+      const b = document.createElement('button');
+      b.className = 'chip'; b.textContent = e.label;
+      b.onclick = () => vCycle?.jump(k);
+      ctrl.appendChild(b);
+      return b;
+    });
+    ready(vFrame, fr => {
+      send(fr, { type: 'sound', on: sound });
+      vCycle = cycler(t, fr, i => btns.forEach((b, k) => b.classList.toggle('on', k === i)));
+      vCycle.start(300);
+    });
+  } else {
+    ctrl.innerHTML = `<span class="hint">${HINTS[id] || ''}</span>`;
+    ready(vFrame, fr => {
+      send(fr, { type: 'sound', on: sound });
+      if (id === 'chat') { vChat = chatter(fr, 1800); vChat.start(); }
+    });
+  }
+}
+document.getElementById('v-close').onclick = () => dlg.close();
+dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+dlg.addEventListener('close', () => { vCycle?.stop(); vChat?.stop(); vslot.replaceChildren(); heroCycle?.start(800); heroChat?.start(); });
+document.getElementById('v-sound').onclick = e => {
+  sound = !sound;
+  e.currentTarget.textContent = sound ? '🔊 Со звуком' : '🔇 Без звука';
+  send(vFrame, { type: 'sound', on: sound });
+};
+</script>
+<!-- Яндекс Метрика. Номер счётчика — с metrika.yandex.ru (Добавить счётчик → адрес сайта).
+     Пока номера нет, ничего не загружается. Вебвизор и карта кликов включены. -->
+<script>
+const METRIKA = 0;   // ← сюда номер счётчика, например 98765432
+if (METRIKA) {
+  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
+  k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+  (window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+  ym(METRIKA, 'init', { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true });
+  // Цели: клики по «Скачать» и «Купить» видны в отчёте «Конверсии»
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('[data-dl],[data-bot]');
+    if (a) ym(METRIKA, 'reachGoal', a.hasAttribute('data-dl') ? 'download' : a.dataset.start === 'sub' ? 'sub' : 'bot');
+  });
+}
+</script>
+</body>
+</html>

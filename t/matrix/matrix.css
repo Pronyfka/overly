@@ -1,0 +1,59 @@
+/* =====================================================
+   ТЕМА «МАТРИЦА» · общий вид и движение
+   Чёрный экран, неоновая сетка, жирный шрифт, плашка цвета акцента и тонкая линия.
+   Порядок появления всегда один: плашка мигает → линия прочерчивается → подпись выезжает
+   из-за плашки → текст поднимается из-под линии серым, мигает контуром и становится белым.
+   ===================================================== */
+:root {
+  --acc: #E6004C;
+  --ink: #fff;
+  --card: #fff;
+  --cardInk: #111318;
+  --muted: #7C808C;
+  --deep: #7A0029;
+  --font: 'Montserrat', sans-serif;
+  --io: cubic-bezier(.7, 0, .2, 1);
+  --out: cubic-bezier(.16, .84, .24, 1);
+}
+.dark-mode { --card: #0D0F13; --cardInk: #F4F5F7; --muted: #868B98; }
+
+/* Появление шторкой с мерцанием */
+.wipe-in { animation: wipeIn .42s var(--io) both, flick .42s steps(1) both; }
+@keyframes wipeIn { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 -20px 0 0); } }
+.wipe-in-r { animation: wipeInR .42s var(--io) both, flick .42s steps(1) both; }
+@keyframes wipeInR { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0 0 0 -20px); } }
+.wipe-down { animation: wipeDown .5s var(--io) both, flick .5s steps(1) both; }
+@keyframes wipeDown { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+.wipe-out { animation: wipeOut .34s var(--io) forwards; }
+@keyframes wipeOut { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(0 0 0 100%); } }
+.wipe-out-l { animation: wipeOutL .34s var(--io) forwards; }
+@keyframes wipeOutL { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(0 100% 0 0); } }
+@keyframes flick { 0% { opacity: 1; } 25% { opacity: .35; } 40% { opacity: 1; } 55% { opacity: .55; } 70%, 100% { opacity: 1; } }
+
+.mask { display: block; overflow: hidden; }
+.rise-in { animation: riseIn .3s var(--out) both; }
+@keyframes riseIn { from { translate: 0 105%; } to { translate: 0 0; } }
+.fade-out { animation: fadeOut .16s steps(3) forwards; }
+@keyframes fadeOut { to { opacity: 0; } }
+
+/* Буквы загораются вразнобой, как на табло */
+.letters > span { display: inline-block; white-space: pre; opacity: 0; animation: letter .28s steps(1) forwards;
+  animation-delay: calc(var(--d, 0ms) + var(--i) * 17ms); }
+@keyframes letter { 0% { opacity: .9; } 30% { opacity: .2; } 55% { opacity: 1; } 75% { opacity: .5; } 100% { opacity: 1; } }
+
+.sq { display: block; width: 26px; height: 26px; background: var(--acc); }
+.spin-in, .pop-in { animation: flickIn .3s steps(1) both; }
+@keyframes flickIn { 0% { opacity: 0; } 20% { opacity: 1; } 35% { opacity: .2; } 55% { opacity: 1; } 70% { opacity: .4; } 100% { opacity: 1; } }
+.pop-out { animation: flickOut .22s steps(1) forwards; }
+@keyframes flickOut { 0% { opacity: 1; } 30% { opacity: .2; } 55% { opacity: .8; } 100% { opacity: 0; } }
+
+/* Вспышка линии вместо летающих фигур */
+.tumble { position: absolute; width: 120px; height: 3px; background: var(--tc, var(--acc)); pointer-events: none; z-index: 5; transform-origin: left;
+  animation: dash var(--t, .5s) var(--io) forwards; }
+@keyframes dash { 0% { scale: 0 1; opacity: 1; } 55% { scale: 1 1; opacity: 1; } 100% { scale: 1 1; translate: 80px 0; opacity: 0; } }
+
+.burst { position: absolute; width: 0; height: 0; pointer-events: none; }
+.burst i { position: absolute; width: 3px; height: 14px; margin: -7px -1.5px; background: var(--bc, var(--acc)); animation: burst .6s var(--out) forwards; }
+@keyframes burst { from { translate: 0 0; opacity: 1; } to { translate: var(--bx) var(--by); opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) { * { animation-duration: .01s !important; } }

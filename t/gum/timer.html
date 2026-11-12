@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ru">
+<head><script>window.OVERLY_THEME = "gum"; window.OVERLY_SETTINGS = {"palette":"strawberry","wobble":true,"size":100,"valign":"center","showSec":6,"gapSec":0.6,"mode":"light","font":"Rubik","showMessage":true,"sound":true,"themeSound":true,"volume":70,"follow.on":true,"follow.color":"#FF4D8D","follow.label":"Новый фолловер","follow.chip":"","follow.media":"","follow.sound":"","follow.volume":100,"follow.dur":0,"sub.on":true,"sub.color":"#7B5CFF","sub.label":"Новая подписка","sub.chip":"","sub.media":"","sub.sound":"","sub.volume":100,"sub.dur":0,"resub.on":true,"resub.color":"#00B8D9","resub.label":"Подписка","resub.chip":"×{n} {месяц|месяца|месяцев}","resub.media":"","resub.sound":"","resub.volume":100,"resub.dur":0,"resub.min":0,"gift.on":true,"gift.color":"#FF8A3D","gift.label":"Подарок","gift.chip":"×{n} {подписка|подписки|подписок}","gift.media":"","gift.sound":"","gift.volume":100,"gift.dur":0,"gift.min":0,"raid.on":true,"raid.color":"#2EA8FF","raid.label":"Рейд","raid.chip":"{n} {зритель|зрителя|зрителей}","raid.media":"","raid.sound":"","raid.volume":100,"raid.dur":0,"raid.min":0,"bits.on":true,"bits.color":"#FFC400","bits.label":"Битсы","bits.chip":"{n} {битс|битса|битсов}","bits.media":"","bits.sound":"","bits.volume":100,"bits.dur":0,"bits.min":0,"tip.on":true,"tip.color":"#2DBE7E","tip.label":"Новый донат","tip.chip":"{n} ₽","tip.media":"","tip.sound":"","tip.volume":100,"tip.dur":0,"tip.min":0,"css":"","st.lastTip":true,"st.lastSub":true,"st.bestTip":true,"st.longSub":true,"st.lastFollow":false,"st.lastRaid":false,"st.topBits":false,"st.lastTip.pos":1,"st.lastSub.pos":2,"st.bestTip.pos":3,"st.longSub.pos":4,"st.lastFollow.pos":5,"st.lastRaid.pos":6,"st.topBits.pos":7,"st.lastTip.label":"Последний донат","st.lastSub.label":"Последний саб","st.bestTip.label":"Лучший донат","st.longSub.label":"Дольше всех","st.lastFollow.label":"Последний фоллов","st.lastRaid.label":"Последний рейд","st.topBits.label":"Больше всех битсов","st.money":"{n} ₽","st.empty":"—","st.mode":"light","st.valign":"center","st.halign":"stretch","st.accent":"#FF4D8D","st.font":"Rubik","st.fontSize":22,"st.eventColors":true,"st.css":"","chat.max":14,"chat.fadeSec":0,"chat.hideCommands":true,"chat.hideBots":"nightbot, streamelements, moobot, wizebot","chat.highlight":"","chat.mode":"light","chat.align":"left","chat.bubble":true,"chat.accent":"#FF4D8D","chat.opacity":100,"chat.fontSize":18,"chat.font":"Rubik","chat.userColors":true,"chat.badges":true,"chat.emoteSize":1.4,"chat.css":"","scene.mode":"light","scene.accent":"#FF4D8D","scene.font":"Rubik","scene.titleSize":130,"scene.streamTitle":"Сегодня: проходим новую игру","scene.events":true,"scene.float":true,"scene.floatStrength":8,"scene.pattern":"rings","scene.patternColor":"#FFFFFF","scene.patternBg":"#FF4D8D","scene.patternStrength":35,"scene.patternMedia":"","scene.startLabel":"Стрим скоро","scene.startTitle":"Стрим|начнётся|через","scene.startMin":5,"scene.startAt":"","scene.startDone":"Начинаем!","scene.brbLabel":"Перерыв","scene.brbTitle":"Скоро|вернусь","scene.brbMin":5,"scene.brbDone":"Уже иду","scene.brbNote":"Чем займёмся дальше?","scene.endLabel":"Офлайн","scene.endTitle":"Спасибо|за|стрим","scene.scheduleTitle":"Когда следующий стрим?","scene.schedule":"Понедельник — 19:00\nСреда — 19:00\nПятница — 20:00\nСуббота — 15:00","scene.css":"","cam.mode":"light","cam.color":"#FF4D8D","cam.border":4,"cam.corner":"tl","cam.cornerSize":34,"cam.radius":30,"cam.css":"","music.hideOnPause":true,"music.mini":false,"music.miniAfter":10,"music.miniAnchor":"center","music.cover":true,"music.showLabel":true,"music.label":"Сейчас играет","music.progress":true,"music.color":"#FF4D8D","music.mode":"light","music.surfaceOpacity":100,"music.radius":24,"music.align":"left","music.width":100,"music.font":"Rubik","music.css":"","goal.type":"followers","goal.small":"Цель стрима","goal.title":"Тысяча фолловеров","goal.target":1000,"goal.done":"Цель выполнена!","goal.countMode":"both","goal.mode":"light","goal.color":"#FF4D8D","goal.font":"Rubik","goal.width":100,"goal.fillStyle":"card","goal.burst":true,"goal.css":"","timer.small":"Сабатон","timer.title":"До конца марафона","timer.start":60,"timer.endText":"Марафон окончен!","timer.showAdd":true,"timer.sub":300,"timer.gift":300,"timer.bits":60,"timer.tip":120,"timer.follow":0,"timer.raid":0,"timer.cap":0,"timer.mode":"light","timer.color":"#FF4D8D","timer.font":"Rubik","timer.width":100,"timer.burst":true,"timer.css":"","poll.question":"Во что играем дальше?","poll.options":"Хоррор\nРогалик\nГонки","poll.duration":120,"poll.points":0,"poll.small":"Голосование","poll.numbers":"both","poll.showTimer":true,"poll.showTotal":true,"poll.hold":15,"poll.mode":"light","poll.color":"#FF4D8D","poll.font":"Rubik","poll.css":""};</script>
+<meta charset="utf-8">
+<title>Жвачка — таймер марафона</title>
+<!--
+  Тема «Жвачка»: таймер марафона. Карточка та же, что у цели (id="goal" — чтобы работали правила skin.css),
+  справа крупное время. Продлили — над карточкой выскакивает плашка «+5:00 Ник», время подпрыгивает.
+  Пауза — время приглушено. Время вышло — карточка заливается цветом с надписью конца (и точками, если включено).
+-->
+<link href="../../fonts/rubik.css" rel="stylesheet">
+<link rel="stylesheet" href="gum.css">
+<style>
+  html, body { margin: 0; width: 100vw; height: 100vh; overflow: hidden; background: transparent; }
+  #goal { position: absolute; left: 44px; top: 10px; bottom: 10px; width: calc((100vw - 54px) * var(--w, 1)); font-family: var(--font); font-size: var(--fs, 24px); }
+  .card { position: absolute; inset: 0; opacity: 0; }
+  .layer { position: absolute; inset: 0; display: flex; align-items: center; gap: 1em; padding: 0 1.1em; box-sizing: border-box; }
+  .layer.base { background: var(--card); color: var(--cardInk); }
+  .t { flex: 1; min-width: 0; }
+  .small { display: block; font-size: .58em; opacity: .65; white-space: nowrap; }
+  .title { display: block; margin-top: .1em; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .time { flex: none; font-size: 1.45em; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; transition: opacity .3s; }
+  #goal.paused .time { opacity: .45; }
+  .done { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: .5em; background: var(--acc); color: var(--ink);
+    font-weight: 600; opacity: 0; }
+  .done .sq { width: .55em; height: .55em; background: currentColor; }
+  .mark { position: absolute; left: -34px; top: 50%; width: 22px; height: 22px; margin-top: -11px; background: var(--acc); scale: 0; }
+  #goal.running .mark { animation: tick 1s steps(2) infinite; }
+  @keyframes tick { 50% { opacity: .4; } }
+  /* Плашка продления над правым краем карточки */
+  .plus { position: absolute; right: .6em; bottom: calc(100% - .35em); display: flex; align-items: center; gap: .45em; padding: .18em .6em;
+    background: var(--acc); color: var(--ink); font-size: .62em; font-weight: 700; white-space: nowrap; opacity: 0; z-index: 2; }
+  .plus b { font-variant-numeric: tabular-nums; }
+  .plus span { max-width: 10em; overflow: hidden; text-overflow: ellipsis; }
+  .plus.pop-in { opacity: 1; }
+</style>
+<link rel="stylesheet" href="skin.css">
+</head>
+<body>
+<div id="goal" class="timer">
+  <i class="mark"></i>
+  <div class="card">
+    <div class="layer base"><div class="t"><span class="small"></span><span class="title"></span></div><span class="time"></span></div>
+    <div class="done"><i class="sq"></i><span class="dtext"></span></div>
+  </div>
+  <div class="plus"><b></b><span></span></div>
+</div>
+
+<script src="../../runtime/overly.js"></script>
+<script src="gum.js"></script>
+<script src="../../runtime/timer.js"></script>
+<script>
+const box = document.getElementById('goal');
+const $ = (s) => box.querySelector(s);
+let S = null, ready = false, wasDone = null, plusTimer = 0;
+
+function size() { box.style.setProperty('--fs', Math.max(12, Math.min(innerHeight * .22, innerWidth * .036)) + 'px'); }
+addEventListener('resize', size);
+size();
+
+function look() {
+  box.style.setProperty('--acc', S['timer.color']);
+  box.style.setProperty('--ink', B.ink(S['timer.color']));
+  box.style.setProperty('--font', Overly.font(S['timer.font']));
+  box.style.setProperty('--w', (S['timer.width'] || 100) / 100);
+  B.mode(box, S['timer.mode']);
+  Overly.css(S['timer.css']);
+  // Текст меняем, только если он другой, — иначе оборвётся проявление по буквам
+  const put = (sel, t) => { const e = $(sel); if (e.textContent !== t) e.textContent = t; };
+  put('.small', S['timer.small'] || '');
+  put('.title', S['timer.title'] || '');
+}
+
+function showDone(done) {
+  if (!ready || done === wasDone) return;
+  const d = $('.done');
+  if (done) {
+    d.classList.remove('wipe-out');
+    B.replay(d, 'wipe-in');
+    B.letters($('.dtext'), S?.['timer.endText'] || '', 350);
+    if (S?.['timer.burst']) {
+      const r = box.getBoundingClientRect();
+      setTimeout(() => { B.burst(box, r.width * .3, r.height / 2, S['timer.color'], 10, r.height * .3); B.burst(box, r.width * .72, r.height / 2, S['timer.color'], 10, r.height * .3); }, 500);
+    }
+  } else if (wasDone) {
+    B.replay(d, 'wipe-out');
+  }
+  wasDone = done;
+}
+
+let lastState = 'idle';
+OverlyTimer.start({
+  render(text, info) {
+    for (const s of ['idle', 'running', 'paused', 'done']) box.classList.toggle(s, info.state === s);
+    $('.time').textContent = text;
+    lastState = info.state;
+    showDone(info.state === 'done');
+  },
+  added(a) {
+    if (!S || !S['timer.showAdd'] || a.seconds < 0 || !ready) return;
+    $('.plus b').textContent = a.text;
+    $('.plus span').textContent = a.name || '';
+    const p = $('.plus');
+    p.classList.remove('pop-out');
+    B.replay(p, 'pop-in');
+    B.replay($('.time'), 'pop-in');   // время «выскакивает» заново, как в появлении темы
+    clearTimeout(plusTimer);
+    plusTimer = setTimeout(() => { p.classList.remove('pop-in'); B.replay(p, 'pop-out'); }, 3200);
+  },
+});
+
+// Появление: квадрат кувырком → карточка шторкой → текст по буквам → время
+function intro() {
+  B.tumble(box, -23, box.offsetHeight / 2, S['timer.color'], { size: 34, time: .6 });
+  setTimeout(() => { B.replay($('.mark'), 'pop-in'); B.replay($('.card'), 'wipe-in'); }, 480);
+  setTimeout(() => {
+    B.letters($('.title'), S['timer.title'] || '', 0);
+    B.replay($('.small'), 'pop-in');
+    B.replay($('.time'), 'pop-in');
+  }, 800);
+  setTimeout(() => { ready = true; wasDone = false; showDone(lastState === 'done'); }, 1150);
+}
+
+let started = false;
+Overly.onSettings(v => {
+  S = v;
+  look();
+  if (!started) { started = true; document.fonts.ready.then(intro); }
+});
+</script>
+</body>
+</html>

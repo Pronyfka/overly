@@ -1,0 +1,29 @@
+/* «Матрица»: вид оверлеев на общей разметке */
+/* Чат: ник — жирно заглавными на тонкой линии, текст под ней */
+#chat .tail, #chat .mark { display: none; }
+#chat .bubble, #chat.tail-right .bubble { left: 8px; right: 8px; top: 8px; bottom: 8px; }
+#chat .msgs, #chat.tail-right .msgs { left: 8px; right: 8px; top: 8px; bottom: 8px; gap: .95em; }
+#chat .n { display: block; padding-bottom: .15em; margin-bottom: .22em; border-bottom: 2px solid var(--acc); font-weight: 800; text-transform: uppercase; letter-spacing: .02em; color: var(--cardInk); }
+#chat .colon { display: none; }
+#chat .b { background: var(--acc); }
+#chat.no-bubble .n { color: #fff; }
+#chat .m.new { animation: chatIn .28s var(--out) both, flick .3s steps(1) both; }
+@keyframes chatIn { from { translate: -14px 0; } to { translate: 0 0; } }
+
+/* Вебка: линия цвета акцента и белые уголки */
+#cam .border { border-color: var(--acc); }
+#cam .border::before, #cam .border::after { content: ''; position: absolute; width: 34px; height: 34px; border: 0 solid #fff; }
+#cam .border::before { left: calc(var(--bw) * -1); top: calc(var(--bw) * -1); border-width: calc(var(--bw) + 2px) 0 0 calc(var(--bw) + 2px); }
+#cam .border::after { right: calc(var(--bw) * -1); bottom: calc(var(--bw) * -1); border-width: 0 calc(var(--bw) + 2px) calc(var(--bw) + 2px) 0; }
+
+/* Цель, музыка, итоги: плашки и тонкие линии */
+#goal .card { outline: 2px solid var(--acc); outline-offset: -2px; }
+#goal .title { font-weight: 800; text-transform: uppercase; }
+#goal .count { font-weight: 800; }
+#music .card { border-bottom: 2px solid var(--acc); }
+#music .title { font-weight: 800; text-transform: uppercase; }
+#music .bar { height: 4px; }
+.row .card { border-bottom: 2px solid var(--c, var(--acc)); }
+.row .lbl { font-weight: 800; text-transform: uppercase; }
+#cam, #cam.pad { inset: 0; }
+#cam .corner { display: none; }

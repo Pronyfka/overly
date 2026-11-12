@@ -1,0 +1,116 @@
+/* Общий вид сцен «Ведьмин час»: «Стрим скоро», «Перерыв», «Конец стрима»
+   Ночное небо с луной, летучие мыши, туман у земли и персонажи, выглядывающие из него. */
+html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: transparent; }
+body { font-family: var(--font); color: var(--text); --titleSize: 130px; }
+body[data-bg="solid"] { background: radial-gradient(ellipse at 70% 10%, #3A1E5C 0%, #1D0F31 45%, #0D0618 100%); }
+body[data-bg="dim"] { background: rgba(13, 6, 24, .78); }
+
+/* Свой фон: картинка или видео на весь кадр + затемнение поверх */
+.bg-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -3; }
+.bg-dim { position: absolute; inset: 0; z-index: -2; background: rgba(0, 0, 0, var(--bgDim, .5)); }
+
+/* Звёзды и луна */
+.sky { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.stars { position: absolute; inset: 0; opacity: .7;
+  background-image: radial-gradient(1.6px 1.6px at 10% 20%, #fff 50%, transparent 51%), radial-gradient(1.2px 1.2px at 30% 8%, #fff 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 48% 30%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 62% 14%, #fff 50%, transparent 51%),
+    radial-gradient(1.8px 1.8px at 86% 40%, #fff 50%, transparent 51%), radial-gradient(1.2px 1.2px at 20% 46%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 74% 54%, #fff 50%, transparent 51%), radial-gradient(1.4px 1.4px at 5% 62%, #fff 50%, transparent 51%);
+  background-size: 960px 600px; animation: twinkle 4s ease-in-out infinite alternate; }
+@keyframes twinkle { to { opacity: .35; } }
+.moon { position: absolute; right: 190px; top: 110px; width: 210px; height: 210px; border-radius: 50%;
+  background: radial-gradient(circle at 38% 36%, #FFF6D8, #F5D88E 60%, #E0B45C);
+  box-shadow: 0 0 80px 20px rgba(255, 220, 140, .35), 0 0 220px 80px rgba(181, 124, 255, .18); }
+.moon::before, .moon::after { content: ""; position: absolute; border-radius: 50%; background: rgba(200, 150, 70, .35); }
+.moon::before { width: 46px; height: 46px; left: 48px; top: 60px; }
+.moon::after { width: 28px; height: 28px; left: 120px; top: 120px; }
+body.no-moon .moon { display: none; }
+
+/* Летучие мыши пересекают небо */
+.bats i { position: absolute; width: 70px; height: 70px; left: -120px; animation: fly linear infinite; }
+.bats i svg { width: 100%; height: 100%; animation: flapS .22s ease-in-out infinite alternate; }
+.bats i:nth-child(1) { top: 160px; animation-duration: 16s; }
+.bats i:nth-child(2) { top: 260px; width: 46px; height: 46px; animation-duration: 22s; animation-delay: -9s; }
+.bats i:nth-child(3) { top: 90px; width: 54px; height: 54px; animation-duration: 19s; animation-delay: -4s; }
+@keyframes fly { 0% { translate: 0 0; } 25% { translate: 560px 40px; } 50% { translate: 1060px -30px; } 75% { translate: 1560px 30px; } 100% { translate: 2160px -10px; } }
+@keyframes flapS { to { transform: scaleX(.75) translateY(-4px); } }
+body.no-bats .bats { display: none; }
+
+/* Земля: туман и персонажи, выглядывающие из него */
+.ground { position: absolute; left: 0; right: 0; bottom: 0; height: 330px; pointer-events: none; }
+.ground .peek { position: absolute; bottom: 40px; width: 170px; height: 170px; animation: peek 5s ease-in-out infinite; }
+.ground .peek svg { width: 100%; height: 100%; }
+.ground .peek:nth-child(1) { left: 120px; animation-delay: -1s; }
+.ground .peek:nth-child(2) { left: 420px; width: 130px; height: 130px; animation-delay: -3.2s; }
+.ground .peek:nth-child(3) { right: 470px; width: 140px; height: 140px; animation-delay: -2s; }
+.ground .peek:nth-child(4) { right: 140px; animation-delay: -4.1s; }
+@keyframes peek { 0%, 100% { translate: 0 30px; } 50% { translate: 0 0; } }
+.ground .haze { position: absolute; left: -10%; right: -10%; bottom: -40px; height: 220px; }
+.ground .haze i { position: absolute; bottom: 0; width: 40%; height: 180px; border-radius: 50%;
+  background: #8E5CD6; filter: blur(40px); opacity: .4; animation: fogDrift 9s ease-in-out infinite alternate; }
+.ground .haze i:nth-child(1) { left: 0; }
+.ground .haze i:nth-child(2) { left: 28%; background: #5CF07A; opacity: .16; animation-duration: 11s; animation-direction: alternate-reverse; }
+.ground .haze i:nth-child(3) { left: 58%; animation-duration: 8s; }
+.ground .haze i:nth-child(4) { left: 80%; background: #E8701F; opacity: .2; animation-duration: 12s; }
+body.no-ground .ground { display: none; }
+
+/* Центр: подпись, заголовок «потёкшей краской», таймер, туманная полоса */
+.main { position: absolute; left: 50%; top: 44%; translate: -50% -50%; width: 1400px; text-align: center; }
+.main > * { opacity: 0; translate: 0 -16px; }
+body.ready .main > * { opacity: 1; translate: 0 0; transition: opacity .7s var(--ease) var(--d), translate .8s var(--pop) var(--d); }
+.main .kind { font-size: 26px; letter-spacing: .3em; }
+.title { margin-top: 22px; font: 400 var(--titleSize)/1 var(--spook); color: var(--text);
+  text-shadow: 0 0 40px color-mix(in srgb, var(--acc) 70%, transparent), 0 6px 0 rgba(0, 0, 0, .35); }
+.timer { margin-top: 26px; font: 800 150px/1 var(--font); letter-spacing: -.02em; font-variant-numeric: tabular-nums; color: var(--text);
+  text-shadow: 0 0 30px color-mix(in srgb, var(--acc) 60%, transparent); }
+.timer.done { font: 400 72px/1 var(--spook); color: var(--acc); }
+.timer:empty { display: none; }
+.timer.pulse { animation: tpulse .4s var(--pop); }
+@keyframes tpulse { 40% { scale: 1.08; } }
+.main .mist { width: 900px; margin: 18px auto 0; }
+body.no-bar .main .mist { display: none; }
+.line { margin-top: 10px; font-size: 34px; font-weight: 500; color: var(--muted); }
+.line:empty { display: none; }
+
+/* Верх: соцсети и часы (низ занят туманом); событие — над туманом по центру */
+.bottom { position: absolute; left: 96px; right: 96px; top: 56px; display: flex; align-items: center; gap: 30px; font-size: 26px; font-weight: 700; z-index: 2; }
+.socials { color: var(--muted); flex: 1; text-shadow: 0 2px 8px #0D0618; }
+.clock { flex: 1; text-align: right; color: var(--muted); letter-spacing: .06em; font-variant-numeric: tabular-nums; text-shadow: 0 2px 8px #0D0618; }
+body.no-clock .clock { visibility: hidden; }
+.event { position: absolute; left: 50%; top: 770px; translate: -50% 0; display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 380px; }
+.event .mist { width: 480px; height: 40px; margin: -2px 0; }
+.event .kind, .event .nick { opacity: 0; transition: opacity .4s; }
+.event.lit .kind, .event.lit .nick { opacity: 1; transition-delay: .3s; }
+.event .kind { font-size: 18px; }
+.event .nick { font-size: 40px; }
+
+/* Заголовок по буквам: буквы падают по очереди, потом качаются волной */
+.title .ch { opacity: 0; translate: 0 -40px; rotate: -10deg; }
+body.ready .title .ch { opacity: 1; translate: 0 0; rotate: 0deg;
+  transition: opacity .3s calc(var(--i) * 45ms + 200ms), translate .7s var(--pop) calc(var(--i) * 45ms + 200ms), rotate .7s var(--pop) calc(var(--i) * 45ms + 200ms); }
+body.ready .title.wave .ch { animation: wave 3s ease-in-out infinite; animation-delay: calc(var(--i) * -.15s); }
+
+/* Молния: двойная вспышка, луна на миг ярче */
+.flash { position: absolute; inset: 0; pointer-events: none; z-index: -1; opacity: 0;
+  background: radial-gradient(ellipse at 75% 15%, rgba(220, 210, 255, .55), rgba(180, 160, 255, .12) 60%, transparent); }
+.flash.go { animation: flash 1.1s ease-out; }
+@keyframes flash { 0% { opacity: 0; } 6% { opacity: 1; } 14% { opacity: .1; } 22% { opacity: .85; } 100% { opacity: 0; } }
+
+/* Ведьма на метле: дугой через небо, мимо луны */
+.witch { position: absolute; left: 0; top: 0; width: 230px; height: 126px; opacity: 0; }
+.witch svg { width: 100%; height: 100%; }
+.witch.go { animation: flyWitch 10s linear forwards; }
+.witch.go svg { animation: broomBob .9s ease-in-out infinite alternate; }
+@keyframes flyWitch { 0% { opacity: 1; translate: -300px 330px; } 50% { translate: 900px 150px; } 72% { translate: 1520px 150px; } 100% { opacity: 1; translate: 2200px 40px; } }
+@keyframes broomBob { from { transform: translateY(-6px) rotate(-3deg); } to { transform: translateY(6px) rotate(2deg); } }
+
+/* Паук свисает сверху, между заголовком и луной */
+body > .spider { left: 1210px; top: 0; width: 110px; height: 110px; z-index: 1; }
+body.no-spider > .spider { display: none; }
+
+/* Светлячки: зелёные огоньки всплывают из тумана и мигают */
+.flies i { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #B6FF8E;
+  box-shadow: 0 0 8px 2px rgba(124, 242, 90, .8), 0 0 22px 6px rgba(124, 242, 90, .3); animation: fly2 7s ease-in-out infinite; }
+@keyframes fly2 { 0% { translate: 0 0; opacity: 0; } 15% { opacity: 1; } 35% { opacity: .2; } 50% { translate: 40px -90px; opacity: 1; } 70% { opacity: .3; }
+  100% { translate: -20px -200px; opacity: 0; } }
+body.no-flies .flies { display: none; }

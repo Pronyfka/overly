@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ru">
+<head><script>window.OVERLY_THEME = "lumen"; window.OVERLY_SETTINGS = {"size":100,"valign":"center","showSec":6,"gapSec":0.6,"font":"Montserrat","textColor":"#ECEBF2","mutedColor":"#9D9DAA","surface":"#101015","surfaceOpacity":98,"radius":14,"intro":"line","shine":true,"timeline":true,"showMessage":true,"sound":true,"themeSound":true,"volume":70,"follow.on":true,"follow.color":"#B8A7F0","follow.label":"Новый фолловер","follow.line":"теперь с нами","follow.media":"","follow.sound":"","follow.volume":100,"follow.dur":0,"sub.on":true,"sub.color":"#6D9EFF","sub.label":"Новая подписка","sub.line":"добро пожаловать в семью","sub.media":"","sub.sound":"","sub.volume":100,"sub.dur":0,"resub.on":true,"resub.color":"#6D9EFF","resub.label":"Переподписка","resub.line":"с нами уже {n} {месяц|месяца|месяцев}","resub.media":"","resub.sound":"","resub.volume":100,"resub.dur":0,"resub.min":0,"gift.on":true,"gift.color":"#F06BB0","gift.label":"Подарок","gift.line":"дарит {n} {подписку|подписки|подписок}","gift.media":"","gift.sound":"","gift.volume":100,"gift.dur":0,"gift.min":0,"raid.on":true,"raid.color":"#5FD3A0","raid.label":"Рейд","raid.line":"{n} {зритель|зрителя|зрителей} в рейде","raid.media":"","raid.sound":"","raid.volume":100,"raid.dur":0,"raid.min":0,"bits.on":true,"bits.color":"#A78BFA","bits.label":"Битсы","bits.line":"{n} {битс|битса|битсов}","bits.media":"","bits.sound":"","bits.volume":100,"bits.dur":0,"bits.min":0,"tip.on":true,"tip.color":"#E2A03F","tip.label":"Донат","tip.line":"{n} ₽","tip.media":"","tip.sound":"","tip.volume":100,"tip.dur":0,"tip.min":0,"css":"","chat.max":12,"chat.fadeSec":0,"chat.newest":"bottom","chat.align":"left","chat.hideCommands":true,"chat.hideBots":"nightbot, streamelements, moobot, wizebot","chat.highlight":"","chat.highlightColor":"#E2A03F","chat.fontSize":20,"chat.font":"Montserrat","chat.textColor":"#ECEBF2","chat.layout":"stacked","chat.userColors":true,"chat.accent":"#B8A7F0","chat.badges":true,"chat.emoteSize":1.5,"chat.panel":true,"chat.surface":"#101015","chat.surfaceOpacity":90,"chat.radius":12,"chat.stretch":false,"chat.gap":8,"chat.anim":"line","chat.css":"","scene.bg":"solid","scene.bgMedia":"","scene.bgDim":50,"scene.accent":"#B8A7F0","scene.textColor":"#ECEBF2","scene.socials":"twitch.tv/канал · tg: @канал","scene.events":true,"scene.font":"Montserrat","scene.titleSize":96,"scene.surface":"#101015","scene.surfaceOpacity":92,"scene.glow":true,"scene.bar":true,"scene.clock":true,"scene.startKicker":"Стрим скоро","scene.startTitle":"Начинаем через","scene.startLine":"устраивайся поудобнее","scene.startMin":5,"scene.startAt":"","scene.startDone":"вот-вот начинаем","scene.startBg":"","scene.brbKicker":"Перерыв","scene.brbTitle":"Скоро вернусь","scene.brbLine":"не уходи далеко","scene.brbMin":5,"scene.brbDone":"уже возвращаюсь","scene.brbBg":"","scene.endKicker":"Стрим окончен","scene.endTitle":"Спасибо за стрим","scene.endLine":"до встречи на следующем стриме","scene.endBg":"","scene.css":"","cam.color":"#FFFFFF","cam.lineOpacity":18,"cam.thickness":2,"cam.radius":14,"cam.accent":"#B8A7F0","cam.label":"Камера","cam.labelPos":"bl","cam.font":"Montserrat","cam.labelSize":100,"cam.live":true,"cam.css":"","music.hideOnPause":true,"music.mini":false,"music.miniAfter":10,"music.miniAnchor":"center","music.cover":true,"music.showLabel":true,"music.label":"Сейчас играет","music.progress":true,"music.color":"#B8A7F0","music.font":"Montserrat","music.surface":"#101015","music.surfaceOpacity":96,"music.radius":14,"music.css":"","goal.type":"followers","goal.title":"Цель: фолловеры","goal.target":1000,"goal.done":"Цель выполнена!","goal.countMode":"both","goal.color":"#B8A7F0","goal.font":"Montserrat","goal.textColor":"#ECEBF2","goal.surface":"#101015","goal.surfaceOpacity":96,"goal.radius":14,"goal.barHeight":100,"goal.percentBig":true,"goal.css":"","timer.title":"До конца марафона","timer.start":60,"timer.endText":"Марафон окончен!","timer.showAdd":true,"timer.sub":300,"timer.gift":300,"timer.bits":60,"timer.tip":120,"timer.follow":0,"timer.raid":0,"timer.cap":0,"timer.color":"#B8A7F0","timer.font":"Montserrat","timer.textColor":"#ECEBF2","timer.surface":"#101015","timer.surfaceOpacity":96,"timer.radius":14,"timer.css":"","poll.question":"Во что играем дальше?","poll.options":"Хоррор\nРогалик\nГонки","poll.duration":120,"poll.points":0,"poll.numbers":"both","poll.showTimer":true,"poll.showTotal":true,"poll.hold":15,"poll.color":"#B8A7F0","poll.font":"Montserrat","poll.textColor":"#ECEBF2","poll.surface":"#101015","poll.surfaceOpacity":96,"poll.radius":14,"poll.barHeight":100,"poll.css":""};</script>
+<meta charset="utf-8">
+<title>Lumen — алерты</title>
+<!--
+  ТЕМА LUMEN · АЛЕРТЫ
+  Карточка раскрывается из полосы цвета события, затем по очереди поднимаются надпись, ник и подпись.
+  Пока висит — внизу тает полоса оставшегося времени. Уход: содержимое опускается, карточка сжимается в полосу.
+  События приходят из программы: Overly.onEvent({ type: 'sub', name: 'Ник', amount: 2, message: 'Текст' })
+  Типы: follow, sub, resub, gift, raid, bits, tip
+-->
+<link href="../../fonts/montserrat.css" rel="stylesheet">
+<link rel="stylesheet" href="lumen.css">
+<style>
+  html, body { margin: 0; width: 100vw; height: 100vh; overflow: hidden; background: transparent; }
+
+  /* Алерт живёт в коробке 640×150 и вписывается в источник любого размера (--scale считает скрипт) */
+  #alert { position: absolute; left: 50%; top: 50%; width: 640px; height: 150px; box-sizing: border-box;
+    translate: -50% -50%; scale: var(--scale, 1); transform-origin: 50% 50%; visibility: hidden;
+    display: flex; align-items: center; gap: 22px; padding: 0 30px 0 22px; font-family: var(--font); color: var(--text); }
+  #alert.shown { visibility: visible; }
+  #alert[data-valign="top"] { top: calc(20px * var(--scale, 1)); translate: -50% 0; transform-origin: 50% 0; }
+  #alert[data-valign="bottom"] { top: auto; bottom: calc(20px * var(--scale, 1)); translate: -50% 0; transform-origin: 50% 100%; }
+
+  /* Плитка со значком события (или своей картинкой) */
+  .tile { position: relative; width: 106px; height: 106px; flex: none; display: grid; place-items: center;
+    border-radius: max(4px, calc(var(--r) - 4px)); color: var(--acc);
+    background: color-mix(in srgb, var(--acc) 13%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--acc) 28%, transparent); }
+  .tile svg { width: 50px; height: 50px; }
+  .tile .media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  #alert.has-media .tile { background: none; box-shadow: none; }
+  #alert.has-media .tile svg { display: none; }
+
+  .txt { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .kicker { display: flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  .kicker .dot { width: 7px; height: 7px; }
+  .name { font-size: 42px; font-weight: 800; line-height: 1.08; letter-spacing: -.01em; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis; transform-origin: left bottom; }
+  .msg { font-size: 19px; font-weight: 500; color: var(--mutedText, var(--muted)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .msg:empty { display: none; }
+
+  /* Полоса оставшегося времени у нижнего края */
+  .time { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--track); opacity: 0; transition: opacity .3s var(--ease); }
+  .time span { display: block; height: 100%; background: var(--acc); transform-origin: left; }
+  #alert.p-on .time { opacity: 1; }
+  #alert.no-time .time { display: none; }
+</style>
+</head>
+<body>
+<div id="alert" class="card">
+  <div class="bg"><i class="glow"></i><i class="seam"></i><i class="shine"></i><div class="time"><span></span></div></div>
+  <div class="tile" data-s style="--d:0">
+    <span class="icon"></span>
+    <img class="media" alt="" hidden><video class="media" muted playsinline loop hidden></video>
+  </div>
+  <div class="txt">
+    <div class="kicker" data-s style="--d:1"><i class="dot"></i><span></span></div>
+    <div class="name" data-s style="--d:2"></div>
+    <div class="msg" data-s style="--d:3"></div>
+  </div>
+</div>
+
+<script src="../../runtime/overly.js"></script>
+<script src="lumen.js"></script>
+<script>
+const root = document.getElementById('alert');
+const $ = (s) => root.querySelector(s);
+let S = null;
+let timers = [];
+const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+
+// Число события для подписи «{n}»
+const NUM = {
+  follow: () => 1,
+  sub:    a => a.amount > 1 ? a.amount : 1,
+  resub:  a => a.amount ?? 1,
+  gift:   a => a.amount || 1,
+  raid:   a => a.amount ?? 1,
+  bits:   a => a.amount ?? 0,
+  tip:    a => a.amount ?? 0,
+};
+
+// Вписываем коробку 640×150 в источник (с запасом по краям) и уменьшаем на «Размер»
+function fit() {
+  if (!S) return;
+  const k = Math.min(innerWidth / 690, innerHeight / 190) * S.size / 100;
+  root.style.setProperty('--scale', k);
+  root.dataset.valign = S.valign;
+}
+addEventListener('resize', fit);
+
+Overly.onSettings(v => {
+  S = v;
+  const st = root.style;
+  st.setProperty('--font', Overly.font(v.font));
+  st.setProperty('--text', v.textColor);
+  st.setProperty('--mutedText', v.mutedColor);
+  st.setProperty('--surf', Lumen.rgba(v.surface, v.surfaceOpacity));
+  st.setProperty('--r', v.radius + 'px');
+  root.classList.toggle('no-time', !v.timeline);
+  Overly.css(v.css);
+  fit();
+});
+
+const durationOf = (a) => (S[a.type + '.dur'] > 0 ? S[a.type + '.dur'] : S.showSec) * 1000;
+
+function showAlert(a) {
+  const k = a.type;
+  const n = NUM[k](a);
+  const showMs = durationOf(a);
+  timers.forEach(clearTimeout); timers = [];
+
+  root.style.setProperty('--acc', S[k + '.color'] || '#B8A7F0');
+  $('.icon').innerHTML = Lumen.icon(k);
+  root.classList.toggle('has-media', Lumen.setMedia(root, S[k + '.media']));
+  $('.kicker span').textContent = S[k + '.label'] || '';
+  $('.name').textContent = a.name;
+  $('.msg').textContent = (S.showMessage && a.message) || Lumen.fill(S[k + '.line'], n);
+  if (S.sound) {
+    // Свой файл у события — играет он; нет файла — встроенный звук темы
+    const vol = (S[k + '.volume'] ?? 100) / 100 * S.volume / 100;
+    if (S[k + '.sound']) Overly.play(S[k + '.sound'], vol);
+    else if (S.themeSound) Lumen.sound(k, vol);
+  }
+
+  // Полоса времени: от полной до нуля за время показа
+  const bar = $('.time span');
+  bar.style.transition = 'none'; bar.style.transform = 'scaleX(1)';
+
+  root.classList.add('shown');
+  Lumen.open(root, S.intro || 'line');
+
+  at(900, () => {
+    bar.style.transition = `transform ${Math.max(0, showMs - 1900)}ms linear`;
+    bar.style.transform = 'scaleX(0)';
+    Lumen.pop($('.name'));
+    if (S.shine) Lumen.shine(root);
+  });
+  at(showMs - 900, () => Lumen.close(root));
+  at(showMs, () => { root.classList.remove('shown'); $('video.media').pause(); });
+}
+
+// Очередь: алерты не перебивают друг друга, а идут по одному
+const queue = [];
+let busy = false;
+function next() {
+  const a = queue.shift();
+  if (!a) { busy = false; return; }
+  busy = true;
+  showAlert(a);
+  setTimeout(next, durationOf(a) + S.gapSec * 1000);
+}
+Overly.onEvent(a => {
+  if (!S || !NUM[a?.type] || !S[a.type + '.on'] || !a.name) return;
+  if ((S[a.type + '.min'] || 0) > (Number(a.amount) || 0)) return;   // меньше порога — не показываем
+  queue.push(a);
+  if (!busy) document.fonts.ready.then(() => { if (!busy) next(); });
+});
+
+</script>
+</body>
+</html>

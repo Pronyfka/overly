@@ -1,0 +1,45 @@
+/* Общий вид сцен Lumen: «Стрим скоро», «Перерыв», «Конец стрима» */
+html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: transparent; }
+body { font-family: var(--font); color: var(--text); --titleSize: 96px; }
+body[data-bg="solid"] { background: radial-gradient(ellipse at 50% 40%, #16161d 0%, #0a0a0e 65%, #060608 100%); }
+body[data-bg="dim"] { background: rgba(6, 6, 9, .74); }
+
+/* Мягкое свечение цвета акцента: два пятна медленно плавают по фону */
+.aura { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; }
+.aura i { position: absolute; width: 900px; height: 900px; border-radius: 50%; filter: blur(140px); opacity: .22;
+  background: var(--acc); animation: drift 26s ease-in-out infinite alternate; }
+.aura i:nth-child(1) { left: -200px; top: -320px; }
+.aura i:nth-child(2) { right: -260px; bottom: -380px; opacity: .14; animation-duration: 32s; animation-direction: alternate-reverse; }
+@keyframes drift { to { translate: 260px 180px; } }
+body.no-glow .aura, body[data-bg="none"] .aura { display: none; }
+
+/* Свой фон: картинка или видео на весь кадр + затемнение поверх */
+.bg-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -3; }
+.bg-dim { position: absolute; inset: 0; z-index: -2; background: rgba(0, 0, 0, var(--bgDim, .5)); }
+
+/* Центральная карточка */
+.main { position: absolute; left: 50%; top: 47%; translate: -50% -50%; width: 1320px; box-sizing: border-box; padding: 64px 76px 60px; --r: 28px; }
+.kicker { display: flex; align-items: center; gap: 14px; font-size: 22px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.kicker .dot { width: 12px; height: 12px; }
+.title { margin-top: 26px; font-size: var(--titleSize); font-weight: 800; line-height: 1.05; letter-spacing: -.02em; }
+.timer { margin-top: 18px; font-size: 200px; font-weight: 800; line-height: 1; letter-spacing: -.03em; font-variant-numeric: tabular-nums;
+  color: var(--text); transform-origin: left bottom; }
+.timer.done { font-size: 72px; letter-spacing: -.01em; color: var(--acc); margin-top: 30px; }
+.timer:empty { display: none; }
+.bar { position: relative; margin-top: 40px; height: 8px; border-radius: 99px; background: var(--track); overflow: hidden; }
+.bar .fill { position: absolute; inset: 0; border-radius: inherit; background: var(--acc); transform-origin: left; transform: scaleX(0); transition: transform .9s linear; }
+.bar.idle .fill { width: 22%; transform: none; animation: roam 2.4s var(--ease-io) infinite alternate; }
+@keyframes roam { from { translate: -100% 0; } to { translate: 455% 0; } }
+body.no-bar .bar { display: none; }
+.line { margin-top: 34px; font-size: 34px; font-weight: 500; color: var(--muted); }
+.line:empty { display: none; }
+
+/* Низ: соцсети, событие, часы */
+.bottom { position: absolute; left: 96px; right: 96px; bottom: 76px; display: flex; align-items: center; gap: 30px; font-size: 26px; font-weight: 600; }
+.socials { color: var(--muted); flex: 1; }
+.clock { flex: 1; text-align: right; color: var(--muted); letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+body.no-clock .clock { visibility: hidden; }
+.event { display: flex; align-items: center; gap: 14px; padding: 18px 28px; --r: 99px; white-space: nowrap; }
+.event .kind { font-size: 18px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.event .who { font-weight: 800; color: var(--text); }
+.event .dot { width: 10px; height: 10px; }

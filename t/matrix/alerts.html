@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ru">
+<head><script>window.OVERLY_THEME = "matrix"; window.OVERLY_SETTINGS = {"palette":"crimson","size":100,"valign":"center","showSec":6,"gapSec":0.6,"mode":"dark","font":"Montserrat","showMessage":true,"sound":true,"themeSound":true,"volume":70,"follow.on":true,"follow.color":"#E6004C","follow.label":"Новый фолловер","follow.chip":"СПАСИБО","follow.media":"","follow.sound":"","follow.volume":100,"follow.dur":0,"sub.on":true,"sub.color":"#E6004C","sub.label":"Новая подписка","sub.chip":"СПАСИБО","sub.media":"","sub.sound":"","sub.volume":100,"sub.dur":0,"resub.on":true,"resub.color":"#E6004C","resub.label":"Подписка","resub.chip":"×{n} {месяц|месяца|месяцев}","resub.media":"","resub.sound":"","resub.volume":100,"resub.dur":0,"resub.min":0,"gift.on":true,"gift.color":"#E6004C","gift.label":"Подарок","gift.chip":"×{n} {подписка|подписки|подписок}","gift.media":"","gift.sound":"","gift.volume":100,"gift.dur":0,"gift.min":0,"raid.on":true,"raid.color":"#E6004C","raid.label":"Рейд","raid.chip":"{n} {зритель|зрителя|зрителей}","raid.media":"","raid.sound":"","raid.volume":100,"raid.dur":0,"raid.min":0,"bits.on":true,"bits.color":"#E6004C","bits.label":"Битсы","bits.chip":"{n} {битс|битса|битсов}","bits.media":"","bits.sound":"","bits.volume":100,"bits.dur":0,"bits.min":0,"tip.on":true,"tip.color":"#E6004C","tip.label":"Новый донат","tip.chip":"{n} ₽","tip.media":"","tip.sound":"","tip.volume":100,"tip.dur":0,"tip.min":0,"css":"","st.lastTip":true,"st.lastSub":true,"st.bestTip":true,"st.longSub":true,"st.lastFollow":false,"st.lastRaid":false,"st.topBits":false,"st.lastTip.pos":1,"st.lastSub.pos":2,"st.bestTip.pos":3,"st.longSub.pos":4,"st.lastFollow.pos":5,"st.lastRaid.pos":6,"st.topBits.pos":7,"st.lastTip.label":"Последний донат","st.lastSub.label":"Последний саб","st.bestTip.label":"Лучший донат","st.longSub.label":"Дольше всех","st.lastFollow.label":"Последний фоллов","st.lastRaid.label":"Последний рейд","st.topBits.label":"Больше всех битсов","st.money":"{n} ₽","st.empty":"—","st.mode":"dark","st.valign":"center","st.halign":"stretch","st.accent":"#E6004C","st.font":"Montserrat","st.fontSize":22,"st.eventColors":true,"st.css":"","chat.max":14,"chat.fadeSec":0,"chat.hideCommands":true,"chat.hideBots":"nightbot, streamelements, moobot, wizebot","chat.highlight":"","chat.mode":"dark","chat.align":"left","chat.bubble":true,"chat.accent":"#E6004C","chat.opacity":100,"chat.fontSize":18,"chat.font":"Montserrat","chat.userColors":true,"chat.badges":true,"chat.emoteSize":1.4,"chat.css":"","scene.mode":"dark","scene.accent":"#E6004C","scene.font":"Montserrat","scene.streamTitle":"Сегодня: проходим новую игру","scene.events":true,"scene.lens":true,"scene.gridStrength":80,"scene.patternMedia":"","scene.startLabel":"Стрим скоро","scene.startTitle":"Стрим скоро","scene.startMin":5,"scene.startAt":"","scene.startDone":"Начинаем!","scene.startWords":"СТРИМ|СКОРО","scene.brbLabel":"Перерыв","scene.brbTitle":"Скоро вернусь","scene.brbMin":5,"scene.brbDone":"Уже иду","scene.brbNote":"Чем займёмся дальше?","scene.brbWords":"ПАУЗА|СКОРО","scene.endLabel":"Офлайн","scene.endTitle":"Спасибо за стрим","scene.scheduleTitle":"Когда следующий стрим?","scene.schedule":"Понедельник — 19:00\nСреда — 19:00\nПятница — 20:00\nСуббота — 15:00","scene.endWords":"ПОКА|ДОВСТРЕЧИ","scene.css":"","cam.mode":"dark","cam.color":"#E6004C","cam.border":4,"cam.css":"","music.hideOnPause":true,"music.mini":false,"music.miniAfter":10,"music.miniAnchor":"center","music.cover":true,"music.showLabel":true,"music.label":"Сейчас играет","music.progress":true,"music.color":"#E6004C","music.mode":"dark","music.surfaceOpacity":100,"music.radius":0,"music.align":"left","music.width":100,"music.font":"Montserrat","music.css":"","goal.type":"followers","goal.small":"Цель стрима","goal.title":"Тысяча фолловеров","goal.target":1000,"goal.done":"Цель выполнена!","goal.countMode":"both","goal.mode":"dark","goal.color":"#E6004C","goal.font":"Montserrat","goal.width":100,"goal.fillStyle":"card","goal.burst":true,"goal.css":"","timer.small":"Сабатон","timer.title":"До конца марафона","timer.start":60,"timer.endText":"Марафон окончен!","timer.showAdd":true,"timer.sub":300,"timer.gift":300,"timer.bits":60,"timer.tip":120,"timer.follow":0,"timer.raid":0,"timer.cap":0,"timer.mode":"dark","timer.color":"#E6004C","timer.font":"Montserrat","timer.width":100,"timer.burst":true,"timer.css":"","poll.question":"Во что играем дальше?","poll.options":"Хоррор\nРогалик\nГонки","poll.duration":120,"poll.points":0,"poll.small":"Голосование","poll.numbers":"both","poll.showTimer":true,"poll.showTotal":true,"poll.hold":15,"poll.mode":"dark","poll.color":"#E6004C","poll.font":"Montserrat","poll.css":""};</script>
+<meta charset="utf-8">
+<title>Матрица — алерты</title>
+<!-- Порядок появления: плашка мигает → линия прочерчивается от неё → подпись выезжает из-за плашки →
+     ник поднимается из-под линии серым → мигает контуром → становится сплошным. Уход — в обратном порядке. -->
+<link href="../../fonts/montserrat.css" rel="stylesheet">
+<link rel="stylesheet" href="matrix.css">
+<style>
+  html, body { margin: 0; width: 100vw; height: 100vh; overflow: hidden; background: transparent; }
+  #alert { position: absolute; left: 50%; top: 50%; width: 780px; height: 300px; translate: -50% -50%; scale: var(--scale, 1); display: none;
+    flex-direction: column; align-items: center; justify-content: center; font-family: var(--font); color: var(--text); --text: #fff; }
+  #alert.shown { display: flex; }
+  #alert[data-valign="top"] { top: 0; translate: -50% 0; transform-origin: 50% 0; justify-content: flex-start; }
+  #alert[data-valign="bottom"] { top: auto; bottom: 0; translate: -50% 0; transform-origin: 50% 100%; justify-content: flex-end; }
+  #alert.light { --text: #111318; }
+
+  .media { max-width: 200px; max-height: 130px; object-fit: contain; margin-bottom: 8px; opacity: 0; }
+  .media[hidden] { display: none; }
+  .block { display: flex; flex-direction: column; width: fit-content; max-width: 760px; }
+  .nameMask { overflow: hidden; line-height: 1.04; padding-top: .04em; }
+  .name { display: block; font-size: 74px; font-weight: 800; text-transform: uppercase; letter-spacing: .005em; white-space: nowrap; color: #A9ADB8;
+    translate: 0 110%; }
+  .name.up { animation: nameUp .2s var(--out) forwards; }
+  @keyframes nameUp { to { translate: 0 0; } }
+  .name.ghost { color: transparent; -webkit-text-stroke: 1.5px var(--text); translate: 0 0; }
+  .name.solid { color: var(--text); translate: 0 0; }
+  .name.down { color: var(--text); animation: nameDown .2s var(--io) forwards; }
+  @keyframes nameDown { from { translate: 0 0; } to { translate: 0 110%; } }
+
+  .rule { height: 3px; background: var(--acc); transform-origin: right; scale: 0 1; }
+  .rule.draw { animation: ruleIn .46s var(--io) forwards; }
+  @keyframes ruleIn { to { scale: 1 1; } }
+  .rule.undraw { scale: 1 1; animation: ruleOut .3s var(--io) forwards; }
+  @keyframes ruleOut { to { scale: 0 1; } }
+
+  .under { display: flex; align-items: stretch; justify-content: flex-end; gap: 12px; margin-top: 10px; }
+  .kindMask { flex: 1; min-width: 0; overflow: hidden; display: flex; align-items: center; justify-content: flex-end; }
+  .kind { display: block; font-size: 25px; font-weight: 800; text-transform: uppercase; white-space: nowrap; color: var(--acc); translate: 105% 0; }
+  .kind.out { animation: kindOut .3s var(--out) forwards; }
+  @keyframes kindOut { to { translate: 0 0; } }
+  .kind.back { translate: 0 0; animation: kindBack .22s var(--io) forwards; }
+  @keyframes kindBack { to { translate: 105% 0; } }
+  .chip { flex: none; display: grid; place-items: center; min-height: 40px; padding: 2px 16px; box-sizing: border-box; background: var(--acc); color: var(--ink);
+    font-size: 22px; font-weight: 800; white-space: nowrap; opacity: 0; }
+  .chip:empty { min-width: 40px; padding: 0; }
+  .msg { max-width: 660px; margin-top: 14px; font-size: 22px; font-weight: 500; line-height: 1.3; text-align: center; color: var(--text); opacity: 0; }
+  .msg:empty { display: none; }
+</style>
+<link rel="stylesheet" href="skin.css">
+</head>
+<body>
+<div id="alert">
+  <img class="media" alt="" hidden><video class="media" muted playsinline loop hidden></video>
+  <div class="block">
+    <div class="nameMask"><span class="name"></span></div>
+    <div class="rule"></div>
+    <div class="under"><div class="kindMask"><span class="kind"></span></div><span class="chip"></span></div>
+  </div>
+  <div class="msg"></div>
+</div>
+
+<script src="../../runtime/overly.js"></script>
+<script src="matrix.js"></script>
+<script>
+const root = document.getElementById('alert');
+const $ = (s) => root.querySelector(s);
+let S = null;
+let timers = [];
+const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+
+function fit() {
+  if (!S) return;
+  root.style.setProperty('--scale', Math.min(innerWidth / 780, innerHeight / 300) * S.size / 100);
+  root.dataset.valign = S.valign;
+}
+addEventListener('resize', fit);
+
+Overly.onSettings(v => {
+  S = v;
+  root.style.setProperty('--font', Overly.font(v.font));
+  root.classList.toggle('light', v.mode === 'light');
+  Overly.css(v.css);
+  fit();
+});
+
+const durationOf = (a) => (S[a.type + '.dur'] > 0 ? S[a.type + '.dur'] : S.showSec) * 1000;
+
+function setMedia(url) {
+  const img = $('img.media'), vid = $('video.media');
+  const isVideo = /\.(webm|mp4)$/i.test(url || '');
+  img.hidden = !url || isVideo;
+  vid.hidden = !url || !isVideo;
+  if (url && !isVideo) img.src = url;
+  if (url && isVideo) { if (vid.getAttribute('src') !== url) vid.src = url; vid.currentTime = 0; vid.play().catch(() => {}); }
+  if (!url || !isVideo) vid.pause();
+}
+
+function reset() {
+  $('.name').className = 'name';
+  $('.rule').className = 'rule';
+  $('.kind').className = 'kind';
+  for (const s of ['.chip', '.msg', 'img.media', 'video.media']) $(s).classList.remove('pop-in', 'pop-out', 'wipe-in', 'wipe-out');
+}
+
+// Длинный ник уменьшаем, чтобы он не вылезал за блок
+function fitName() {
+  const n = $('.name');
+  n.style.fontSize = '';
+  const w = n.scrollWidth;
+  if (w > 740) n.style.fontSize = 74 * 740 / w + 'px';
+}
+
+function showAlert(a) {
+  const k = a.type;
+  const n = B.NUM[k](a);
+  const showMs = durationOf(a);
+  timers.forEach(clearTimeout); timers = [];
+  reset();
+
+  const color = S[k + '.color'];
+  root.style.setProperty('--acc', color);
+  root.style.setProperty('--ink', B.ink(color));
+  $('.name').textContent = a.name;
+  $('.kind').textContent = S[k + '.label'] || '';
+  $('.chip').textContent = B.fill(S[k + '.chip'], n);
+  $('.msg').textContent = S.showMessage && a.message ? a.message : '';
+  setMedia(S[k + '.media']);
+  if (S.sound) {
+    const vol = (S[k + '.volume'] ?? 100) / 100 * S.volume / 100;
+    if (S[k + '.sound']) Overly.play(S[k + '.sound'], vol);
+    else if (S.themeSound) B.sound(k, vol);
+  }
+  root.classList.add('shown');
+  fitName();
+
+  // ---- Появление, как в разборе: всё укладывается примерно в секунду ----
+  B.replay($('.chip'), 'pop-in');
+  root.querySelectorAll('.media').forEach(m => B.replay(m, 'pop-in'));
+  at(70, () => $('.rule').classList.add('draw'));
+  at(300, () => $('.kind').classList.add('out'));
+  at(440, () => $('.name').classList.add('up'));
+  at(640, () => { $('.name').className = 'name ghost'; });
+  at(710, () => { $('.name').className = 'name solid'; });
+  at(760, () => { $('.name').className = 'name ghost'; });
+  at(810, () => { $('.name').className = 'name solid'; });
+  at(860, () => { if ($('.msg').textContent) B.replay($('.msg'), 'pop-in'); });
+
+  // ---- Уход в обратном порядке ----
+  at(showMs - 620, () => { $('.name').className = 'name ghost'; });
+  at(showMs - 570, () => { $('.name').className = 'name down'; if ($('.msg').textContent) { $('.msg').classList.remove('pop-in'); B.replay($('.msg'), 'pop-out'); } });
+  at(showMs - 440, () => { $('.kind').className = 'kind back'; });
+  at(showMs - 340, () => { $('.rule').className = 'rule undraw'; });
+  at(showMs - 120, () => {
+    $('.chip').classList.remove('pop-in'); B.replay($('.chip'), 'pop-out');
+    root.querySelectorAll('.media').forEach(m => { m.classList.remove('pop-in'); B.replay(m, 'pop-out'); });
+  });
+  at(showMs + 90, () => { root.classList.remove('shown'); reset(); $('video.media').pause(); });
+}
+
+const queue = [];
+let busy = false;
+function next() {
+  const a = queue.shift();
+  if (!a) { busy = false; return; }
+  busy = true;
+  showAlert(a);
+  setTimeout(next, durationOf(a) + 120 + S.gapSec * 1000);
+}
+Overly.onEvent(a => {
+  if (!S || !B.NUM[a?.type] || !S[a.type + '.on'] || !a.name) return;
+  if ((S[a.type + '.min'] || 0) > (Number(a.amount) || 0)) return;
+  queue.push(a);
+  if (!busy) document.fonts.ready.then(() => { if (!busy) next(); });
+});
+</script>
+</body>
+</html>

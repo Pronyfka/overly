@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ru">
+<head><script>window.OVERLY_THEME = "matrix"; window.OVERLY_SETTINGS = {"palette":"crimson","size":100,"valign":"center","showSec":6,"gapSec":0.6,"mode":"dark","font":"Montserrat","showMessage":true,"sound":true,"themeSound":true,"volume":70,"follow.on":true,"follow.color":"#E6004C","follow.label":"Новый фолловер","follow.chip":"СПАСИБО","follow.media":"","follow.sound":"","follow.volume":100,"follow.dur":0,"sub.on":true,"sub.color":"#E6004C","sub.label":"Новая подписка","sub.chip":"СПАСИБО","sub.media":"","sub.sound":"","sub.volume":100,"sub.dur":0,"resub.on":true,"resub.color":"#E6004C","resub.label":"Подписка","resub.chip":"×{n} {месяц|месяца|месяцев}","resub.media":"","resub.sound":"","resub.volume":100,"resub.dur":0,"resub.min":0,"gift.on":true,"gift.color":"#E6004C","gift.label":"Подарок","gift.chip":"×{n} {подписка|подписки|подписок}","gift.media":"","gift.sound":"","gift.volume":100,"gift.dur":0,"gift.min":0,"raid.on":true,"raid.color":"#E6004C","raid.label":"Рейд","raid.chip":"{n} {зритель|зрителя|зрителей}","raid.media":"","raid.sound":"","raid.volume":100,"raid.dur":0,"raid.min":0,"bits.on":true,"bits.color":"#E6004C","bits.label":"Битсы","bits.chip":"{n} {битс|битса|битсов}","bits.media":"","bits.sound":"","bits.volume":100,"bits.dur":0,"bits.min":0,"tip.on":true,"tip.color":"#E6004C","tip.label":"Новый донат","tip.chip":"{n} ₽","tip.media":"","tip.sound":"","tip.volume":100,"tip.dur":0,"tip.min":0,"css":"","st.lastTip":true,"st.lastSub":true,"st.bestTip":true,"st.longSub":true,"st.lastFollow":false,"st.lastRaid":false,"st.topBits":false,"st.lastTip.pos":1,"st.lastSub.pos":2,"st.bestTip.pos":3,"st.longSub.pos":4,"st.lastFollow.pos":5,"st.lastRaid.pos":6,"st.topBits.pos":7,"st.lastTip.label":"Последний донат","st.lastSub.label":"Последний саб","st.bestTip.label":"Лучший донат","st.longSub.label":"Дольше всех","st.lastFollow.label":"Последний фоллов","st.lastRaid.label":"Последний рейд","st.topBits.label":"Больше всех битсов","st.money":"{n} ₽","st.empty":"—","st.mode":"dark","st.valign":"center","st.halign":"stretch","st.accent":"#E6004C","st.font":"Montserrat","st.fontSize":22,"st.eventColors":true,"st.css":"","chat.max":14,"chat.fadeSec":0,"chat.hideCommands":true,"chat.hideBots":"nightbot, streamelements, moobot, wizebot","chat.highlight":"","chat.mode":"dark","chat.align":"left","chat.bubble":true,"chat.accent":"#E6004C","chat.opacity":100,"chat.fontSize":18,"chat.font":"Montserrat","chat.userColors":true,"chat.badges":true,"chat.emoteSize":1.4,"chat.css":"","scene.mode":"dark","scene.accent":"#E6004C","scene.font":"Montserrat","scene.streamTitle":"Сегодня: проходим новую игру","scene.events":true,"scene.lens":true,"scene.gridStrength":80,"scene.patternMedia":"","scene.startLabel":"Стрим скоро","scene.startTitle":"Стрим скоро","scene.startMin":5,"scene.startAt":"","scene.startDone":"Начинаем!","scene.startWords":"СТРИМ|СКОРО","scene.brbLabel":"Перерыв","scene.brbTitle":"Скоро вернусь","scene.brbMin":5,"scene.brbDone":"Уже иду","scene.brbNote":"Чем займёмся дальше?","scene.brbWords":"ПАУЗА|СКОРО","scene.endLabel":"Офлайн","scene.endTitle":"Спасибо за стрим","scene.scheduleTitle":"Когда следующий стрим?","scene.schedule":"Понедельник — 19:00\nСреда — 19:00\nПятница — 20:00\nСуббота — 15:00","scene.endWords":"ПОКА|ДОВСТРЕЧИ","scene.css":"","cam.mode":"dark","cam.color":"#E6004C","cam.border":4,"cam.css":"","music.hideOnPause":true,"music.mini":false,"music.miniAfter":10,"music.miniAnchor":"center","music.cover":true,"music.showLabel":true,"music.label":"Сейчас играет","music.progress":true,"music.color":"#E6004C","music.mode":"dark","music.surfaceOpacity":100,"music.radius":0,"music.align":"left","music.width":100,"music.font":"Montserrat","music.css":"","goal.type":"followers","goal.small":"Цель стрима","goal.title":"Тысяча фолловеров","goal.target":1000,"goal.done":"Цель выполнена!","goal.countMode":"both","goal.mode":"dark","goal.color":"#E6004C","goal.font":"Montserrat","goal.width":100,"goal.fillStyle":"card","goal.burst":true,"goal.css":"","timer.small":"Сабатон","timer.title":"До конца марафона","timer.start":60,"timer.endText":"Марафон окончен!","timer.showAdd":true,"timer.sub":300,"timer.gift":300,"timer.bits":60,"timer.tip":120,"timer.follow":0,"timer.raid":0,"timer.cap":0,"timer.mode":"dark","timer.color":"#E6004C","timer.font":"Montserrat","timer.width":100,"timer.burst":true,"timer.css":"","poll.question":"Во что играем дальше?","poll.options":"Хоррор\nРогалик\nГонки","poll.duration":120,"poll.points":0,"poll.small":"Голосование","poll.numbers":"both","poll.showTimer":true,"poll.showTotal":true,"poll.hold":15,"poll.mode":"dark","poll.color":"#E6004C","poll.font":"Montserrat","poll.css":""};</script>
+<meta charset="utf-8">
+<title>Матрица — чат</title>
+<!-- Тема «Матрица»: вид и движение в matrix.css и skin.css. -->
+<link href="../../fonts/montserrat.css" rel="stylesheet">
+<link rel="stylesheet" href="matrix.css">
+<style>
+  html, body { margin: 0; width: 100vw; height: 100vh; overflow: hidden; background: transparent; }
+  #chat { position: absolute; inset: 0; font: 400 var(--fs, 18px)/1.4 var(--font); --tail: 28px; }
+  .bubble { position: absolute; left: 44px; right: 8px; top: 8px; bottom: calc(var(--tail) + 8px); background: var(--bg, var(--card)); }
+  /* Хвостик — треугольник под карточкой; рядом — цветной квадрат */
+  .tail { position: absolute; left: 44px; bottom: 8px; width: 36px; height: var(--tail); background: var(--bg, var(--card));
+    clip-path: polygon(0 0, 100% 0, 0 100%); }
+  .mark { position: absolute; left: 0; bottom: 4px; width: 32px; height: 32px; background: var(--acc); }
+  #chat.tail-right .bubble { left: 8px; right: 44px; }
+  #chat.tail-right .tail { left: auto; right: 44px; clip-path: polygon(0 0, 100% 0, 100% 100%); }
+  #chat.tail-right .mark { left: auto; right: 0; }
+  #chat.no-bubble .bubble, #chat.no-bubble .tail, #chat.no-bubble .mark { display: none; }
+
+  .msgs { position: absolute; left: 44px; right: 8px; top: 8px; bottom: calc(var(--tail) + 8px); padding: .9em 1.2em; box-sizing: border-box;
+    display: flex; flex-direction: column; justify-content: flex-end; gap: .55em; overflow: hidden; color: var(--cardInk); }
+  #chat.tail-right .msgs { left: 8px; right: 44px; }
+  #chat.no-bubble .msgs { inset: 0; padding: 12px; text-shadow: 0 1px 4px rgba(0,0,0,.7); }
+  .m { overflow-wrap: anywhere; flex: none; }
+  #chat.right .msgs { text-align: right; }
+  .m.new { animation: msgIn .4s var(--out) both; }
+  @keyframes msgIn { from { opacity: 0; translate: 0 .7em; } to { opacity: 1; translate: 0 0; } }
+  .n { font-weight: 600; color: var(--c, var(--acc)); }
+  .colon { color: var(--muted); margin: 0 .25em 0 .15em; }
+  .b { display: inline-grid; place-items: center; width: 1.05em; height: 1.05em; margin-right: .3em; vertical-align: -.15em;
+    font: 700 .62em/1 sans-serif; color: #fff; background: var(--bc); }
+  #chat.no-badges .b { display: none; }
+  .b.broadcaster { --bc: #FF5A5F; } .b.moderator { --bc: #12B59A; } .b.vip { --bc: #E05BD0; } .b.subscriber { --bc: #7B3FF2; }
+  .m img { height: var(--emote, 1.4em); vertical-align: middle; margin: -.3em .05em; }
+  .m mark { background: var(--acc); color: var(--ink, #fff); padding: 0 .2em; }
+</style>
+<link rel="stylesheet" href="skin.css">
+</head>
+<body>
+<div id="chat">
+  <div class="bubble"></div><div class="tail"></div><i class="mark"></i>
+  <div class="msgs"></div>
+</div>
+
+<script src="../../runtime/overly.js"></script>
+<script src="matrix.js"></script>
+<script>
+const chat = document.getElementById('chat');
+const box = chat.querySelector('.msgs');
+const BADGES = { broadcaster: '▶', moderator: '⚔', vip: '◆', subscriber: '★' };
+let S = null;
+let intro = false;
+
+Overly.onSettings(v => {
+  S = v;
+  const st = chat.style;
+  st.setProperty('--fs', v['chat.fontSize'] + 'px');
+  st.setProperty('--acc', v['chat.accent']);
+  st.setProperty('--ink', B.ink(v['chat.accent']));
+  st.setProperty('--emote', v['chat.emoteSize'] + 'em');
+  st.setProperty('--font', Overly.font(v['chat.font']));
+  B.mode(chat, v['chat.mode']);
+  const card = v['chat.mode'] === 'dark' ? '#1E1E22' : '#F0F0F1';
+  st.setProperty('--bg', B.rgba(card, v['chat.opacity']));
+  chat.classList.toggle('tail-right', v['chat.tail'] === 'right');
+  chat.classList.toggle('no-bubble', !v['chat.bubble']);
+  chat.classList.toggle('no-badges', !v['chat.badges']);
+  chat.classList.toggle('right', v['chat.align'] === 'right');
+  for (const m of box.children) m.style.setProperty('--c', v['chat.userColors'] && m.dataset.color ? m.dataset.color : '');
+  Overly.css(v['chat.css']);
+  trim();
+  if (!intro) {   // карточка раскрывается сверху вниз, квадрат выскакивает
+    intro = true;
+    B.replay(chat.querySelector('.bubble'), 'wipe-down');
+    setTimeout(() => { B.replay(chat.querySelector('.tail'), 'pop-in'); B.replay(chat.querySelector('.mark'), 'spin-in'); }, 350);
+  }
+});
+
+const list = (text) => String(text || '').toLowerCase().split(/[\s,;]+/).filter(Boolean);
+
+function hidden(msg) {
+  const text = (msg.fragments || []).map(f => f.text).join('').trim();
+  if (S['chat.hideCommands'] && text.startsWith('!')) return true;
+  return list(S['chat.hideBots']).includes(String(msg.login || '').toLowerCase());
+}
+
+function remove(m) {
+  if (!m.isConnected || m.dataset.out) return;
+  m.dataset.out = '1';
+  m.classList.remove('new');
+  B.replay(m, 'fade-out');
+  setTimeout(() => m.remove(), 260);
+}
+
+function trim() {
+  const live = [...box.children].filter(m => !m.dataset.out);
+  live.slice(0, Math.max(0, live.length - S['chat.max'])).forEach(m => m.remove());
+}
+
+function appendText(m, text, words) {
+  if (!words.length) { m.append(document.createTextNode(text)); return; }
+  const re = new RegExp('(' + words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')', 'gi');
+  for (const part of text.split(re)) {
+    if (!part) continue;
+    if (words.includes(part.toLowerCase())) m.append(Object.assign(document.createElement('mark'), { textContent: part }));
+    else m.append(document.createTextNode(part));
+  }
+}
+
+Overly.onChat(msg => {
+  if (!S || hidden(msg)) return;
+  const m = document.createElement('div');
+  m.className = 'm new';
+  m.dataset.id = msg.id || '';
+  m.dataset.login = String(msg.login || '').toLowerCase();
+  m.dataset.color = msg.color || '';
+  if (S['chat.userColors'] && msg.color) m.style.setProperty('--c', msg.color);
+  for (const b of msg.badges || []) {
+    if (BADGES[b]) m.append(Object.assign(document.createElement('span'), { className: 'b ' + b, textContent: BADGES[b] }));
+  }
+  m.append(Object.assign(document.createElement('span'), { className: 'n', textContent: msg.name }));
+  m.append(Object.assign(document.createElement('span'), { className: 'colon', textContent: ':' }));
+  const words = list(S['chat.highlight']);
+  for (const f of msg.fragments || []) {
+    if (f.emote || f.url) {   // url — смайл BetterTTV / 7TV
+      const img = new Image();
+      img.alt = f.text;
+      img.src = f.url || `https://static-cdn.jtvnw.net/emoticons/v2/${encodeURIComponent(f.emote)}/default/dark/3.0`;
+      m.append(img);
+    } else appendText(m, f.text, words);
+  }
+  m.addEventListener('animationend', () => m.classList.remove('new'), { once: true });
+  box.append(m);
+  trim();
+  if (S['chat.fadeSec'] > 0) setTimeout(() => remove(m), S['chat.fadeSec'] * 1000);
+});
+
+Overly.onChatMod(a => {
+  for (const m of [...box.children]) {
+    if (a.kind === 'clear' || (a.kind === 'delete' && m.dataset.id === a.id) ||
+        (a.kind === 'clear_user' && m.dataset.login === String(a.login || '').toLowerCase())) remove(m);
+  }
+});
+</script>
+</body>
+</html>

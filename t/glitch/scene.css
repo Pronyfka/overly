@@ -1,0 +1,99 @@
+/* Общий вид сцен Glitch HUD: «Стрим скоро», «Перерыв», «Конец стрима» (поверх glitch.css) */
+html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: transparent; }
+body { position: relative; color: var(--textColor, #fff); font-family: var(--head); --titleSize: 150px; }
+body[data-bg="solid"] { background: #0a0a0b; }
+body[data-bg="dim"] { background: rgba(6, 6, 8, .78); }
+
+/* Сетка и крестики на фоне */
+.grid { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px) 0 0 / 48px 48px,
+              linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px) 0 0 / 48px 48px;
+  mask: radial-gradient(ellipse at 50% 50%, #000 40%, transparent 100%); }
+body.no-grid .grid { display: none; }
+.blink-sq { position: absolute; width: 96px; height: 96px; background: rgba(255,255,255,.035); opacity: 0; }
+.blink-sq.on { animation: sq 2.4s steps(4) forwards; }
+@keyframes sq { 25% { opacity: 1; } 75% { opacity: 1; } 100% { opacity: 0; } }
+
+/* Свой фон: картинка или видео на весь кадр + затемнение */
+.bg-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.bg-dim { position: absolute; inset: 0; background: rgba(0, 0, 0, var(--bgDim, .5)); }
+
+/* ---------- HUD-рамка ---------- */
+.hud-frame > * { position: absolute; }
+body.no-frame .hud-frame { display: none; }
+.f-top { left: 152px; right: 135px; top: 118px; height: 1px; background: rgba(255,255,255,.35); transform-origin: left; }
+.f-left { left: 152px; top: 118px; bottom: 0; width: 1px; background: rgba(255,255,255,.35); transform-origin: top; }
+.f-right { right: 135px; top: 118px; bottom: 0; width: 1px; background: rgba(255,255,255,.18); transform-origin: top; }
+.f-tick { width: 18px; height: 3px; background: var(--acc); top: 117px; }
+.big-node { left: 102px; top: 70px; width: 100px; height: 100px; box-sizing: border-box; border: 3px solid #fff; }
+.big-node::before { content: ''; position: absolute; inset: 9px; border: 3px solid #fff; }
+.big-node::after { content: ''; position: absolute; inset: 24px; background: #fff; }
+/* Белый уголок со штриховкой справа сверху */
+.corner { right: 40px; top: 38px; width: 216px; height: 214px; }
+.corner::before { content: ''; position: absolute; inset: 0; border-top: 6px solid #fff; border-right: 6px solid #fff; }
+.corner::after { content: ''; position: absolute; right: 18px; top: 32px; width: 0; height: 0; border-top: 44px solid #fff; border-left: 44px solid transparent; }
+.corner .hatch { position: absolute; color: #fff; }
+.corner .h1 { right: 115px; top: -2px; width: 100px; height: 12px; }
+.corner .h2 { right: -2px; top: 140px; width: 12px; height: 74px; }
+/* Полоса акцента сверху по центру, по бокам — штриховка */
+.top-bar { left: 50%; top: 0; translate: -50% 0; width: 480px; height: 20px; display: flex; }
+.top-bar i { flex: 1; color: var(--acc); }
+.top-bar b { width: 228px; background: var(--acc); }
+/* Кнопка «******» справа сверху */
+.stars { right: 198px; top: 182px; padding: 6px 18px; border: 1.5px solid #fff; font: 400 18px/1 var(--pixel); letter-spacing: .1em; }
+
+/* ---------- Цветные блоки (у каждой сцены свой) ---------- */
+.side { position: absolute; background: var(--acc); }
+body.no-side .side { display: none; }
+/* Стрим скоро: вертикальная полоса справа с вырезами */
+body[data-scene="start"] .side { right: 0; top: 0; bottom: 0; width: 112px;
+  clip-path: polygon(30px 0, 100% 0, 100% 100%, 0 100%, 0 calc(100% - 26px), 30px calc(100% - 56px), 30px 560px, 0 520px, 0 26px); }
+/* Перерыв: широкая лента снизу */
+body[data-scene="brb"] .side { left: 0; right: 0; bottom: 0; height: 64px;
+  clip-path: polygon(0 26px, 320px 26px, 350px 0, 100% 0, 100% 100%, 0 100%); }
+/* Конец: панель на правую половину */
+body[data-scene="end"] .side { left: 960px; right: 0; top: 0; bottom: 0;
+  clip-path: polygon(0 26px, 26px 0, 100% 0, 100% 100%, 0 100%, 0 70%, 12px calc(70% - 12px), 12px 30%, 0 calc(30% - 12px)); }
+body[data-scene="end"] .corner, body[data-scene="end"] .stars, body[data-scene="end"] .meter { display: none; }
+body[data-scene="start"] .corner { right: 150px; }
+body[data-scene="start"] .stars { right: 300px; }
+.side.wipe { animation: wipe .5s steps(6) both; }
+@keyframes wipe { from { clip-path: inset(0 0 0 100%); } }
+
+/* ---------- Содержимое ---------- */
+.content { position: absolute; left: 265px; top: 212px; max-width: 1240px; }
+body[data-scene="end"] .content { max-width: 660px; }
+.content > * { opacity: 0; }
+.content > .on { opacity: 1; }
+.plate { font-size: 34px; padding: 9px 46px 7px 12px; clip-path: polygon(16px 0, 100% 0, 100% 100%, 0 100%, 0 16px); }
+.title { position: relative; margin-top: 70px; font: 400 var(--titleSize)/.92 var(--head); text-transform: uppercase; color: var(--acc); }
+.title div { position: relative; width: max-content; white-space: nowrap; }
+.status { margin-top: 46px; display: flex; flex-direction: column; gap: 8px; }
+.status .tag { font-size: 20px; align-self: flex-start; }
+.status .tag .hatch { width: 46px; }
+.status .px { font-size: 15px; opacity: .7; }
+.timer { margin-top: 30px; font: 400 64px/1 var(--pixel); letter-spacing: .08em; font-variant-numeric: tabular-nums; }
+.timer.done { font-size: 40px; color: var(--acc); }
+.timer:empty { display: none; }
+.note { margin-top: 10px; display: flex; align-items: center; gap: 10px; font-size: 17px; opacity: .85; }
+.note::before { content: ''; width: 0; height: 0; border-left: 9px solid transparent; border-right: 9px solid transparent; border-bottom: 15px solid currentColor; }
+.note:empty { display: none; }
+
+/* ---------- Низ: соцсети, событие, шкала времени, часы ---------- */
+.socials { position: absolute; left: 265px; bottom: 120px; font: 400 22px/1 var(--pixel); letter-spacing: .08em; opacity: .85; }
+body[data-scene="brb"] .socials { bottom: 104px; }
+.meter { position: absolute; right: 270px; bottom: 140px; display: grid; gap: 12px; }
+.meter .px { font-size: 26px; letter-spacing: .1em; }
+.meter i { display: block; height: 14px; width: 252px; color: rgba(255,255,255,.4);
+  background: linear-gradient(90deg, #fff var(--p, 0%), transparent 0), repeating-linear-gradient(-45deg, currentColor 0 1.5px, transparent 1.5px 4.5px); }
+.meter i + i { width: 158px; }
+.clock { position: absolute; right: 270px; bottom: 96px; font: 400 22px/1 var(--pixel); letter-spacing: .12em; opacity: .7; }
+body.no-clock .clock { display: none; }
+body[data-scene="end"] .clock { color: var(--ink); opacity: .8; right: 190px; }
+.event { position: absolute; left: 50%; bottom: 120px; translate: -50% 0; display: flex; align-items: center; gap: 14px;
+  padding: 8px 12px; border: 1.5px solid var(--ec, var(--acc)); background: rgba(10,10,11,.85); white-space: nowrap; opacity: 0; }
+.event.on { opacity: 1; }
+.event .kind { font: 500 18px/1 var(--pixel); letter-spacing: .14em; color: var(--ec, var(--acc)); }
+.event .who { font: 400 30px/1 var(--head); text-transform: uppercase; }
+.event .hatch { width: 34px; height: 22px; color: var(--ec, var(--acc)); }
+body[data-scene="end"] .event { left: 480px; }

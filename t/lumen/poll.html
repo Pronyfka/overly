@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ru">
+<head><script>window.OVERLY_THEME = "lumen"; window.OVERLY_SETTINGS = {"size":100,"valign":"center","showSec":6,"gapSec":0.6,"font":"Montserrat","textColor":"#ECEBF2","mutedColor":"#9D9DAA","surface":"#101015","surfaceOpacity":98,"radius":14,"intro":"line","shine":true,"timeline":true,"showMessage":true,"sound":true,"themeSound":true,"volume":70,"follow.on":true,"follow.color":"#B8A7F0","follow.label":"Новый фолловер","follow.line":"теперь с нами","follow.media":"","follow.sound":"","follow.volume":100,"follow.dur":0,"sub.on":true,"sub.color":"#6D9EFF","sub.label":"Новая подписка","sub.line":"добро пожаловать в семью","sub.media":"","sub.sound":"","sub.volume":100,"sub.dur":0,"resub.on":true,"resub.color":"#6D9EFF","resub.label":"Переподписка","resub.line":"с нами уже {n} {месяц|месяца|месяцев}","resub.media":"","resub.sound":"","resub.volume":100,"resub.dur":0,"resub.min":0,"gift.on":true,"gift.color":"#F06BB0","gift.label":"Подарок","gift.line":"дарит {n} {подписку|подписки|подписок}","gift.media":"","gift.sound":"","gift.volume":100,"gift.dur":0,"gift.min":0,"raid.on":true,"raid.color":"#5FD3A0","raid.label":"Рейд","raid.line":"{n} {зритель|зрителя|зрителей} в рейде","raid.media":"","raid.sound":"","raid.volume":100,"raid.dur":0,"raid.min":0,"bits.on":true,"bits.color":"#A78BFA","bits.label":"Битсы","bits.line":"{n} {битс|битса|битсов}","bits.media":"","bits.sound":"","bits.volume":100,"bits.dur":0,"bits.min":0,"tip.on":true,"tip.color":"#E2A03F","tip.label":"Донат","tip.line":"{n} ₽","tip.media":"","tip.sound":"","tip.volume":100,"tip.dur":0,"tip.min":0,"css":"","chat.max":12,"chat.fadeSec":0,"chat.newest":"bottom","chat.align":"left","chat.hideCommands":true,"chat.hideBots":"nightbot, streamelements, moobot, wizebot","chat.highlight":"","chat.highlightColor":"#E2A03F","chat.fontSize":20,"chat.font":"Montserrat","chat.textColor":"#ECEBF2","chat.layout":"stacked","chat.userColors":true,"chat.accent":"#B8A7F0","chat.badges":true,"chat.emoteSize":1.5,"chat.panel":true,"chat.surface":"#101015","chat.surfaceOpacity":90,"chat.radius":12,"chat.stretch":false,"chat.gap":8,"chat.anim":"line","chat.css":"","scene.bg":"solid","scene.bgMedia":"","scene.bgDim":50,"scene.accent":"#B8A7F0","scene.textColor":"#ECEBF2","scene.socials":"twitch.tv/канал · tg: @канал","scene.events":true,"scene.font":"Montserrat","scene.titleSize":96,"scene.surface":"#101015","scene.surfaceOpacity":92,"scene.glow":true,"scene.bar":true,"scene.clock":true,"scene.startKicker":"Стрим скоро","scene.startTitle":"Начинаем через","scene.startLine":"устраивайся поудобнее","scene.startMin":5,"scene.startAt":"","scene.startDone":"вот-вот начинаем","scene.startBg":"","scene.brbKicker":"Перерыв","scene.brbTitle":"Скоро вернусь","scene.brbLine":"не уходи далеко","scene.brbMin":5,"scene.brbDone":"уже возвращаюсь","scene.brbBg":"","scene.endKicker":"Стрим окончен","scene.endTitle":"Спасибо за стрим","scene.endLine":"до встречи на следующем стриме","scene.endBg":"","scene.css":"","cam.color":"#FFFFFF","cam.lineOpacity":18,"cam.thickness":2,"cam.radius":14,"cam.accent":"#B8A7F0","cam.label":"Камера","cam.labelPos":"bl","cam.font":"Montserrat","cam.labelSize":100,"cam.live":true,"cam.css":"","music.hideOnPause":true,"music.mini":false,"music.miniAfter":10,"music.miniAnchor":"center","music.cover":true,"music.showLabel":true,"music.label":"Сейчас играет","music.progress":true,"music.color":"#B8A7F0","music.font":"Montserrat","music.surface":"#101015","music.surfaceOpacity":96,"music.radius":14,"music.css":"","goal.type":"followers","goal.title":"Цель: фолловеры","goal.target":1000,"goal.done":"Цель выполнена!","goal.countMode":"both","goal.color":"#B8A7F0","goal.font":"Montserrat","goal.textColor":"#ECEBF2","goal.surface":"#101015","goal.surfaceOpacity":96,"goal.radius":14,"goal.barHeight":100,"goal.percentBig":true,"goal.css":"","timer.title":"До конца марафона","timer.start":60,"timer.endText":"Марафон окончен!","timer.showAdd":true,"timer.sub":300,"timer.gift":300,"timer.bits":60,"timer.tip":120,"timer.follow":0,"timer.raid":0,"timer.cap":0,"timer.color":"#B8A7F0","timer.font":"Montserrat","timer.textColor":"#ECEBF2","timer.surface":"#101015","timer.surfaceOpacity":96,"timer.radius":14,"timer.css":"","poll.question":"Во что играем дальше?","poll.options":"Хоррор\nРогалик\nГонки","poll.duration":120,"poll.points":0,"poll.numbers":"both","poll.showTimer":true,"poll.showTotal":true,"poll.hold":15,"poll.color":"#B8A7F0","poll.font":"Montserrat","poll.textColor":"#ECEBF2","poll.surface":"#101015","poll.surfaceOpacity":96,"poll.radius":14,"poll.barHeight":100,"poll.css":""};</script>
+<meta charset="utf-8">
+<title>Lumen — голосование</title>
+<!--
+  ТЕМА LUMEN · ГОЛОСОВАНИЕ (опрос Twitch)
+  Карточка раскрывается полосой, как остальные. Вопрос с точкой-индикатором и таймером, под ним варианты:
+  полоски плавно растут с голосами, лидер подсвечен цветом темы. Конец — «Итоги», победитель с галочкой
+  и бликом. Карточка висит столько, сколько задано в «Показ», и сворачивается.
+-->
+<link href="../../fonts/montserrat.css" rel="stylesheet">
+<link rel="stylesheet" href="lumen.css">
+<style>
+  html, body { margin: 0; width: 100vw; height: 100vh; overflow: hidden; background: transparent; }
+  #poll { position: absolute; left: 6px; right: 6px; top: 6px; box-sizing: border-box; padding: 1em 1.2em 1.05em; display: flex; flex-direction: column; gap: .7em;
+    font-family: var(--font); font-size: min(5.4vh, 4.2vw); color: var(--text); }
+  .head { display: flex; align-items: center; gap: .5em; min-width: 0; }
+  .head .dot { width: .42em; height: .42em; flex: none; animation: pulse 1.6s var(--ease) infinite; }
+  #poll.ended .head .dot { animation: none; }
+  .title { flex: 1; min-width: 0; font-size: 1.15em; font-weight: 700; line-height: 1.2; overflow: hidden; text-overflow: ellipsis;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .left { flex: none; font-size: .85em; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .left:empty { display: none; }
+  #poll.ended .left { color: var(--acc); }
+  .list { display: flex; flex-direction: column; gap: .55em; }
+  .opt { display: flex; flex-direction: column; gap: .3em; }
+  .line { display: flex; align-items: baseline; gap: .6em; min-width: 0; }
+  .name { flex: 1; min-width: 0; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color .4s; }
+  .num { flex: none; font-size: .85em; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .num:empty { display: none; }
+  .opt.lead .num { color: var(--text); }
+  .check { display: none; color: var(--acc); font-weight: 800; margin-right: .1em; }
+  .opt.win .check { display: inline; }
+  .opt.win .name { color: var(--acc); }
+  #poll.ended .opt:not(.win) { opacity: .55; transition: opacity .5s; }
+  .bar { position: relative; height: calc(.3em * var(--barH, 1)); border-radius: 99px; background: var(--track); overflow: hidden; }
+  .bar .fill { position: absolute; inset: 0; border-radius: inherit; background: color-mix(in srgb, var(--text) 35%, transparent); transform-origin: left; transform: scaleX(0);
+    transition: transform .8s var(--ease), background .4s; }
+  .opt.lead .bar .fill { background: var(--acc); }
+  .bar::after { content: ''; position: absolute; inset: 0; transform: translateX(-110%);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.75), transparent); }
+  .opt.win .bar::after { transform: translateX(110%); transition: transform .9s cubic-bezier(.45, 0, .3, 1) .2s; }
+  .total { font-size: .78em; font-weight: 600; color: var(--muted); }
+  .total:empty { display: none; }
+</style>
+</head>
+<body>
+<div id="poll" class="card">
+  <div class="bg"><i class="glow"></i><i class="seam"></i><i class="shine"></i></div>
+  <div class="head" data-s style="--d:0"><i class="dot"></i><span class="title"></span><span class="left"></span></div>
+  <div class="list"></div>
+  <div class="total" data-s style="--d:6"></div>
+</div>
+
+<script src="../../runtime/overly.js"></script>
+<script src="lumen.js"></script>
+<script src="../../runtime/poll.js"></script>
+<script>
+const box = document.getElementById('poll');
+const $ = (s) => box.querySelector(s);
+let S = null, P = null, left = '';
+
+const plural = (n, a, b, c) => { const m = n % 100, k = n % 10; return m > 10 && m < 20 ? c : k === 1 ? a : k > 1 && k < 5 ? b : c; };
+const votes = (n) => `${n.toLocaleString('ru-RU')} ${plural(n, 'голос', 'голоса', 'голосов')}`;
+function numText(c) {
+  const mode = S?.['poll.numbers'] || 'both';
+  return mode === 'none' ? '' : mode === 'pct' ? c.pct + '%' : mode === 'votes' ? c.votes.toLocaleString('ru-RU') : `${c.pct}% · ${c.votes.toLocaleString('ru-RU')}`;
+}
+
+function look() {
+  const st = box.style;
+  st.setProperty('--acc', S['poll.color']);
+  st.setProperty('--text', S['poll.textColor']);
+  st.setProperty('--font', Overly.font(S['poll.font']));
+  st.setProperty('--surf', Lumen.rgba(S['poll.surface'], S['poll.surfaceOpacity']));
+  st.setProperty('--r', S['poll.radius'] + 'px');
+  st.setProperty('--barH', (S['poll.barHeight'] || 100) / 100);
+  Overly.css(S['poll.css']);
+  if (P) fill(P);
+}
+
+function tag() { $('.left').textContent = P?.state === 'ended' ? 'Итоги' : S?.['poll.showTimer'] ? left : ''; }
+
+function fill(p) {
+  P = p;
+  box.classList.toggle('ended', p.state === 'ended');
+  $('.title').textContent = p.title;
+  [...$('.list').children].forEach((row, i) => {
+    const c = p.choices[i];
+    if (!c) return;
+    row.querySelector('.name').lastChild.textContent = c.title;
+    row.querySelector('.num').textContent = numText(c);
+    row.querySelector('.fill').style.transform = `scaleX(${c.pct / 100})`;
+    row.classList.toggle('lead', c.lead);
+    row.classList.toggle('win', c.win);
+  });
+  $('.total').textContent = S?.['poll.showTotal'] ? (p.state === 'ended' ? 'Итого: ' : 'Всего: ') + votes(p.total) : '';
+  tag();
+}
+
+OverlyPoll.start({
+  show(p) {
+    $('.list').replaceChildren(...p.choices.map((_, i) => {
+      const row = document.createElement('div');
+      row.className = 'opt';
+      row.dataset.s = '';
+      row.style.setProperty('--d', i + 1);
+      row.innerHTML = '<div class="line"><span class="name"><span class="check">✓ </span><span></span></span><span class="num"></span></div><div class="bar"><span class="fill"></span></div>';
+      return row;
+    }));
+    fill(p);
+    document.fonts.ready.then(() => Lumen.open(box, 'line'));
+  },
+  update(p) {
+    const ended = p.state === 'ended' && P?.state !== 'ended';
+    fill(p);
+    if (ended) Lumen.shine(box);
+  },
+  hide() { Lumen.close(box); },
+  tick(text) { left = text; tag(); },
+});
+
+Overly.onSettings(v => { S = v; look(); });
+</script>
+</body>
+</html>

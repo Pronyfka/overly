@@ -1,0 +1,90 @@
+/* Общий вид сцен Жвачка: «Стрим скоро», «Перерыв», «Конец стрима» (поверх gum.css) */
+html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; }
+body { position: relative; font-family: var(--font); --page: #EEEEEF; --pageInk: #1B1B1E; --titleSize: 130px;
+  background: var(--page); color: var(--pageInk); }
+body.dark-mode { --page: #19191C; --pageInk: #F0F0F1; }
+body > * { position: absolute; }
+
+/* Подпись сверху слева: «≡ Стрим скоро» */
+.label { left: 120px; top: 92px; display: flex; align-items: center; gap: 14px; font-size: 24px; font-weight: 500; }
+.label i { width: 22px; height: 14px; background: linear-gradient(currentColor 2px, transparent 0) 0 0 / 100% 6px; }
+
+/* Узор (или своя картинка/видео) */
+.pattern { overflow: hidden; background-color: var(--pb); --pc0: #FF4D8D; --pb: #1B1631;
+  --pc: color-mix(in srgb, var(--pc0) var(--ps, 35%), var(--pb)); }
+.pattern .art { position: absolute; inset: -120px; animation: drift 26s ease-in-out infinite alternate; }
+@keyframes drift { from { translate: -40px -30px; rotate: -2deg; scale: 1; } to { translate: 40px 30px; rotate: 2deg; scale: 1.08; } }
+.pattern[data-p="rings"] .art { background: repeating-radial-gradient(circle at 30% 40%, var(--pc) 0 12px, var(--pb) 12px 34px); }
+.pattern[data-p="waves"] .art { background: repeating-radial-gradient(ellipse 160% 70% at -10% 50%, var(--pc) 0 9px, var(--pb) 9px 26px); }
+.pattern[data-p="stripes"] .art { background: repeating-linear-gradient(-45deg, var(--pc) 0 16px, var(--pb) 16px 44px); }
+.pattern[data-p="dots"] .art { background: radial-gradient(circle, var(--pc) 3.5px, transparent 4px) 0 0 / 30px 30px; }
+.pattern[data-p="grid"] .art { background: linear-gradient(var(--pc) 2px, transparent 2px) 0 0 / 46px 46px, linear-gradient(90deg, var(--pc) 2px, transparent 2px) 0 0 / 46px 46px; }
+.pattern[data-p="gradient"] .art { background: linear-gradient(160deg, var(--pb), var(--pc)); animation: none; }
+.pattern[data-p="none"] .art { display: none; }
+.pattern .media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pattern .media[hidden] { display: none; }
+
+.block { background: var(--acc); }
+.sq { background: var(--acc); }
+.sq.white { background: #fff; }
+.sq.ink { background: var(--pageInk); }
+
+/* Заголовок: каждая строка выезжает снизу из-под маски */
+.title { font-size: var(--titleSize); font-weight: 500; line-height: 1.04; letter-spacing: -.01em; }
+.title .mask > span { display: block; translate: 0 105%; }
+
+/* Таймер */
+.timer { font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: .02em; display: flex; align-items: flex-start; gap: .12em; }
+.timer .sq { width: .14em; height: .14em; margin-top: .2em; background: currentColor; }
+.timer:empty { display: none; }
+.total { color: var(--muted); font-weight: 500; font-variant-numeric: tabular-nums; }
+.note { display: flex; align-items: center; gap: 14px; font-size: 22px; color: var(--muted); }
+.note::before { content: ''; width: 12px; height: 12px; background: var(--pageInk); flex: none; }
+.note:empty { display: none; }
+
+/* ---------- Стрим скоро ---------- */
+body[data-scene="start"] .label { }
+body[data-scene="start"] .title { left: 140px; top: 230px; font-size: calc(var(--titleSize) * .4); font-weight: 500; }
+body[data-scene="start"] .timer { left: 128px; top: 470px; font-size: calc(var(--titleSize) * 1.7); line-height: 1; }
+body[data-scene="start"] .total { left: 140px; top: 700px; font-size: calc(var(--titleSize) * .42); }
+body[data-scene="start"] .note { left: 140px; top: 950px; }
+body[data-scene="start"] .pattern { left: 1150px; top: 0; width: 620px; height: 1080px; }
+body[data-scene="start"] .block { left: 1770px; top: 0; width: 150px; height: 1080px; }
+body[data-scene="start"] .sq.a { left: 1112px; top: 500px; width: 76px; height: 76px; }
+
+/* ---------- Перерыв ---------- */
+body[data-scene="brb"] .block { left: 360px; top: 320px; width: 820px; height: 560px; }
+body[data-scene="brb"] .pattern { left: 1180px; top: 320px; width: 420px; height: 560px; }
+body[data-scene="brb"] .title { left: 260px; top: 200px; }
+body[data-scene="brb"] .sq.w { left: 860px; top: 560px; width: 30px; height: 30px; }
+body[data-scene="brb"] .timer { left: 420px; top: 740px; font-size: 96px; line-height: 1; color: var(--ink); }
+body[data-scene="brb"] .note { left: 1180px; top: 910px; }
+body[data-scene="brb"] .total { display: none; }
+
+/* ---------- Конец стрима ---------- */
+body[data-scene="end"] .dark { left: 0; top: 0; width: 760px; height: 1080px; background: #1C1C1F; }
+body.dark-mode[data-scene="end"] .dark { background: #0F0F11; }
+body[data-scene="end"] .label { color: #F0F0F1; }
+body[data-scene="end"] .title { left: 200px; top: 50%; translate: 0 -50%; color: #F0F0F1; font-size: calc(var(--titleSize) * .8); }
+body[data-scene="end"] .sq.a { left: 722px; top: 500px; width: 76px; height: 76px; }
+body[data-scene="end"] .block { left: 1600px; top: 330px; width: 320px; height: 420px; }
+body[data-scene="end"] .schedule { left: 1000px; top: 50%; translate: 0 -50%; width: 520px; }
+.schedule h3 { margin: 0 0 26px; display: flex; align-items: center; gap: 16px; font-size: 32px; font-weight: 600; }
+.schedule h3::before { content: ''; width: 14px; height: 14px; background: var(--pageInk); }
+.schedule .r { display: flex; justify-content: space-between; padding: 12px 0; font-size: 26px; border-bottom: 1.5px solid color-mix(in srgb, var(--muted) 30%, transparent); }
+.schedule .r span:last-child { font-weight: 600; }
+.schedule:empty { display: none; }
+
+/* Событие — карточка справа внизу */
+.event { right: 70px; bottom: 60px; display: flex; align-items: center; gap: 16px; padding: 16px 24px 16px 16px; background: var(--card); color: var(--cardInk);
+  font-size: 24px; opacity: 0; box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--muted) 35%, transparent); }
+.event .esq { width: 40px; height: 40px; background: var(--ec, var(--acc)); }
+.event .kind { color: var(--muted); font-size: 18px; display: block; }
+.event .who { font-weight: 600; display: block; }
+body[data-scene="start"] .event { right: 420px; }
+
+/* Анимированный фон сцены: полупрозрачные квадраты медленно плывут и поворачиваются */
+.float { inset: 0; overflow: hidden; pointer-events: none; }
+body.no-float .float { display: none; }
+.float i { position: absolute; background: var(--acc); opacity: var(--fo, .08); animation: floatSq var(--t, 30s) ease-in-out infinite alternate; }
+@keyframes floatSq { from { translate: 0 0; rotate: 0deg; } to { translate: var(--dx) var(--dy); rotate: var(--r); } }
