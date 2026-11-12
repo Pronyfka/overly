@@ -1,0 +1,48 @@
+/* =====================================================
+   ТЕМА «НОВОГОДНЯЯ НОЧЬ» · общий вид: огоньки гирлянды, снежные шапки, стеклянные карточки
+   ===================================================== */
+:root {
+  --ink: #F3F6FB; --muted: #A9B8CE; --warm: #FFD59A; --gold: #FFCF6B; --snow: #F4F8FF;
+  --card: rgba(13, 20, 38, .82); --line: rgba(255, 255, 255, .12); --wire: #2A3349;
+  --ease: cubic-bezier(.2, .8, .2, 1); --pop: cubic-bezier(.3, 1.5, .5, 1);
+}
+
+/* ---------- Гирлянда ---------- */
+svg.garland { position: absolute; overflow: visible; pointer-events: none; }
+.wire { fill: none; stroke: var(--wire); stroke-width: 2.2; stroke-linecap: round; }
+.wire.draw { transition: stroke-dashoffset .7s cubic-bezier(.6, 0, .2, 1); }
+.nyb .sock { fill: #2B3345; }
+.nyb .glass { fill: #273046; transition: fill .3s; }
+.nyb .shine { fill: #fff; opacity: .35; }
+/* Свечение — два полупрозрачных круга, без размытия: мерцание стоит почти ничего */
+.nyb .h1, .nyb .h2 { fill: var(--c, #FFD59A); opacity: 0; transition: opacity .35s; }
+.nyb.on .glass { fill: var(--c, #FFD59A); }
+.nyb.on .h1 { opacity: .28; }
+.nyb.on .h2 { opacity: .1; }
+.nyb.on.tw .g { animation: nyTw var(--td, 2.6s) ease-in-out var(--tdl, 0s) infinite; }
+@keyframes nyTw { 50% { opacity: .55; } }
+.nyb .g { transform-box: fill-box; transform-origin: 50% 0; }
+.nyb.pop .g { animation: nyPop .45s cubic-bezier(.3, 1.8, .5, 1); }
+@keyframes nyPop { 0% { transform: scale(.55); } 100% { transform: scale(1); } }
+
+/* ---------- Снежная шапка ---------- */
+.cap { position: absolute; left: var(--cl, 6%); width: var(--cw, 70%); top: -12px; height: 19px; pointer-events: none; transform-origin: 50% 100%; z-index: 2; }
+.cap svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.cap path { fill: var(--snow); }
+.cap .shade { fill: #CFDCF2; }
+.no-caps .cap { display: none; }
+
+/* ---------- Значок в ёлочном шаре ---------- */
+.bauble { position: relative; display: grid; place-items: center; border-radius: 50%; color: var(--acc, var(--warm));
+  background: radial-gradient(circle at 35% 30%, #3B4A78, #1A2342 70%); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--acc, var(--warm)) 40%, transparent); }
+.bauble::before { content: ""; position: absolute; left: 50%; top: -9%; width: 22%; height: 12%; translate: -50% 0; border-radius: 3px; background: #6E7A99; }
+.bauble svg { width: 62%; height: 62%; display: block; }
+
+/* ---------- Облачко снега (вылетает с верхнего края) ---------- */
+.puffdot { position: absolute; border-radius: 50%; background: #fff; pointer-events: none; }
+
+/* ---------- Подсказка-«огонёк» (точка цвета ника, позиция в музыке) ---------- */
+.dot { display: inline-block; width: .5em; height: .5em; border-radius: 50%; background: var(--c, var(--warm)); flex: none;
+  box-shadow: 0 0 .5em .12em color-mix(in srgb, var(--c, var(--warm)) 75%, transparent); }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01s !important; transition-duration: .01s !important; } }

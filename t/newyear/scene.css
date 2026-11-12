@@ -1,0 +1,86 @@
+/* Сцены «Новогодней ночи»: 1920×1080, масштабируется под источник (scene.js) */
+html { margin: 0; width: 100vw; height: 100vh; overflow: hidden; background: transparent; }
+body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: transparent; position: relative; font-family: Manrope, sans-serif; color: var(--text, var(--ink)); }
+
+/* Фон: своя ночь, затемнение поверх игры или прозрачный */
+.sky { position: absolute; inset: 0; background: radial-gradient(900px 600px at 82% 12%, rgba(255, 230, 180, .12), transparent 60%), linear-gradient(#070C1C, #101A36 70%, #18234A); }
+body[data-bg="dim"] .sky { background: rgba(6, 10, 24, .72); }
+body[data-bg="none"] .sky { background: none; }
+.bg-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.bg-dim { position: absolute; inset: 0; background: #060A18; opacity: var(--bgDim, .5); }
+.bg-media[hidden], .bg-dim[hidden] { display: none; }
+
+.moon { position: absolute; right: 250px; top: 150px; width: 110px; height: 110px; border-radius: 50%;
+  background: radial-gradient(circle at 38% 38%, #FFF8E6, #F3DCAE 60%, #E3C58E); box-shadow: 0 0 80px 20px rgba(255, 226, 170, .18); }
+body.no-moon .moon { display: none; }
+.stars i { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #fff; opacity: .5; animation: star 3.4s ease-in-out infinite; }
+@keyframes star { 50% { opacity: .08; } }
+body.no-stars .stars, body.no-stars .shoot { display: none; }
+.shoot { position: absolute; width: 160px; height: 2px; background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff); border-radius: 2px; opacity: 0; rotate: -24deg; }
+body.no-garland .top-garland { display: none; }
+
+canvas.snow { position: absolute; inset: 0; width: 1920px; height: 1080px; pointer-events: none; }
+
+/* Холмы и домики: окна загораются по числу зрителей, дым идёт из труб, где кто-то есть */
+.hills { position: absolute; left: 0; bottom: 0; width: 1920px; height: 360px; }
+body.no-hills .hills { display: none; }
+.house .wall { fill: #1B2546; } .house .roof { fill: #131A33; } .house .snowy { fill: var(--snow); } .house .door { fill: #0E1430; }
+.win .pane { fill: #0B1124; }
+.win .lit { fill: var(--win, #FFD27A); opacity: 0; transition: opacity 1.4s ease; }
+.win .glow { fill: var(--win, #FFB648); opacity: 0; transition: opacity 1.4s ease; }
+.win .bars { stroke: #1B2546; stroke-width: 2; }
+.win.on .lit { opacity: 1; animation: flick 1.1s linear; }
+.win.on .glow { opacity: .22; animation: flickG 1.1s linear; }
+@keyframes flick { 0% { opacity: 0; } 8% { opacity: 1; } 16% { opacity: .15; } 28% { opacity: .9; } 36% { opacity: .35; } 55%, 100% { opacity: 1; } }
+@keyframes flickG { 0% { opacity: 0; } 8% { opacity: .2; } 16% { opacity: 0; } 28% { opacity: .18; } 36% { opacity: .04; } 55%, 100% { opacity: .22; } }
+.smoke circle { fill: #C9D4EA; opacity: 0; transform-box: fill-box; transform-origin: center; }
+.house.alive .smoke circle { animation: smoke 4.2s ease-out infinite; }
+.house.alive .smoke circle:nth-child(2) { animation-delay: 1.4s; }
+.house.alive .smoke circle:nth-child(3) { animation-delay: 2.8s; }
+@keyframes smoke { 0% { opacity: 0; transform: translate(0, 0) scale(.4); } 15% { opacity: .5; } 100% { opacity: 0; transform: translate(18px, -70px) scale(1.8); } }
+
+/* Текст по центру */
+.main { position: absolute; left: 0; right: 0; top: 300px; text-align: center; }
+.main > * { opacity: 0; translate: 0 14px; }
+body.ready .main > * { opacity: 1; translate: 0 0; transition: opacity .7s var(--ease) var(--d), translate .8s var(--ease) var(--d); }
+.kick { font: 800 22px/1 Manrope, sans-serif; letter-spacing: .32em; text-transform: uppercase; color: var(--acc); }
+.title { font: 700 var(--titleSize, 76px)/1.1 var(--font); margin-top: 20px; }
+.title .ch { display: inline-block; white-space: pre; }
+body.ready .title .ch { animation: chIn .6s cubic-bezier(.2, .9, .3, 1.3) both; animation-delay: calc(var(--i) * 40ms + 200ms); }
+@keyframes chIn { from { opacity: 0; transform: translateY(18px) scale(.85); filter: blur(5px); } to { opacity: 1; transform: none; filter: none; } }
+.timer { display: inline-flex; margin-top: 40px; font: 700 170px/1 var(--font); font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+.timer:empty { display: none; }
+.timer span { display: inline-block; width: .62em; text-align: center; }
+.timer .sep { width: .32em; font-size: .78em; align-self: center; translate: 0 -.04em; animation: blink 1s steps(1) infinite; }
+.timer .roll { animation: roll .5s cubic-bezier(.2, .9, .3, 1.2); }
+.timer.done { font-size: 96px; }
+.timer.done span { width: auto; }
+@keyframes roll { 0% { transform: translateY(-35%); opacity: 0; filter: blur(4px); } 100% { transform: none; opacity: 1; filter: none; } }
+@keyframes blink { 50% { opacity: .35; } }
+.timer.pulse { animation: pulse .5s ease-out; }
+@keyframes pulse { 40% { scale: 1.06; } }
+.wait { margin-top: 24px; font: 700 24px Manrope, sans-serif; color: var(--muted); min-height: 1.4em; }
+.wait b { color: var(--acc); font-weight: 800; }
+body.no-waittext .wait { visibility: hidden; }
+.line { margin-top: 10px; font: 600 22px Manrope, sans-serif; color: var(--muted); }
+.line:empty { display: none; }
+
+/* Низ: строка (соцсети / название с Twitch), событие, часы */
+.bottom { position: absolute; left: 70px; right: 70px; bottom: 56px; display: flex; align-items: center; justify-content: space-between; gap: 30px;
+  font: 700 24px Manrope, sans-serif; color: #1B2440; }
+body.no-hills .bottom, body[data-bg="none"] .bottom, body[data-bg="dim"] .bottom { color: var(--text, var(--ink)); }
+.socials { display: flex; align-items: center; gap: 12px; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.socials:empty { visibility: hidden; }
+.socials:not(:empty)::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: #FF6B6B; flex: none;
+  box-shadow: 0 0 12px 3px rgba(255, 107, 107, .7); animation: blink 2s ease-in-out infinite; }
+.clock { font-variant-numeric: tabular-nums; }
+body.no-clock .clock { visibility: hidden; }
+.event { position: absolute; left: 50%; bottom: 150px; translate: -50% 0; display: flex; align-items: center; gap: 12px; padding: 12px 22px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 999px; color: var(--ink); font: 700 24px Manrope, sans-serif;
+  opacity: 0; transform: translateY(-16px) rotate(-3deg); box-shadow: 0 16px 40px -16px rgba(0, 0, 0, .7); }
+.event .kind { color: var(--evc, var(--acc)); text-transform: uppercase; letter-spacing: .14em; font-size: 16px; font-weight: 800; }
+.event .dot { --c: var(--evc, var(--acc)); }
+.event.lit { animation: evIn .9s cubic-bezier(.2, .9, .25, 1) forwards; }
+.event.gone { animation: evOut .5s ease-in forwards; }
+@keyframes evIn { 0% { opacity: 0; transform: translateY(-16px) rotate(-3deg); } 50% { opacity: 1; transform: translateY(2px) rotate(1.4deg); } 75% { transform: rotate(-.5deg); } 100% { opacity: 1; transform: none; } }
+@keyframes evOut { from { opacity: 1; } to { opacity: 0; transform: translateY(-10px); filter: blur(4px); } }

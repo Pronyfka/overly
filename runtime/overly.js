@@ -13,7 +13,7 @@
   let values = null;    // то, что видит тема (со звуком или без)
   let soundOn = false;
   const stats = { followers: 742, subs: 57, bits: 3200, donations: 4350 };
-  const channel = { title: 'Проходим новую игру', game: 'Just Chatting' };
+  const channel = { title: 'Проходим новую игру', game: 'Just Chatting', viewers: 11 };
   const music = { playing: true, title: 'Неоновый город', artist: 'Overly Beats', album: '', cover: '../../img/cover.svg', position: 41, duration: 198, at: Date.now() };
 
   // Без звука: убираем свои звуки событий и встроенные звуки темы

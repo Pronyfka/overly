@@ -60,6 +60,8 @@
       if (re) arm();   // поменяли настройку — показать полную версию и свернуть заново
     });
     Overly.onMusic(apply);
+    // Тема в демо (или музыка ещё не пришла) — данных о треке нет вовсе. В превью всё равно показываем пример
+    if (Overly.preview) setTimeout(() => { if (!cur) apply({ playing: false }); }, 700);
     setInterval(() => { if (cur && shown) ui.tick(Math.min(pos(), cur.duration || Infinity), cur.duration || 0); }, 100);
   }
 
