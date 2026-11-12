@@ -52,8 +52,9 @@
   .m.hl { border-color: var(--hl); box-shadow: 0 4px 0 rgba(0, 0, 0, .25), 0 0 26px color-mix(in srgb, var(--hl) 45%, transparent); }
 
   /* Клуб дыма у края, из которого выпрыгивает пузырь */
-  .m .puff { left: 1.2em; top: 60%; scale: .55; }
-  #chat.right .m .puff { left: auto; right: 1.2em; }
+  /* Не у самого края: крайние облака разлетаются на ~75 px в стороны и иначе обрезаются краем источника */
+  .m .puff { left: 56px; top: 60%; scale: .55; }
+  #chat.right .m .puff { left: auto; right: 56px; }
 
   /* Появление: «Из дыма» — пузырь выпрыгивает с отскоком; «Снизу» — поднимается; «Без анимации» */
   #chat.a-pop .m.in { animation: popIn .6s cubic-bezier(.3, 1.5, .5, 1) both; }
@@ -72,7 +73,7 @@
 <body>
 <div id="chat"></div>
 
-<script src="../../runtime/overly.js?v=mwe36yl1"></script>
+<script src="../../runtime/overly.js?v=mwe3ddcw"></script>
 <script src="witch.js"></script>
 <script>
 const box = document.getElementById('chat');
