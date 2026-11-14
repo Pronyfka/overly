@@ -272,7 +272,7 @@ footer a:hover{color:var(--text)}
 
 <section id="prices"><div class="wrap">
   <h2>Цены</h2>
-  <p class="lead">Тема покупается один раз и остаётся твоей со всеми будущими обновлениями. Скоро появится подписка: все темы за 199 ₽ в месяц.</p>
+  <p class="lead">Тема покупается один раз и остаётся твоей со всеми будущими обновлениями. Или подписка: все темы за 199 ₽ в месяц.</p>
   <div class="prices">
     <div class="pr"><h3>Демо</h3><div class="sum">0 ₽</div>
       <ul><li>Все темы и настройки</li><li>Тестовые события в OBS</li><li>«Новогодняя ночь», «Ведьмин час» и «Жвачка» целиком</li><li>Водяной знак на платных темах</li></ul>
@@ -280,14 +280,13 @@ footer a:hover{color:var(--text)}
     <div class="pr"><h3>Одна тема</h3><div class="sum"><small>от</small> 490 ₽</div>
       <ul><li>Все виджеты темы</li><li>Живые донаты, чат, подписки, музыка</li><li>Без водяного знака</li><li>Ключ сразу в Telegram</li></ul>
       <a class="btn btn-main" data-bot href="#">Купить</a></div>
-    <!-- ПОДПИСКА: в боте её пока нет, поэтому карточка помечена «Скоро» и кнопка ведёт в бота.
-         Кнопка записывает в лист ожидания в боте (/start sub, владелец видит число по /waitlist).
-         Когда подписка появится — убрать класс soon и поменять текст кнопки на «Оформить». -->
-    <div class="pr soon"><h3>Подписка</h3><div class="sum">199 ₽ <small>/ мес</small></div>
-      <ul><li>Все темы, включая новые</li><li>Живые донаты, чат, подписки, музыка</li><li>Без водяного знака</li><li>Отменить можно в любой момент</li></ul>
-      <a class="btn btn-ghost" data-bot data-start="sub" href="#">Узнать о запуске</a></div>
+    <!-- ПОДПИСКА: оформляется в боте (/start sub → канал → оплата ЮKassa), нужен Overly 0.1.11+.
+         Пока ЮKassa не включила автоплатежи, продление ручное: бот за 3 дня присылает ссылку. -->
+    <div class="pr"><h3>Подписка</h3><div class="sum">199 ₽ <small>/ мес</small></div>
+      <ul><li>Все темы, включая новые</li><li>Живые донаты, чат, подписки, музыка</li><li>Без водяного знака</li><li>Без автосписаний: продлеваешь сам, когда нужно</li></ul>
+      <a class="btn btn-main" data-bot data-start="sub" href="#">Оформить</a></div>
   </div>
-  <p class="pay">Оплата через Робокассу — банковской картой и другими способами · чек самозанятого приходит на почту</p>
+  <p class="pay">Темы — через Робокассу, подписка — через ЮKassa: банковской картой и другими способами · чек самозанятого приходит на почту</p>
 </div></section>
 
 <section id="faq" class="alt"><div class="wrap">
@@ -335,7 +334,7 @@ footer a:hover{color:var(--text)}
 const DL = 'https://github.com/Pronyfka/overly-releases/releases/latest';
 const BOT = 'https://t.me/overly_support_bot';
 document.querySelectorAll('[data-dl]').forEach(a => a.href = DL);
-// data-start — что бот покажет сразу (sub — лист ожидания подписки)
+// data-start — что бот покажет сразу (sub — оформление подписки)
 document.querySelectorAll('[data-bot]').forEach(a => a.href = BOT + (a.dataset.start ? '?start=' + a.dataset.start : ''));
 
 const THEMES = window.OVERLY_THEMES;
@@ -552,7 +551,7 @@ document.getElementById('v-sound').onclick = e => {
 };
 </script>
 <!-- Яндекс Метрика, счётчик 114224598 (код со страницы счётчика). Вебвизор и карта кликов включены.
-     Цели download / bot / sub — клики по «Скачать», «Купить» и «Узнать о запуске»: добавить их в Метрике
+     Цели download / bot / sub — клики по «Скачать», «Купить» и «Оформить» (подписка): добавить их в Метрике
      (Цели → JavaScript-событие) с этими идентификаторами, тогда они появятся в отчёте «Конверсии». -->
 <script>
   (function(m,e,t,r,i,k,a){
