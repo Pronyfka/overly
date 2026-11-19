@@ -56,4 +56,3 @@
 .burst i { position: absolute; width: 3px; height: 14px; margin: -7px -1.5px; background: var(--bc, var(--acc)); animation: burst .6s var(--out) forwards; }
 @keyframes burst { from { translate: 0 0; opacity: 1; } to { translate: var(--bx) var(--by); opacity: 0; } }
 
-@media (prefers-reduced-motion: reduce) { * { animation-duration: .01s !important; } }

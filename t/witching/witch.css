@@ -89,9 +89,6 @@ svg .legs { transform-origin: 50% 40%; animation: legs .5s ease-in-out infinite 
 .puff i:nth-child(7) { --x: 96px; --y: 4px; animation-delay: .07s; }
 @keyframes puff { 0% { opacity: .95; translate: 0 0; scale: .3; } 60% { opacity: .6; } 100% { opacity: 0; translate: var(--x) var(--y); scale: 1.5; } }
 
-@media (prefers-reduced-motion: reduce) {
-  .mist *, .mist, svg *, .ch, .puff i { animation: none !important; transition: none !important; }
-}
 
 /* Рамки (Witch.frame): слизь на боках мерцает, капли сверху медленно тянутся вниз */
 svg .slm { animation: slm 3s ease-in-out infinite; }

@@ -89,7 +89,7 @@
   </div>
 </div>
 
-<script src="../../runtime/overly.js?v=mwe6bc1p"></script>
+<script src="../../runtime/overly.js?v=mwnfsmyh"></script>
 <script src="witch.js"></script>
 <script>
 const root = document.getElementById('alert');
@@ -147,11 +147,14 @@ function showAlert(a) {
   root.dataset.char = ch;
   $('.body').innerHTML = Witch.char(ch);
   $('.body').hidden = Witch.setMedia(root, S[k + '.media']);
-  $('.kind').textContent = S[k + '.label'] || '';
+  // Есть сообщение — оно идёт под ником, а подпись с суммой поднимается в надпись сверху, чтобы не пропала
+  const line = Witch.fill(S[k + '.line'], n);
+  const text = S.showMessage && a.message;
+  $('.kind').textContent = text && line ? [S[k + '.label'], line].filter(Boolean).join(' · ') : (S[k + '.label'] || '');
   // Короткий ник — по буквам (падают и качаются), длинный — целиком, чтобы влез с многоточием
   if ([...a.name].length <= 18) Witch.letters($('.nick'), a.name); else $('.nick').textContent = a.name;
   $('.nick').classList.remove('wave');
-  $('.msg').textContent = (S.showMessage && a.message) || Witch.fill(S[k + '.line'], n);
+  $('.msg').textContent = text || line;
   if (S.sound) {
     const vol = (S[k + '.volume'] ?? 100) / 100 * S.volume / 100;
     if (S[k + '.sound']) Overly.play(S[k + '.sound'], vol);

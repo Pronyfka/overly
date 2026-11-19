@@ -70,6 +70,3 @@
 .pop { animation: pop .42s cubic-bezier(.3, 1.4, .5, 1); }
 @keyframes pop { 40% { scale: 1.12; } }
 
-@media (prefers-reduced-motion: reduce) {
-  .card *, .card { transition: none !important; animation: none !important; }
-}

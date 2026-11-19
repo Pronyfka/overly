@@ -107,6 +107,8 @@ body[data-scene] .block, body[data-scene] .dark { rotate: -1.6deg; }
 .lens-rings g { transform-origin: 960px 540px; animation: ringOut 1.05s cubic-bezier(.6, 0, .4, 1) .2s both; }
 @keyframes ringOut { from { scale: .02; rotate: -80deg; opacity: 1; } 80% { opacity: 1; } to { scale: 1.9; rotate: 70deg; opacity: 0; } }
 .lens.gone, .lens-rings.gone { display: none; }
+body.lens-wait .lens, body.lens-wait .lens-rings g { animation-play-state: paused; }
+body.pre-intro :is(.pattern, .block, .dark, .sq) { opacity: 0; }
 
 /* В низких оверлеях капсула не летит и не наклоняется: иначе край срезается границей источника */
 @keyframes gumFlat {

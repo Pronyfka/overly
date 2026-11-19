@@ -36,6 +36,7 @@
   .kicker { display: flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 700; letter-spacing: .14em;
     text-transform: uppercase; color: var(--muted); white-space: nowrap; }
   .kicker .dot { width: 7px; height: 7px; }
+  .kicker span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .name { font-size: 42px; font-weight: 800; line-height: 1.08; letter-spacing: -.01em; white-space: nowrap;
     overflow: hidden; text-overflow: ellipsis; transform-origin: left bottom; }
   .msg { font-size: 19px; font-weight: 500; color: var(--mutedText, var(--muted)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -62,7 +63,7 @@
   </div>
 </div>
 
-<script src="../../runtime/overly.js?v=mwe6bc1p"></script>
+<script src="../../runtime/overly.js?v=mwnfsmyh"></script>
 <script src="lumen.js"></script>
 <script>
 const root = document.getElementById('alert');
@@ -115,9 +116,12 @@ function showAlert(a) {
   root.style.setProperty('--acc', S[k + '.color'] || '#B8A7F0');
   $('.icon').innerHTML = Lumen.icon(k);
   root.classList.toggle('has-media', Lumen.setMedia(root, S[k + '.media']));
-  $('.kicker span').textContent = S[k + '.label'] || '';
+  // Есть сообщение — оно идёт под ником, а подпись с суммой поднимается в надпись сверху, чтобы не пропала
+  const line = Lumen.fill(S[k + '.line'], n);
+  const text = S.showMessage && a.message;
+  $('.kicker span').textContent = text && line ? [S[k + '.label'], line].filter(Boolean).join(' · ') : (S[k + '.label'] || '');
   $('.name').textContent = a.name;
-  $('.msg').textContent = (S.showMessage && a.message) || Lumen.fill(S[k + '.line'], n);
+  $('.msg').textContent = text || line;
   if (S.sound) {
     // Свой файл у события — играет он; нет файла — встроенный звук темы
     const vol = (S[k + '.volume'] ?? 100) / 100 * S.volume / 100;

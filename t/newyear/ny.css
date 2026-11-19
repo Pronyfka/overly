@@ -45,4 +45,3 @@ svg.garland { position: absolute; overflow: visible; pointer-events: none; }
 .dot { display: inline-block; width: .5em; height: .5em; border-radius: 50%; background: var(--c, var(--warm)); flex: none;
   box-shadow: 0 0 .5em .12em color-mix(in srgb, var(--c, var(--warm)) 75%, transparent); }
 
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01s !important; transition-duration: .01s !important; } }

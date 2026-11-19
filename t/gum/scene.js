@@ -25,7 +25,9 @@ document.body.insertAdjacentHTML('beforeend', `<div class="lens"></div>
     <circle cx="960" cy="540" r="430" stroke="var(--acc)" stroke-width="86" stroke-linecap="round" stroke-dasharray="1100 240 780 210" />
     <circle cx="960" cy="540" r="570" stroke="color-mix(in srgb, var(--acc) 60%, #4FA8FF)" stroke-width="54" stroke-linecap="round" stroke-dasharray="960 700" />
   </g></svg>`);
-setTimeout(() => { document.querySelector('.lens').classList.add('gone'); document.querySelector('.lens-rings').classList.add('gone'); }, 1400);
+// Пока не пришли настройки и шрифты: заставка стоит на паузе, карточки спрятаны.
+// Иначе на медленной машине кольца успевают раскрыться и видна готовая сцена, которая потом мигает и въезжает заново
+document.body.classList.add('lens-wait', 'pre-intro');
 
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => document.querySelectorAll(s);
@@ -125,12 +127,15 @@ Overly.onSettings(v => {
 // Появление: блоки шторками, квадраты кувырком, строки заголовка снизу, расписание построчно
 function intro() {
   const lensDelay = 420;
+  document.body.classList.remove('lens-wait');
+  setTimeout(() => { $('.lens').classList.add('gone'); $('.lens-rings').classList.add('gone'); }, 1400);
   setTimeout(introCards, lensDelay);
 }
 function introCards() {
   const p = $('.pattern'), b = $('.block'), d = $('.dark');
   const hide = (el) => el && (el.style.opacity = 0);
   [p, b, d].forEach(hide);
+  document.body.classList.remove('pre-intro');
   const show = (el, cls, ms) => el && setTimeout(() => { el.style.opacity = ''; B.replay(el, cls); }, ms);
   show(d, 'wipe-in', 0);
   show(p, 'wipe-down', 120);
