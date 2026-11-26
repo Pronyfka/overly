@@ -8,14 +8,23 @@
 <meta name="keywords" content="оверлеи для obs, оверлей для стрима, алерты для твича, виджеты donationalerts, оформление стрима, сцены для obs">
 <link rel="canonical" href="https://overlyy.ru/">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://overlyy.ru/">
+<meta property="og:site_name" content="Overly">
+<meta property="og:locale" content="ru_RU">
 <meta property="og:title" content="Overly — оверлеи для OBS">
 <meta property="og:description" content="Алерты, чат, сцены, музыка и таймер для Twitch в одном приложении. Темы — от 1190 ₽.">
-<meta property="og:image" content="https://overlyy.ru/img/witching-stream.png">
+<meta property="og:image" content="https://overlyy.ru/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Стрим с оверлеями Overly: алерт, чат, цель и музыка">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://overlyy.ru/img/og.jpg">
 <meta name="theme-color" content="#0d0b14">
 <link rel="icon" href="img/logo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="fonts/unbounded.css">
+<link rel="stylesheet" href="fonts/manrope.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Overly","operatingSystem":"Windows 10, Windows 11","applicationCategory":"MultimediaApplication","description":"Готовые оверлеи для OBS: алерты, чат, сцены, музыка, таймер и голосования для Twitch.","offers":{"@type":"AggregateOffer","lowPrice":"1190","priceCurrency":"RUB"},"inLanguage":"ru"}
 </script>
@@ -141,7 +150,7 @@ dialog::backdrop{background:#05040acc;backdrop-filter:blur(6px)}
 .cmp td:nth-child(3){color:var(--muted)}
 .cmp .y{color:#4ade80}.cmp .n{color:#f87171}
 
-.prices{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px;align-items:stretch}
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px;align-items:stretch;max-width:1000px}
 .pr{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;display:flex;flex-direction:column}
 .pr.hot{border:2px solid var(--accent);position:relative;background:linear-gradient(180deg,#a78bfa1f,var(--card) 50%)}
 .pr.hot::before{content:"Выгоднее всего";position:absolute;top:-14px;left:24px;background:var(--accent);color:#140d22;font-weight:800;font-size:13px;padding:4px 12px;border-radius:999px}
@@ -161,6 +170,7 @@ summary::-webkit-details-marker{display:none}
 summary::after{content:"+";color:var(--accent);font-size:22px;line-height:1}
 details[open] summary::after{content:"−"}
 details p{color:var(--muted);margin-top:10px}
+details p a,.pay a,footer .docs a{text-decoration:underline;text-underline-offset:3px}
 
 .final{text-align:center;padding:80px 20px;border-radius:28px;background:radial-gradient(circle at 50% 0,#a78bfa40,transparent 70%),var(--bg2);border:1px solid var(--line)}
 .final .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
@@ -168,6 +178,10 @@ footer{padding:20px 0 60px;color:var(--muted);font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
 footer a:hover{color:var(--text)}
 
+.cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:40;margin:0 auto;max-width:720px;display:flex;align-items:center;gap:16px;padding:14px 16px 14px 20px;border-radius:16px;background:#1b1727f2;border:1px solid var(--line);box-shadow:0 20px 60px -20px #000;backdrop-filter:blur(10px);font-size:14px;color:var(--muted)}
+.cookie a{color:var(--text);text-decoration:underline;text-underline-offset:3px}
+.cookie .btn{flex:none}
+.cookie[hidden]{display:none}
 @media (max-width:960px){
   .hero-top{grid-template-columns:1fr}
   .grid,.prices,.steps{grid-template-columns:1fr 1fr}
@@ -184,6 +198,7 @@ footer a:hover{color:var(--text)}
   .cmp th,.cmp td{padding:10px;font-size:13px}
   .v-stage{margin:0 12px;width:calc(100% - 24px)}
   .v-tabs,.v-ctrl,.v-head{padding-left:12px;padding-right:12px}
+  .cookie{flex-direction:column;align-items:stretch;text-align:center}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -281,12 +296,12 @@ footer a:hover{color:var(--text)}
       <ul><li>Все виджеты темы</li><li>Живые донаты, чат, подписки, музыка</li><li>Без водяного знака</li><li>Ключ сразу в Telegram</li></ul>
       <a class="btn btn-main" data-bot href="#">Купить</a></div>
     <!-- ПОДПИСКА: оформляется в боте (/start sub → канал → оплата ЮKassa), нужен Overly 0.1.11+.
-         Пока ЮKassa не включила автоплатежи, продление ручное: бот за 3 дня присылает ссылку. -->
+         Автопродление — если покупатель сохранил карту при оплате; отвязать: «Помощь → Отвязать карту» или /cancel. -->
     <div class="pr"><h3>Подписка</h3><div class="sum">199 ₽ <small>/ мес</small></div>
-      <ul><li>Все темы, включая новые</li><li>Живые донаты, чат, подписки, музыка</li><li>Без водяного знака</li><li>Без автосписаний: продлеваешь сам, когда нужно</li></ul>
+      <ul><li>Все темы, включая новые</li><li>Живые донаты, чат, подписки, музыка</li><li>Без водяного знака</li><li>Автопродление по желанию — отключается кнопкой в боте</li></ul>
       <a class="btn btn-main" data-bot data-start="sub" href="#">Оформить</a></div>
   </div>
-  <p class="pay">Оплата через ЮKassa — банковской картой, СБП и другими способами · продавец — самозанятый, чек из «Мой налог»</p>
+  <p class="pay">Оплата через ЮKassa — банковской картой, СБП и другими способами · продавец — самозанятый, чек из «Мой налог» · <a href="docs.html#offer">оферта</a> и <a href="docs.html#refund">условия возврата</a></p>
 </div></section>
 
 <section id="faq" class="alt"><div class="wrap">
@@ -295,10 +310,10 @@ footer a:hover{color:var(--text)}
     <details><summary>Чем Overly отличается от виджетов DonationAlerts?</summary><p>Здесь всё в одном стиле: алерты, чат, сцены, цель, музыка, таймер и голосования оформлены одной темой. Ничего не нужно собирать по разным сайтам.</p></details>
     <details><summary>Как работает демо?</summary><p>Можно поставить любую тему и настроить её, в OBS будут тестовые события и водяной знак. После покупки ключа подключаются настоящие донаты, чат и подписки.</p></details>
     <details><summary>Как я получу ключ?</summary><p>Оплата в Telegram-боте @overly_support_bot. Ключ приходит в чат сразу после оплаты, его нужно вставить в приложении.</p></details>
-    <details><summary>Ключ привязан к каналу?</summary><p>Да, ключ работает на одном канале Twitch. Продлевать ничего не нужно.</p></details>
+    <details><summary>Ключ привязан к каналу?</summary><p>Да, ключ работает на одном канале Twitch. Купленная тема остаётся навсегда, продлевать её не нужно. Подписка действует месяц: если при оплате сохранить карту, она продлится сама, а отключить автопродление можно в любой момент кнопкой «Отвязать карту» в боте.</p></details>
     <details><summary>Будут ли новые темы?</summary><p>Да, темы постепенно пополняются. Новые появляются в приложении с обновлением — в демо их можно сразу попробовать.</p></details>
     <details><summary>Работает на Mac или в Streamlabs?</summary><p>Приложение только для Windows. Виджеты работают в любой программе с источником «Браузер»: OBS, Streamlabs Desktop, Meld.</p></details>
-    <details><summary>Можно вернуть деньги?</summary><p>Условия возврата — в боте, команда /refund.</p></details>
+    <details><summary>Можно вернуть деньги?</summary><p>Да, если тема не работает по нашей вине, при двойной оплате или если автопродление подписки прошло, а она не нужна (напишите в течение 3 дней). Подробно — в <a href="docs.html#refund">условиях возврата</a>.</p></details>
   </div>
 </div></section>
 
@@ -314,8 +329,13 @@ footer a:hover{color:var(--text)}
 <footer><div class="wrap">
   <span>© 2026 Overly — оверлеи для OBS</span>
   <span>Самозанятый Васильев Егор Валерьевич, ИНН 744726753694 · <a href="mailto:Pronyfka@ya.ru">Pronyfka@ya.ru</a></span>
-  <span><a data-bot href="#">Поддержка</a> · <a data-bot href="#">Лицензия и возврат</a></span>
+  <span class="docs"><a data-bot href="#">Поддержка</a> · <a href="docs.html#offer">Оферта</a> · <a href="docs.html#refund">Возврат</a> · <a href="docs.html#privacy">Конфиденциальность</a></span>
 </div></footer>
+
+<div class="cookie" id="cookie" hidden>
+  <span>Сайт использует cookie и Яндекс Метрику, чтобы понимать, как им пользуются. Подробнее — в <a href="docs.html#privacy">политике</a>.</span>
+  <button class="btn btn-ghost sm" id="cookie-ok">Понятно</button>
+</div>
 
 <dialog id="viewer">
   <div class="v-head">
@@ -331,6 +351,12 @@ footer a:hover{color:var(--text)}
 
 <script src="data.js"></script>
 <script>
+// Плашка про cookie: показываем один раз, пока не нажали «Понятно»
+try {
+  const ck = document.getElementById('cookie');
+  if (!localStorage.getItem('overly-cookie')) ck.hidden = false;
+  document.getElementById('cookie-ok').onclick = () => { localStorage.setItem('overly-cookie', '1'); ck.hidden = true; };
+} catch {}
 const DL = 'https://github.com/Pronyfka/overly-releases/releases/latest';
 const BOT = 'https://t.me/overly_support_bot';
 document.querySelectorAll('[data-dl]').forEach(a => a.href = DL);
@@ -340,6 +366,7 @@ document.querySelectorAll('[data-bot]').forEach(a => a.href = BOT + (a.dataset.s
 const THEMES = window.OVERLY_THEMES;
 // Короткое описание и фон превью для каждой темы
 const INFO = {
+  newyear:  ['', 'radial-gradient(70% 70% at 50% 20%,#1c2a4a,#080b14 70%)'],
   glitch:   ['Технический интерфейс: лайм на чёрном, сбои строк, узлы и метки. Для шутеров и CS2.', 'radial-gradient(70% 70% at 30% 20%,#2a3a0c,#07090a 70%)'],
   lumen:    ['Спокойные тёмные карточки раскрываются из светящейся линии. Для общения и музыки.', 'radial-gradient(80% 80% at 50% 110%,#3b2a7a,#0b0a14 65%)'],
   gum:      ['Яркие пузыри, пружинящие плашки и 3D-покачивание. Палитры Клубника, Черника, Мята, Лимонад.', 'radial-gradient(80% 80% at 70% 20%,#5a1f4a,#1a0d1f 70%)'],
@@ -462,7 +489,7 @@ THEMES.forEach((t, idx) => {
     <div class="info"><h3>${t.name} <small class="${t.free ? 'free' : ''}">${price(t)}</small></h3>
       <p>${INFO[t.id]?.[0] || t.description || ''}</p>
       <div class="row"><button class="btn btn-ghost sm" data-open>Смотреть всё</button>
-      ${t.free ? `<a class="btn btn-main sm" href="${DL}">Скачать</a>` : `<a class="btn btn-main sm" href="${BOT}">Купить</a>`}</div></div>`;
+      ${t.free ? `<a class="btn btn-main sm" data-dl href="${DL}">Скачать</a>` : `<a class="btn btn-main sm" data-bot data-start="${t.id}" href="${BOT}?start=${t.id}">Купить</a>`}</div></div>`;
   grid.appendChild(card);
   const slot = card.querySelector('.slot');
   const chips = [...card.querySelectorAll('.evs span')];
@@ -494,7 +521,8 @@ function openViewer(t) {
   document.getElementById('v-price').textContent = price(t);
   const buy = document.getElementById('v-buy');
   buy.textContent = t.free ? 'Скачать' : 'Купить';
-  buy.href = t.free ? DL : BOT;
+  buy.href = t.free ? DL : BOT + '?start=' + t.id;
+  buy.toggleAttribute('data-dl', !!t.free); buy.toggleAttribute('data-bot', !t.free);
   stage.style.setProperty('--tb', INFO[t.id]?.[1]);
   document.getElementById('v-tabs').replaceChildren(...t.overlays.map(o => {
     const b = document.createElement('button');
